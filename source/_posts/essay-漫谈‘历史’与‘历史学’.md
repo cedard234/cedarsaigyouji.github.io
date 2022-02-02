@@ -1,6 +1,6 @@
 ---
 title: essay::漫谈‘历史’与‘历史学’
-category: 看杂书想到的一些念头
+category: essay
 date: 2021-12-10 00:36:27
 tags: whimsical
 comment: true

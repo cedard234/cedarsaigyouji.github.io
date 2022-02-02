@@ -4,8 +4,8 @@ excerpt: 'error: “hello world” is not defined'
 index_img: /img/helloworld.png
 banner_img: /img/helloworld.png
 date: 2021/1/30
-category: Note
-comment: false
+category: note
+comment: true
 ---
 2021年1月30日，本站重启。
 

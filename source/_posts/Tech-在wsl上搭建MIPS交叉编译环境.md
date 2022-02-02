@@ -3,7 +3,7 @@ title: 'Tech::在wsl上搭建MIPS交叉编译环境'
 date: 2021-02-13 17:24:47
 tags: Awareness 
 comment: true
-category: techtips
+category: tech
 banner_img: 
 index_img: 
 ---

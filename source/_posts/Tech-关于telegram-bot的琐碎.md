@@ -1,7 +1,7 @@
 ---
 title: 'Tech::关于telegram bot的琐碎'
 excerpt: '后记：这玩意天天骂我'
-category: techtips
+category: tech
 date: 2021-04-30 01:41:27
 tags: tech
 comment: true

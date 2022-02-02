@@ -2,7 +2,7 @@
 title: 'note::永夜抄H结界组6a混关笔记'
 category: game
 date: 2022-01-07 13:03:17
-tags:
+tags: 糟！
 comment: true
 banner_img: https://upload.wikimedia.org/wikipedia/zh/thumb/5/59/Th08cover.jpg/220px-Th08cover.jpg
 index_img: https://upload.wikimedia.org/wikipedia/zh/thumb/5/59/Th08cover.jpg/220px-Th08cover.jpg

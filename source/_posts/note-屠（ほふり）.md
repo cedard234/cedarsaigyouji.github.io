@@ -1,6 +1,6 @@
 ---
 title: note-屠（ほふり）
-category: music
+category: note
 date: 2021-11-17 23:39:48
 tags: whimsical
 comment: true
