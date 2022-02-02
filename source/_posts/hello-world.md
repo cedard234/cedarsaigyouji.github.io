@@ -1,5 +1,6 @@
 ---
 title: Note::hello world
+excerpt: 'error: “hello world” is not defined'
 index_img: /img/helloworld.png
 banner_img: /img/helloworld.png
 date: 2021/1/30

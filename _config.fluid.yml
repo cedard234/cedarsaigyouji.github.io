@@ -446,7 +446,7 @@ index:
   # 自动截取文章摘要
   # Auto extract post
   auto_excerpt:
-    enable: true
+    enable: false
 
   # 打开文章的标签方式
   # The browser tag to open the post
@@ -846,12 +846,17 @@ links:
   # Member item of page
   items:
     - {
-      title: "橘子汽水！",
-      intro: "TangerineSoda",
+      title: "TangerineSoda",
+      intro: "Soda Fridge",
       link: "https://world.tangerinesoda.fun/",
       image: "/img/tangerinesoda.jpg"
     }
-
+    - {
+      title: "Lao_Liu",
+      intro: "Male / Lazy / Coding",
+      link: "https://blog.laoliu.eu.org/",
+      image: "https://cdn.jsdelivr.net/gh/Lao-Liu233/blog_imgs/avatar.png"
+    }
 #---------------------------
 # 以下是配置 JS CSS 等静态资源的 URL 前缀，可以自定义成 CDN 地址，
 # 默认的 jsDelivr CDN 可能在部分地区无法访问，如果需要修改，最好使用与默认配置相同的版本，以避免潜在的问题，

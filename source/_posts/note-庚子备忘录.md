@@ -5,7 +5,10 @@ tags: whimsical
 comment: true
 category: essay
 banner_img: 
+hide: true
 index_img: /img/庚子备忘录.jpg
+excerpt: Nostalgic...
+
 ---
 
 > lmy: 在异地过年的时候 就想起你！

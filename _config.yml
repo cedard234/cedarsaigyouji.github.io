@@ -4,22 +4,22 @@
 
 # Site
 title: 四方喫茶舘
-subtitle: 'WinterholD'
+subtitle: '四方喫茶舘'
 description: '真理位於大炮的射程範圍内'
-keywords:
+keywords: '看书睡觉听音乐'
 author: 雾杉cedar
 language: en
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://cedard.tk
+url: http://blog.cedard.me
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year-:month-:day-:category-(･ω･)-.html
 permalink_defaults:
 pretty_urls:
   trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_html: false # Set to false to remove trailing '.html' from permalinks
 
 # Directory
 source_dir: source
