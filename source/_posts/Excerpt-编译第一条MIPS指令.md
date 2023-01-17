@@ -1,5 +1,5 @@
 ---
-title: 'Excerpt:: 编译第一条MIPS指令'
+title: '编译第一条MIPS指令'
 date: 2021-02-16 20:05:35
 tags: tech
 comment: true

@@ -1,5 +1,5 @@
 ---
-title: 'Essay::”蔚蓝“的山'
+title: '”蔚蓝“的山'
 excerpt: celeste
 date: 2021-02-01 20:05:35
 tags: whimsical

@@ -1,5 +1,5 @@
 ---
-title: 'tech:zsh踩坑记'
+title: 'zsh踩坑记'
 category: tech
 excerpt: 代码可以写的烂，终端不能不好看
 date: 2021-08-21 22:20:24

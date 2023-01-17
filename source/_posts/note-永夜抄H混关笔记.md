@@ -1,5 +1,5 @@
 ---
-title: 'note::永夜抄H结界组6a混关笔记'
+title: '永夜抄H结界组6a混关笔记'
 category: game
 date: 2022-01-07 13:03:17
 tags: 糟！

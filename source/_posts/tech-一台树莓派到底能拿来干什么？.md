@@ -1,5 +1,5 @@
 ---
-title: 'Tech::一台树莓派到底能拿来干什么？'
+title: '一台树莓派到底能拿来干什么？'
 category: tech
 excerpt: 折腾就完事了
 date: 2021-05-07 20:14:38

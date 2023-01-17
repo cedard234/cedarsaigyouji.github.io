@@ -1,7 +1,8 @@
 ---
 title: {{ title }}
-category: tech
+category: 
 date: {{ date }}
+excerpt: 
 tags: 
 comment: 
 banner_img: 

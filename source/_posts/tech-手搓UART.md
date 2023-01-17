@@ -1,5 +1,5 @@
 ---
-title: 'tech:手搓UART'
+title: '手搓UART'
 category: tech
 excerpt: 关于UART协议的碎碎念
 date: 2021-08-27 16:52:12

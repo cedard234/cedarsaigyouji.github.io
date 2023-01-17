@@ -1,5 +1,5 @@
 ---
-title: 'Note::庚子备忘录'
+title: '庚子备忘录'
 date: 2021-02-12 10:17:57
 tags: whimsical 
 comment: true

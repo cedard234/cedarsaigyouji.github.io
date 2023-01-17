@@ -1,5 +1,5 @@
 ---
-title: note-屠（ほふり）
+title: 屠（ほふり）
 category: note
 date: 2021-11-17 23:39:48
 tags: whimsical

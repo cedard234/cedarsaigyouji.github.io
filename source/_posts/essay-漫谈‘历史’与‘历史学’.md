@@ -1,5 +1,5 @@
 ---
-title: essay::漫谈‘历史’与‘历史学’
+title: 漫谈‘历史’与‘历史学’
 category: essay
 date: 2021-12-10 00:36:27
 tags: whimsical
