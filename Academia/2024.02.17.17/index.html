@@ -17,7 +17,7 @@
   <meta name="description" content="真理位於大炮的射程範圍内">
   <meta name="author" content="雾杉cedar">
   <meta name="keywords" content="看书睡觉听音乐">
-  <title>ISSCC_Insights - 四方喫茶舘</title>
+  <title>ISSCC Circuit Insights Notes - 四方喫茶舘</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -59,7 +59,11 @@
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.2"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
@@ -174,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ISSCC_Insights">
+            <span class="h2" id="subtitle" title="ISSCC Circuit Insights Notes">
               
             </span>
 
@@ -221,19 +225,30 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ISSCC_Insights</h1>
+            <h1 style="display: none">ISSCC Circuit Insights Notes</h1>
             
             <div class="markdown-body">
-              <h1 id="ISSCC-Circuit-Insight"><a href="#ISSCC-Circuit-Insight" class="headerlink" title="ISSCC Circuit Insight"></a>ISSCC Circuit Insight</h1><p>So essentially, I have been attending the ISSCC 2024 conference and taking notes on the insights that I have been gathering from the conference. The ISSCC Circuit Insight targets fresh grads/graduating undergrads to get a sense of basic circuit theory, industrial trends and future prospects.<br>There are four key talks for today, which respectively covers digital, analog, RF and photonic circuits. </p>
-<h2 id="Fundamentals-of-Digital-Circuit-Design"><a href="#Fundamentals-of-Digital-Circuit-Design" class="headerlink" title="Fundamentals of Digital Circuit Design"></a>Fundamentals of Digital Circuit Design</h2><p><em>Jan Rabaey</em></p>
-<h3 id="Circuit-industry-and-successes"><a href="#Circuit-industry-and-successes" class="headerlink" title="Circuit industry and successes"></a>Circuit industry and successes</h3><h3 id="Boolean-Algebra"><a href="#Boolean-Algebra" class="headerlink" title="Boolean Algebra"></a>Boolean Algebra</h3><h3 id="Circuit-Components"><a href="#Circuit-Components" class="headerlink" title="Circuit Components"></a>Circuit Components</h3><p>Converting voltage signals to 1/0 units.<br>Defining a threshold.<br>Example: an inverter</p>
+              <h1>ISSCC Circuit Insight</h1>
+<p>So essentially, I have been attending the ISSCC 2024 conference and taking notes on the insights that I have been gathering from the conference. The ISSCC Circuit Insight targets fresh grads/graduating undergrads to get a sense of basic circuit theory, industrial trends and future prospects.<br>
+There are four key talks for today, which respectively covers digital, analog, RF and photonic circuits.<br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3973.jpg" srcset="/img/loading.gif" alt="Opening"></p>
+<h2 id="Fundamentals-of-Digital-Circuit-Design">Fundamentals of Digital Circuit Design</h2>
+<p><em>Jan Rabaey</em></p>
+<h3 id="Circuit-industry-and-successes">Circuit industry and successes</h3>
+<h3 id="Boolean-Algebra">Boolean Algebra</h3>
+<h3 id="Circuit-Components">Circuit Components</h3>
+<p>Converting voltage signals to 1/0 units.<br>
+Defining a threshold.<br>
+Example: an inverter</p>
 <ul>
-<li>  Nonlinear</li>
-<li>  Noise Rejection</li>
-<li>Noise Margins<ul>
-<li>  Regeneration</li>
-<li>No accumulation of noise in complex circuits<ul>
-<li>  Contrast with analog circuits</li>
+<li>Nonlinear</li>
+<li>Noise Rejection</li>
+<li>Noise Margins
+<ul>
+<li>Regeneration</li>
+<li>No accumulation of noise in complex circuits
+<ul>
+<li>Contrast with analog circuits</li>
 </ul>
 </li>
 </ul>
@@ -241,320 +256,427 @@
 </ul>
 <p>Digital circuits treat transistors as switches. (3-terminal devices)</p>
 <ul>
-<li>  $R_{sw} = 0$ when G is high</li>
-<li>  $R_{sw} = \inf$ when G is low</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">R_{sw} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> when G is high</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>s</mi><mi>w</mi></mrow></msub><mo>=</mo><mi>inf</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">R_{sw} = \inf</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">s</span><span class="mord mathnormal mtight" style="margin-right:0.02691em;">w</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mop">in<span style="margin-right:0.07778em;">f</span></span></span></span></span> when G is low</li>
 </ul>
-<h3 id="CMOS-circuits"><a href="#CMOS-circuits" class="headerlink" title="CMOS circuits"></a>CMOS circuits</h3><p>Non-ideal:</p>
+<h3 id="CMOS-circuits">CMOS circuits</h3>
+<p>Non-ideal:</p>
 <ul>
-<li>  $R_{on} \ne 0$ when on, a few kilo ohms</li>
-<li>  Not infinite when off</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>o</mi><mi>n</mi></mrow></msub><mo mathvariant="normal">≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">R_{on} \ne 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel"><span class="mrel"><span class="mord vbox"><span class="thinbox"><span class="rlap"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="inner"><span class="mord"><span class="mrel"></span></span></span><span class="fix"></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span> when on, a few kilo ohms</li>
+<li>Not infinite when off</li>
 </ul>
-<h4 id="Speed-and-Power"><a href="#Speed-and-Power" class="headerlink" title="Speed and Power"></a>Speed and Power</h4><p>Speed of RC networks limit the performance.<br>Dynamic power and static power due to switching and leakage.</p>
+<h4 id="Speed-and-Power">Speed and Power</h4>
+<p>Speed of RC networks limit the performance.<br>
+Dynamic power and static power due to switching and leakage.</p>
 <ul>
-<li>  $P = \alpha C_{tot} V^2f + VI_{leak}$</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi><mo>=</mo><mi>α</mi><msub><mi>C</mi><mrow><mi>t</mi><mi>o</mi><mi>t</mi></mrow></msub><msup><mi>V</mi><mn>2</mn></msup><mi>f</mi><mo>+</mo><mi>V</mi><msub><mi>I</mi><mrow><mi>l</mi><mi>e</mi><mi>a</mi><mi>k</mi></mrow></msub></mrow><annotation encoding="application/x-tex">P = \alpha C_{tot} V^2f + VI_{leak}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0085em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.03148em;">ak</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
 </ul>
-<h3 id="Modularity-and-Hierarchy"><a href="#Modularity-and-Hierarchy" class="headerlink" title="Modularity and Hierarchy"></a>Modularity and Hierarchy</h3><p>Libraries of common gates/functions<br>Interfaces are built in such a way.<br>Delays and power are added linearly.<br>Composite functions</p>
-<h3 id="Timing-and-Sequential-Circuits"><a href="#Timing-and-Sequential-Circuits" class="headerlink" title="Timing and Sequential Circuits"></a>Timing and Sequential Circuits</h3><p>Concept: Event -&gt; Asynchronous design. (Clockless)</p>
+<h3 id="Modularity-and-Hierarchy">Modularity and Hierarchy</h3>
+<p>Libraries of common gates/functions<br>
+Interfaces are built in such a way.<br>
+Delays and power are added linearly.<br>
+Composite functions<br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3977.jpg" srcset="/img/loading.gif" alt="Early Stage Taping out"></p>
+<h3 id="Timing-and-Sequential-Circuits">Timing and Sequential Circuits</h3>
+<p>Concept: Event -&gt; Asynchronous design. (Clockless)</p>
 <ul>
-<li>  Cons: complicated</li>
-<li>  Event Driven, relative to changes </li>
+<li>Cons: complicated</li>
+<li>Event Driven, relative to changes</li>
 </ul>
 <p>Synchronous</p>
 <ul>
-<li>  Time reference</li>
+<li>Time reference</li>
 </ul>
-<h3 id="Synchronization"><a href="#Synchronization" class="headerlink" title="Synchronization"></a>Synchronization</h3><ul>
-<li>  Building blocks: FFs</li>
-<li>  Passes signals by <strong>1 register</strong> at a time</li>
-<li>  Setup time: clock is not too fast</li>
-<li>  Hold time</li>
-<li>Timing margins<ul>
-<li>  Skewed clocks</li>
-<li>  Wired RC delays</li>
-<li>  Jitters, uncertainties</li>
-<li>  Optimize clock distribution network</li>
-</ul>
-</li>
-</ul>
-<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><ul>
-<li>Bistability<ul>
-<li>  CMOS is inherently compatible</li>
-<li>Store charge, trapped charge<ul>
-<li>  Latch, DRAM, Flash</li>
+<h3 id="Synchronization">Synchronization</h3>
+<ul>
+<li>Building blocks: FFs</li>
+<li>Passes signals by <strong>1 register</strong> at a time</li>
+<li>Setup time: clock is not too fast</li>
+<li>Hold time</li>
+<li>Timing margins
+<ul>
+<li>Skewed clocks</li>
+<li>Wired RC delays</li>
+<li>Jitters, uncertainties</li>
+<li>Optimize clock distribution network</li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<h3 id="Verification"><a href="#Verification" class="headerlink" title="Verification"></a>Verification</h3><ul>
-<li>  Functionality</li>
-<li>  Signal Noise Margins</li>
-<li>  Timing margins</li>
-<li>  Optimization and repeatition</li>
-</ul>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">Q:</span> how can we mitigate Jitter?<br><span class="hljs-symbol">R:</span> Optimize layouts, adding buffers<br><span class="hljs-symbol">Q:</span> How worthy <span class="hljs-built_in">is</span> it <span class="hljs-keyword">to</span> implement EDA <span class="hljs-keyword">for</span> <span class="hljs-keyword">async</span> designs?<br><span class="hljs-symbol">R:</span> Current ecology. Energy. Large variance <span class="hljs-keyword">for</span> <span class="hljs-keyword">async</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="Complexity"><a href="#Complexity" class="headerlink" title="Complexity"></a>Complexity</h3><ul>
-<li>  Intel 4004</li>
-<li>  SPICE citcuit simulation</li>
-<li>Design methodology<ul>
-<li><p>  Verification</p>
-</li>
-<li><p>Design automation</p>
-<h3 id="Design-Methodology"><a href="#Design-Methodology" class="headerlink" title="Design Methodology"></a>Design Methodology</h3></li>
-</ul>
-</li>
-<li>Improve productivity<ul>
-<li>  Raising abstraction level</li>
-</ul>
-</li>
-<li>Design Rules Check (DRC)<ul>
-<li>$ \lambda $-based designs rules<ul>
-<li>  CIF(Caltech Intermediate Form) language</li>
-</ul>
-</li>
-<li>  Connecting Fabs and Designers</li>
-<li>  VLSI design tools</li>
-</ul>
-</li>
-<li>Standrd Cells<ul>
-<li>  layouts</li>
-<li>  netlists</li>
-<li>  automatic PNR</li>
-</ul>
-</li>
-<li>RTL level<ul>
-<li>  RTL languages: VHDL and Verilog</li>
-<li>  Structural and Behavioural level description</li>
-<li>  Logic Synthesis</li>
-</ul>
-</li>
-<li>Reuse<ul>
-<li>  Parameterized blocks</li>
-<li>  systemverilog</li>
-<li>  scripting language drived designs</li>
-</ul>
-</li>
-<li>  risc-v processors</li>
-<li>  modern soc</li>
-<li>ai design tools and ai designing methodologies<ul>
-<li>  chip designs chips<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">Q:</span> transistor level abstraction<br><span class="hljs-symbol">R:</span> cost <span class="hljs-keyword">of</span> time <span class="hljs-built_in">and</span> effort<br><span class="hljs-symbol">Q:</span> more regeneration-able substrates<br><span class="hljs-symbol">R:</span> neurons? quantums?<br><span class="hljs-symbol">Q:</span> would ai designing chips enter <span class="hljs-keyword">into</span> problems?<br><span class="hljs-symbol">R:</span> ai designs might <span class="hljs-built_in">not</span> be deterministic but statistical, <span class="hljs-keyword">do</span> we need the deterministism? could we gain <span class="hljs-keyword">from</span> the randomness? (blackbox, explanable, predictable)<br><span class="hljs-symbol">Q:</span> after manufacturing, how we could mitigate <span class="hljs-literal">false</span> results?<br><span class="hljs-symbol">R:</span> <span class="hljs-keyword">error</span> correction mechanism, redundancy modules?<br><span class="hljs-symbol">Q:</span> moore<span class="hljs-comment">&#x27;s law? the next breakthrough for future digital chips?</span><br><span class="hljs-symbol">R:</span> scaling has stopped; finfets, increasing density, cfet(pmos over nmos), <span class="hljs-number">3</span>d dimensional,  flash memory, cmos2.<span class="hljs-number">0</span>, neuromorphic<br></code></pre></td></tr></table></figure>
-<h2 id="Cmos-circuits-for-biomedical-applications"><a href="#Cmos-circuits-for-biomedical-applications" class="headerlink" title="Cmos circuits for biomedical applications"></a>Cmos circuits for biomedical applications</h2></li>
+<h3 id="Memory">Memory</h3>
+<ul>
+<li>Bistability
+<ul>
+<li>CMOS is inherently compatible</li>
+<li>Store charge, trapped charge
+<ul>
+<li>Latch, DRAM, Flash</li>
 </ul>
 </li>
 </ul>
+</li>
+</ul>
+<h3 id="Verification">Verification</h3>
+<ul>
+<li>Functionality</li>
+<li>Signal Noise Margins</li>
+<li>Timing margins</li>
+<li>Optimization and repeatition</li>
+</ul>
+<blockquote>
+<p>Q: how can we mitigate Jitter?<br>
+R: Optimize layouts, adding buffers<br>
+Q: How worthy is it to implement EDA for async designs?</p>
+</blockquote>
+<h3 id="Complexity">Complexity</h3>
+<ul>
+<li>Intel 4004</li>
+<li>SPICE citcuit simulation</li>
+<li>Design methodology
+<ul>
+<li>Verification</li>
+<li>Design automation</li>
+</ul>
+</li>
+</ul>
+<h3 id="Design-Methodology">Design Methodology</h3>
+<ul>
+<li>Improve productivity
+<ul>
+<li>Raising abstraction level</li>
+</ul>
+</li>
+<li>Design Rules Check (DRC)
+<ul>
+<li>$ \lambda $-based designs rules
+<ul>
+<li>CIF(Caltech Intermediate Form) language</li>
+</ul>
+</li>
+<li>Connecting Fabs and Designers</li>
+<li>VLSI design tools</li>
+</ul>
+</li>
+<li>Standrd Cells
+<ul>
+<li>layouts</li>
+<li>netlists</li>
+<li>automatic PNR</li>
+</ul>
+</li>
+<li>RTL level
+<ul>
+<li>RTL languages: VHDL and Verilog</li>
+<li>Structural and Behavioural level description</li>
+<li>Logic Synthesis</li>
+</ul>
+</li>
+<li>Reuse
+<ul>
+<li>Parameterized blocks</li>
+<li>systemverilog</li>
+<li>scripting language drived designs</li>
+</ul>
+</li>
+<li>risc-v processors</li>
+<li>modern soc</li>
+<li>ai design tools and ai designing methodologies
+<ul>
+<li>chip designs chips</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Q: transistor level abstraction<br>
+R: cost of time and effort<br>
+Q: more regeneration-able substrates<br>
+R: neurons? quantums?<br>
+Q: would ai designing chips enter into problems?<br>
+R: ai designs might not be deterministic but statistical, do we need the deterministism? could we gain from the randomness? (blackbox, explanable, predictable)<br>
+Q: after manufacturing, how we could mitigate false results?<br>
+R: error correction mechanism, redundancy modules?<br>
+Q: moore’s law? the next breakthrough for future digital chips?<br>
+R: scaling has stopped; finfets, increasing density, cfet(pmos over nmos), 3d dimensional,  flash memory, cmos2.0, neuromorphic</p>
+</blockquote>
+<h2 id="Cmos-circuits-for-biomedical-applications">Cmos circuits for biomedical applications</h2>
 <p><em>Carolina Mora Lopez</em></p>
-<h3 id="human-body-and-complexity"><a href="#human-body-and-complexity" class="headerlink" title="human body and complexity"></a>human body and complexity</h3><h3 id="bioelectronics"><a href="#bioelectronics" class="headerlink" title="bioelectronics"></a>bioelectronics</h3><h4 id="interface-with-human-body"><a href="#interface-with-human-body" class="headerlink" title="interface with human body"></a>interface with human body</h4><ul>
-<li><strong>sense: getting the information from bio-electric signals</strong><ul>
-<li>  This talk will be targeting on </li>
+<h3 id="human-body-and-complexity">human body and complexity</h3>
+<h3 id="bioelectronics">bioelectronics</h3>
+<h4 id="interface-with-human-body">interface with human body</h4>
+<ul>
+<li><strong>sense: getting the information from bio-electric signals</strong>
+<ul>
+<li>This talk will be targeting on</li>
 </ul>
 </li>
-<li>Actuate: Drive a certain organ<ul>
-<li>  Non-toxic, human-body compatible</li>
-<li>  A research topic of material science<h3 id="Biomedical-Sensing"><a href="#Biomedical-Sensing" class="headerlink" title="Biomedical Sensing"></a>Biomedical Sensing</h3></li>
+<li>Actuate: Drive a certain organ
+<ul>
+<li>Non-toxic, human-body compatible</li>
+<li>A research topic of material science</li>
 </ul>
 </li>
 </ul>
+<h3 id="Biomedical-Sensing">Biomedical Sensing</h3>
 <ol>
-<li>  <strong>Electrical</strong></li>
+<li><strong>Electrical</strong></li>
 </ol>
 <ul>
-<li>  Wearable sensors</li>
+<li>Wearable sensors</li>
 </ul>
 <ol start="2">
-<li>  Chemical</li>
-<li>  Optical</li>
+<li>Chemical</li>
+<li>Optical</li>
 </ol>
-<h4 id="Electrical-Sensing"><a href="#Electrical-Sensing" class="headerlink" title="Electrical Sensing"></a>Electrical Sensing</h4><ul>
-<li>  ECG: Electrocardiography</li>
-<li>  EMG: Electromyography</li>
-<li>  EEG: Electroencephalography</li>
-<li>  ECoG: Electrocorticography</li>
-<li>  AP: Action Potential</li>
-<li>  LFP: Local Field Potential</li>
-</ul>
-<h3 id="Electrical-Noise"><a href="#Electrical-Noise" class="headerlink" title="Electrical Noise"></a>Electrical Noise</h3><p>Noise is defined as unwanted disturbance in an electrical signal</p>
+<h4 id="Electrical-Sensing">Electrical Sensing</h4>
 <ul>
-<li>Thermal Noise:<ul>
-<li>  $v_n = \sqrt{4KTRB}$</li>
+<li>ECG: Electrocardiography</li>
+<li>EMG: Electromyography</li>
+<li>EEG: Electroencephalography</li>
+<li>ECoG: Electrocorticography</li>
+<li>AP: Action Potential</li>
+<li>LFP: Local Field Potential</li>
 </ul>
-</li>
-<li>Flicker Noise(1/f noise):<ul>
-<li>  All active devices suffer from</li>
-<li>  Imperfections in crystalline structures of semiconductors</li>
-<li>  $\frac{\overline{v^2}}{\Delta f} = \frac{K_{nf}g_m^2}{C_{ox}WL}\frac{1}{f}$</li>
-<li>  Also called pink noise</li>
-</ul>
-</li>
-<li>  Noise Spectrum</li>
-<li>Corner frequency<ul>
-<li>  At low frequencies, 1/f noise dominates</li>
-<li>  At high frequencies, thermal noise dominates</li>
-</ul>
-</li>
-<li>Biopotential signals are <strong>low-frequency</strong> signals<ul>
-<li>  Affected by Thermal &amp; Flicker noise</li>
-</ul>
-</li>
-<li>Scenario case study: Amplifier input referred noise<ul>
-<li>  Input signal level: $1\mu V$ to $1mV$</li>
-</ul>
-</li>
-<li>Design tradeoffs:<ul>
-<li>  Noise, area and power</li>
-</ul>
-</li>
-</ul>
-<h3 id="Interface-with-Biology"><a href="#Interface-with-Biology" class="headerlink" title="Interface with Biology"></a>Interface with Biology</h3><ul>
-<li>  Cell exerts electro-chemical reactions</li>
-<li>  Inserting electrodes for electrical amplification and signal processing</li>
-<li>Electrode-Electrolyte Interface<ul>
-<li>   Electrode model as a resistor, in series with a RC parallel, in series with a voltage source</li>
-<li>   Half-cell potential for the voltage source</li>
-</ul>
-</li>
-</ul>
-<h3 id="Electrode-DC-offset-EDO"><a href="#Electrode-DC-offset-EDO" class="headerlink" title="Electrode DC offset (EDO)"></a>Electrode DC offset (EDO)</h3><ul>
-<li>  Different materials have different EDO values</li>
-<li>Electrode Impedance Magnitude<ul>
-<li>  High in low frequencies, low in high frequencies</li>
-<li>  Electrode impedance and input impedance of the amplifier affect the amplifier input voltage by a voltage divider.</li>
-</ul>
-</li>
-<li>Achieving a high impedance in AC.<ul>
-<li>  $V_{EDO}$ is usually a DC signal</li>
-<li>  $v_{bio}$ will be amplified</li>
-<li>  $V_{EDO}$ should be rejected</li>
-</ul>
-</li>
-<li>Removing EDO<ul>
-<li>  High pass filter</li>
-<li>  Challenges: low frequency as low as 1Hz</li>
-<li>RC filter, differentiator<ul>
-<li>  AC coupled capacitor allows the input signals to be controlled within a DC range</li>
-<li>  pF capacitor allows $&gt; 100G\Omega $</li>
-</ul>
-</li>
-<li>Low pass filter feed to the minus terminal to cancel<ul>
-<li>EDO directly applied to the input, AMP needs to be able to deal with the offset<ul>
-<li>  EDO can’t be predicted well</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Low pass filter for the feedback for rejection purposes<ul>
-<li>   Highest input impedance</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="ELectrode-Impedance"><a href="#ELectrode-Impedance" class="headerlink" title="ELectrode Impedance"></a>ELectrode Impedance</h3><ul>
-<li> $V_{in} = \frac{Z_{in}}{Z_{in}+Z_{ele}}V_{bio} &gt; 0.9V_{bio}$, $Z_{in} &gt; 10 \times Z_{ele}$<ul>
-<li>  Chopping input impedance</li>
-</ul>
-</li>
-<li>  Achieving high input impedance</li>
-</ul>
-<h3 id="Biopotential-Amplifier-General-Metrics"><a href="#Biopotential-Amplifier-General-Metrics" class="headerlink" title="Biopotential Amplifier General Metrics"></a>Biopotential Amplifier General Metrics</h3><ul>
-<li>  Low noise</li>
-<li>  EDO Rejection</li>
-<li>  High input impedance</li>
-<li>Application Specific Requirements<ul>
-<li>  Small area</li>
-<li>  Low power</li>
-<li>  Good linearity</li>
-<li>  Low input leakage<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">Q: How <span class="hljs-keyword">to</span> mitigate DC <span class="hljs-keyword">offset</span>?<br>C: Metal Capacitors <br>Q: BJT <span class="hljs-keyword">as</span> compared <span class="hljs-keyword">to</span> CMOS?<br>C: Low <span class="hljs-keyword">input</span> leakage, BJT tends <span class="hljs-keyword">to</span> have <span class="hljs-keyword">input</span> <span class="hljs-keyword">current</span><br></code></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Complete-Biopotential-Readout-Circuit-Architecture"><a href="#Complete-Biopotential-Readout-Circuit-Architecture" class="headerlink" title="Complete Biopotential Readout Circuit Architecture"></a>Complete Biopotential Readout Circuit Architecture</h3><ul>
-<li>  Recording Electrode / Reference Electrode</li>
-<li>  LNA</li>
-<li>  Filter</li>
-<li>  Programmable Gain Amp</li>
-<li>ADC<ul>
-<li>  Resolution of the ADC: How many bits do we need to quantize the signal?</li>
-<li>  Quantization noise is not significant</li>
-<li>  Don’t want overdesign -&gt; becomes expensive</li>
-<li>  Power and Area constraints</li>
-<li>  make the digital backend complex as well</li>
-</ul>
-</li>
-</ul>
-<h3 id="LNA"><a href="#LNA" class="headerlink" title="LNA"></a>LNA</h3><ul>
-<li>Negative Feedback loop diff amp<ul>
-<li>  AC-coupling</li>
-<li>  High input impedance</li>
-<li>  Low power</li>
-<li>  How to implement $R_{FB}$?</li>
-<li>Example: $1k\Omega / sq$ sheet resistance $100G\Omega = 100 mm^2$<ul>
-<li>Pseudo-Ressistors<ul>
-<li>  Diode-connected MOS biased in cut-off</li>
-<li>  $\frac{dv}{di}$ is large for small $\Delta v$</li>
-<li>  Equivalent resistance value $&gt; 100G\Omega$</li>
-<li>  small area </li>
-<li>  non-linear</li>
-<li>  temperature dependent</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Differential-Amplifiers"><a href="#Differential-Amplifiers" class="headerlink" title="Differential Amplifiers"></a>Differential Amplifiers</h3><ul>
-<li>Diff pair with active load, simple 5T OTA<ul>
-<li>  PMOS has lower Flicker noise for the input pair</li>
-<li>Diff pair and active load mosfets contribute to noise<ul>
-<li>  Noise is dominated by PMOS input pairs</li>
-<li>Achieving low-noise requires:<ul>
-<li>  Large $g_m$ for PMOS input pairs</li>
-<li>  Small $g_m$ for NMOS active loads</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="Multi-Channel-Readout"><a href="#Multi-Channel-Readout" class="headerlink" title="Multi-Channel Readout"></a>Multi-Channel Readout</h3><p>Multiple channel readouts can enable high-density sensing</p>
-<h3 id="Neural-Readout-ASIC"><a href="#Neural-Readout-ASIC" class="headerlink" title="Neural Readout ASIC"></a>Neural Readout ASIC</h3><ul>
-<li>Neuro-probe<ul>
-<li>  Brain behaviors</li>
-<li>  Time-division multiplexing</li>
-</ul>
-</li>
-<li>  Needles</li>
-</ul>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">Q:</span> The future <span class="hljs-keyword">of</span> implantable devices?<br><span class="hljs-symbol">C:</span> Already happening, medicine already applied<br><span class="hljs-symbol">Q:</span> How <span class="hljs-keyword">to</span> mitigate the noise? <br><span class="hljs-symbol">C:</span> <span class="hljs-keyword">With</span> AI? Edge computing<br><span class="hljs-symbol">Q:</span> Battery <span class="hljs-built_in">and</span> power<br><span class="hljs-symbol">C:</span> Wireless charging, inductive charging, low power all digital etc<br></code></pre></td></tr></table></figure>
-
-<h2 id="The-Basics-of-Radio-Frequency-RF-Circuits"><a href="#The-Basics-of-Radio-Frequency-RF-Circuits" class="headerlink" title="The Basics of Radio Frequency(RF) Circuits"></a>The Basics of Radio Frequency(RF) Circuits</h2><p><em>Hossein Hashemi</em></p>
-<h3 id="EM-waves"><a href="#EM-waves" class="headerlink" title="EM waves"></a>EM waves</h3><ul>
-<li><p>  Maxwell’s equations</p>
-</li>
-<li><p>  EM waves are solutions to Maxwell’s equations</p>
-</li>
-<li><p>Time varying electric field and magnetic fields</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3978.jpg" srcset="/img/loading.gif" alt="Biomedical Sensing"></p>
+<h3 id="Electrical-Noise">Electrical Noise</h3>
+<p>Noise is defined as unwanted disturbance in an electrical signal</p>
 <ul>
-<li>  Vacuum, Air, Liquids, Solid objects</li>
+<li>Thermal Noise:
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>n</mi></msub><mo>=</mo><msqrt><mrow><mn>4</mn><mi>K</mi><mi>T</mi><mi>R</mi><mi>B</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">v_n = \sqrt{4KTRB}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1133em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mord mathnormal" style="margin-right:0.05017em;">TRB</span></span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span></span></span></span></li>
 </ul>
 </li>
-<li><p>Propagation Delay</p>
+<li>Flicker Noise(1/f noise):
 <ul>
-<li><p>  In the air, EM wave speed is the speed of light</p>
-</li>
-<li><p>Propagation delay</p>
-<ul>
-<li>  Bluetooth Earbuds: 2m &lt;=&gt; 6ns</li>
-<li>  Cellphone to Base Station: 1km &lt;=&gt; $3 \mu s$</li>
-<li>  Earth to International Space Station: 400km &lt;=&gt; 1.3ms</li>
-<li>  Earth to Mars: 1e8 km &lt;=&gt; 5.5 minutes</li>
+<li>All active devices suffer from</li>
+<li>Imperfections in crystalline structures of semiconductors</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mover accent="true"><msup><mi>v</mi><mn>2</mn></msup><mo stretchy="true">‾</mo></mover><mrow><mi mathvariant="normal">Δ</mi><mi>f</mi></mrow></mfrac><mo>=</mo><mfrac><mrow><msub><mi>K</mi><mrow><mi>n</mi><mi>f</mi></mrow></msub><msubsup><mi>g</mi><mi>m</mi><mn>2</mn></msubsup></mrow><mrow><msub><mi>C</mi><mrow><mi>o</mi><mi>x</mi></mrow></msub><mi>W</mi><mi>L</mi></mrow></mfrac><mfrac><mn>1</mn><mi>f</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{\overline{v^2}}{\Delta f} = \frac{K_{nf}g_m^2}{C_{ox}WL}\frac{1}{f}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.569em;vertical-align:-0.4811em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0879em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">Δ</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord overline mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9913em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.8933em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line mtight" style="border-bottom-width:0.049em;"></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.6181em;vertical-align:-0.4811em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.137em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.0715em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">x</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">W</span><span class="mord mathnormal mtight">L</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.5131em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0715em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2901em;"><span></span></span></span></span></span></span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8913em;"><span style="top:-2.214em;margin-left:-0.0359em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">m</span></span></span><span style="top:-2.931em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+<li>Also called pink noise</li>
 </ul>
 </li>
-<li><p>Wavelength </p>
+<li>Noise Spectrum</li>
+<li>Corner frequency
+<ul>
+<li>At low frequencies, 1/f noise dominates</li>
+<li>At high frequencies, thermal noise dominates</li>
+</ul>
+</li>
+<li>Biopotential signals are <strong>low-frequency</strong> signals
+<ul>
+<li>Affected by Thermal &amp; Flicker noise</li>
+</ul>
+</li>
+<li>Scenario case study: Amplifier input referred noise
+<ul>
+<li>Input signal level: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>μ</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">1\mu V</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span class="mord mathnormal">μ</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span></span></span> to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>m</mi><mi>V</mi></mrow><annotation encoding="application/x-tex">1mV</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">1</span><span class="mord mathnormal" style="margin-right:0.22222em;">mV</span></span></span></span></li>
+</ul>
+</li>
+<li>Design tradeoffs:
+<ul>
+<li>Noise, area and power</li>
+</ul>
+</li>
+</ul>
+<h3 id="Interface-with-Biology">Interface with Biology</h3>
+<ul>
+<li>Cell exerts electro-chemical reactions</li>
+<li>Inserting electrodes for electrical amplification and signal processing</li>
+<li>Electrode-Electrolyte Interface
+<ul>
+<li>Electrode model as a resistor, in series with a RC parallel, in series with a voltage source</li>
+<li>Half-cell potential for the voltage source</li>
+</ul>
+</li>
+</ul>
+<h3 id="Electrode-DC-offset-EDO">Electrode DC offset (EDO)</h3>
+<ul>
+<li>Different materials have different EDO values</li>
+<li>Electrode Impedance Magnitude
+<ul>
+<li>High in low frequencies, low in high frequencies</li>
+<li>Electrode impedance and input impedance of the amplifier affect the amplifier input voltage by a voltage divider.</li>
+</ul>
+</li>
+<li>Achieving a high impedance in AC.
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>E</mi><mi>D</mi><mi>O</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{EDO}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> is usually a DC signal</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mrow><mi>b</mi><mi>i</mi><mi>o</mi></mrow></msub></mrow><annotation encoding="application/x-tex">v_{bio}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bi</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> will be amplified</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>E</mi><mi>D</mi><mi>O</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{EDO}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05764em;">E</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">D</span><span class="mord mathnormal mtight" style="margin-right:0.02778em;">O</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> should be rejected</li>
+</ul>
+</li>
+<li>Removing EDO
+<ul>
+<li>High pass filter</li>
+<li>Challenges: low frequency as low as 1Hz</li>
+<li>RC filter, differentiator
+<ul>
+<li>AC coupled capacitor allows the input signals to be controlled within a DC range</li>
+<li>pF capacitor allows $&gt; 100G\Omega $</li>
+</ul>
+</li>
+<li>Low pass filter feed to the minus terminal to cancel
+<ul>
+<li>EDO directly applied to the input, AMP needs to be able to deal with the offset<br>
+-   EDO can’t be predicted well</li>
+</ul>
+</li>
+<li>Low pass filter for the feedback for rejection purposes
+<ul>
+<li>Highest input impedance</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ELectrode-Impedance">ELectrode Impedance</h3>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>V</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>=</mo><mfrac><msub><mi>Z</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mrow><msub><mi>Z</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>+</mo><msub><mi>Z</mi><mrow><mi>e</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow></mfrac><msub><mi>V</mi><mrow><mi>b</mi><mi>i</mi><mi>o</mi></mrow></msub><mo>&gt;</mo><mn>0.9</mn><msub><mi>V</mi><mrow><mi>b</mi><mi>i</mi><mi>o</mi></mrow></msub></mrow><annotation encoding="application/x-tex">V_{in} = \frac{Z_{in}}{Z_{in}+Z_{ele}}V_{bio} &gt; 0.9V_{bio}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3393em;vertical-align:-0.4509em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0715em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3488em;margin-left:-0.0715em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1512em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0715em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4509em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bi</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord">0.9</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">bi</span><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>, <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>Z</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub><mo>&gt;</mo><mn>10</mn><mo>×</mo><msub><mi>Z</mi><mrow><mi>e</mi><mi>l</mi><mi>e</mi></mrow></msub></mrow><annotation encoding="application/x-tex">Z_{in} &gt; 10 \times Z_{ele}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">10</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0715em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight" style="margin-right:0.01968em;">l</span><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><br>
+-   Chopping input impedance</li>
+<li>Achieving high input impedance</li>
+</ul>
+<h3 id="Biopotential-Amplifier-General-Metrics">Biopotential Amplifier General Metrics</h3>
+<ul>
+<li>Low noise</li>
+<li>EDO Rejection</li>
+<li>High input impedance</li>
+<li>Application Specific Requirements
+<ul>
+<li>Small area</li>
+<li>Low power</li>
+<li>Good linearity</li>
+<li>Low input leakage</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Q: How to mitigate DC offset?<br>
+C: Metal Capacitors<br>
+Q: BJT as compared to CMOS?<br>
+C: Low input leakage, BJT tends to have input current</p>
+</blockquote>
+<h3 id="Complete-Biopotential-Readout-Circuit-Architecture">Complete Biopotential Readout Circuit Architecture</h3>
+<ul>
+<li>Recording Electrode / Reference Electrode</li>
+<li>LNA</li>
+<li>Filter</li>
+<li>Programmable Gain Amp</li>
+<li>ADC
+<ul>
+<li>Resolution of the ADC: How many bits do we need to quantize the signal?</li>
+<li>Quantization noise is not significant</li>
+<li>Don’t want overdesign -&gt; becomes expensive</li>
+<li>Power and Area constraints</li>
+<li>make the digital backend complex as well</li>
+</ul>
+</li>
+</ul>
+<h3 id="LNA">LNA</h3>
+<ul>
+<li>Negative Feedback loop diff amp
+<ul>
+<li>AC-coupling</li>
+<li>High input impedance</li>
+<li>Low power</li>
+<li>How to implement <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mrow><mi>F</mi><mi>B</mi></mrow></msub></mrow><annotation encoding="application/x-tex">R_{FB}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05017em;">FB</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>?</li>
+<li>Example: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mi>k</mi><mi mathvariant="normal">Ω</mi><mi mathvariant="normal">/</mi><mi>s</mi><mi>q</mi></mrow><annotation encoding="application/x-tex">1k\Omega / sq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord">Ω/</span><span class="mord mathnormal">s</span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span></span></span></span> sheet resistance <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn><mi>G</mi><mi mathvariant="normal">Ω</mi><mo>=</mo><mn>100</mn><mi>m</mi><msup><mi>m</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">100G\Omega = 100 mm^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">100</span><span class="mord mathnormal">G</span><span class="mord">Ω</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">100</span><span class="mord mathnormal">m</span><span class="mord"><span class="mord mathnormal">m</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>
+<ul>
+<li>Pseudo-Ressistors<br>
+-   Diode-connected MOS biased in cut-off<br>
+-   <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>i</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{dv}{di}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> is large for small <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\Delta v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">Δ</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span></span></span></span><br>
+-   Equivalent resistance value <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&gt;</mo><mn>100</mn><mi>G</mi><mi mathvariant="normal">Ω</mi></mrow><annotation encoding="application/x-tex">&gt; 100G\Omega</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">100</span><span class="mord mathnormal">G</span><span class="mord">Ω</span></span></span></span><br>
+-   small area<br>
+-   non-linear<br>
+-   temperature dependent</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Differential-Amplifiers">Differential Amplifiers</h3>
+<ul>
+<li>Diff pair with active load, simple 5T OTA
+<ul>
+<li>PMOS has lower Flicker noise for the input pair</li>
+<li>Diff pair and active load mosfets contribute to noise
+<ul>
+<li>Noise is dominated by PMOS input pairs</li>
+<li>Achieving low-noise requires:
+<ul>
+<li>Large <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">g_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> for PMOS input pairs</li>
+<li>Small <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>g</mi><mi>m</mi></msub></mrow><annotation encoding="application/x-tex">g_m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> for NMOS active loads</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Multi-Channel-Readout">Multi-Channel Readout</h3>
+<p>Multiple channel readouts can enable high-density sensing</p>
+<h3 id="Neural-Readout-ASIC">Neural Readout ASIC</h3>
+<ul>
+<li>Neuro-probe
+<ul>
+<li>Brain behaviors</li>
+<li>Time-division multiplexing</li>
+</ul>
+</li>
+<li>Needles</li>
+</ul>
+<blockquote>
+<p>Q: The future of implantable devices?<br>
+C: Already happening, medicine already applied<br>
+Q: How to mitigate the noise?<br>
+C: With AI? Edge computing<br>
+Q: Battery and power<br>
+C: Wireless charging, inductive charging, low power all digital etc</p>
+</blockquote>
+<h2 id="Lunch-networking">Lunch networking</h2>
+<p>I didn’t take photos during lunch sessions but chatting with other grad students is fun and insightful.<br>
+Photos for the event:<br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3980.jpg" srcset="/img/loading.gif" alt="Circuit Insight Board"></p>
+<h2 id="The-Basics-of-Radio-Frequency-RF-Circuits">The Basics of Radio Frequency(RF) Circuits</h2>
+<p><em>Hossein Hashemi</em></p>
+<h3 id="EM-waves">EM waves</h3>
+<ul>
+<li>
+<p>Maxwell’s equations</p>
+</li>
+<li>
+<p>EM waves are solutions to Maxwell’s equations</p>
+</li>
+<li>
+<p>Time varying electric field and magnetic fields</p>
+<ul>
+<li>Vacuum, Air, Liquids, Solid objects</li>
+</ul>
+</li>
+<li>
+<p>Propagation Delay</p>
+<ul>
+<li>
+<p>In the air, EM wave speed is the speed of light</p>
+</li>
+<li>
+<p>Propagation delay</p>
+<ul>
+<li>Bluetooth Earbuds: 2m &lt;=&gt; 6ns</li>
+<li>Cellphone to Base Station: 1km &lt;=&gt; <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>3</mn><mi>μ</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">3 \mu s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">3</span><span class="mord mathnormal">μ</span><span class="mord mathnormal">s</span></span></span></span></li>
+<li>Earth to International Space Station: 400km &lt;=&gt; 1.3ms</li>
+<li>Earth to Mars: 1e8 km &lt;=&gt; 5.5 minutes</li>
+</ul>
+</li>
+<li>
+<p>Wavelength</p>
 <table>
 <thead>
 <tr>
@@ -563,7 +685,8 @@
 <th>Wavelength</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>FM Radio</td>
 <td>100Mhz</td>
 <td>3m</td>
@@ -583,288 +706,438 @@
 <td>77GHz</td>
 <td>4mm</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 </li>
-<li><p>Radiofrencies: $10^5m &lt; \lambda &lt; 10^{-4}m$</p>
+<li>
+<p>Radiofrencies: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mi>m</mi><mo>&lt;</mo><mi>λ</mi><mo>&lt;</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>4</mn></mrow></msup><mi>m</mi></mrow><annotation encoding="application/x-tex">10^5m &lt; \lambda &lt; 10^{-4}m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8532em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7335em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">λ</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">m</span></span></span></span></p>
 <ul>
-<li>  Optical: $10^{-7}m$</li>
-<li>  X-ray: $10^{-10}m$</li>
+<li>Optical: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>7</mn></mrow></msup><mi>m</mi></mrow><annotation encoding="application/x-tex">10^{-7}m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">7</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">m</span></span></span></span></li>
+<li>X-ray: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>10</mn></mrow></msup><mi>m</mi></mrow><annotation encoding="application/x-tex">10^{-10}m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">10</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">m</span></span></span></span></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>RF Circuit applications</p>
+<li>
+<p>RF Circuit applications</p>
 <ul>
-<li>  phones, wifi, bluetooth, radar, satellite communication, GPS, TV, Radio, Microwave ovens, RFID, NFC, etc</li>
+<li>phones, wifi, bluetooth, radar, satellite communication, GPS, TV, Radio, Microwave ovens, RFID, NFC, etc</li>
 </ul>
 </li>
 </ul>
-<h3 id="Modulation"><a href="#Modulation" class="headerlink" title="Modulation"></a>Modulation</h3><ul>
-<li>  AM</li>
-<li>  PM</li>
-<li>  Carrier, Information, Modulator</li>
-<li>Demodulation<ul>
-<li>  Extract the information from the carrier</li>
-</ul>
-</li>
-</ul>
-<h3 id="Generic-Radiofrequency-System"><a href="#Generic-Radiofrequency-System" class="headerlink" title="Generic Radiofrequency System"></a>Generic Radiofrequency System</h3><ul>
-<li>TX<ul>
-<li>  Information</li>
-<li>  Modulator</li>
-</ul>
-</li>
-<li>RX<ul>
-<li>  Demodulator</li>
-<li>  Information</li>
-</ul>
-</li>
-</ul>
-<h3 id="TX-and-RX-Circuit-Architecture"><a href="#TX-and-RX-Circuit-Architecture" class="headerlink" title="TX and RX Circuit Architecture"></a>TX and RX Circuit Architecture</h3><ul>
-<li>TX<ul>
-<li>$I(t)cos(\omega_ct)$ and $Q(t)sin(\omega_ct)$<ul>
-<li>  Fourier Orthogonal Pairs</li>
-</ul>
-</li>
-<li>  LO and Mixer</li>
-<li>  Power Amplifier</li>
-<li>  Antenna</li>
-</ul>
-</li>
-<li>RX<ul>
-<li>  Bandpass Filer</li>
-<li>  LNA</li>
-<li>  Mixer and LO</li>
-<li>  Low Pass Filter</li>
-<li>  $I(t)$ and $Q(t)$</li>
-</ul>
-</li>
-</ul>
-<h3 id="Passive-Components"><a href="#Passive-Components" class="headerlink" title="Passive Components"></a>Passive Components</h3><ul>
-<li>Resistors<br>  $$ v(t) = V_osin(\omega t) $$<br>  $$ i(t) = \frac{V_o}{R}sin(\omega t) $$<br>  $$ p(t) = v(t) \cdot i(t)$$<br>  $$ \overline{p(t)} = \frac{1}{T}\int_{t_{o}}^{t_{o}+T}p(t)dt = \frac{V_o^2}{2R}$$</li>
-<li>Capacitors<br>  $$ i(t) = C\frac{dv(t)}{dt} $$<br>  $$ \overline{p(t)} = 0$$</li>
-<li>Inductors<br>  $$ v(t) = L\frac{di(t)}{dt} $$<br>  $$ \overline{p(t)} = 0$$</li>
-<li>Low Pass Filter - RC circuit<br>  $$A_v(\omega) = \frac{V_{out}}{V_{in}} = \frac{R}{j\omega RC+1}$$<br>  Magnitude:<br>  $$|A_v(\omega)| = \frac{R}{\sqrt{1+(\omega RC)^2}}$$</li>
-</ul>
-<h3 id="Passive-Component-Combinations"><a href="#Passive-Component-Combinations" class="headerlink" title="Passive Component Combinations"></a>Passive Component Combinations</h3><ul>
-<li>Series LC Resonator tank<ul>
-<li>$Z(\omega) = j\omega L + \frac{1}{j\omega C}$<br>A frequency $\omega_r = \frac{1}{\sqrt{LC}}$ gives short circuit<br>Other frequencies give open circuit</li>
-</ul>
-</li>
-<li>Parallel LC Resonator tank<ul>
-<li>$Z(\omega) = \frac{j\omega L}{1-\omega^2LC}$<br>A frequency $\omega_r = \frac{1}{\sqrt{LC}}$ gives open circuit(Infinite impedance!)<br>Other frequencies give short circuit</li>
-</ul>
-</li>
-</ul>
-<h3 id="Filters"><a href="#Filters" class="headerlink" title="Filters"></a>Filters</h3><ul>
-<li><p>Bandpass Filters</p>
+<h3 id="Modulation">Modulation</h3>
 <ul>
-<li>  LC series in series with the load resistor</li>
-<li>  LC parallel in parallel with the load resistor</li>
-</ul>
-</li>
-<li><p>Ladder Bandpass Filters</p>
+<li>AM</li>
+<li>PM</li>
+<li>Carrier, Information, Modulator</li>
+<li>Demodulation
 <ul>
-<li>  Sharp Filters, high Quality Factor</li>
+<li>Extract the information from the carrier</li>
 </ul>
 </li>
 </ul>
-<h3 id="RF-Amplifiers"><a href="#RF-Amplifiers" class="headerlink" title="RF Amplifiers"></a>RF Amplifiers</h3><ul>
-<li>  OpAmps can’t be used for high frequencies; attennuation</li>
-<li>Single 1T amplifier<ul>
-<li>Parasitic capacitance<ul>
-<li>  Always present creates a low impedance path at high frequencies</li>
+<h3 id="Generic-Radiofrequency-System">Generic Radiofrequency System</h3>
+<ul>
+<li>TX
+<ul>
+<li>Information</li>
+<li>Modulator</li>
 </ul>
 </li>
-<li>Creating an inductor so that to form a resonator<ul>
-<li>  Bandpass behavior</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="RF-Power-Amplifiers"><a href="#RF-Power-Amplifiers" class="headerlink" title="RF Power Amplifiers"></a>RF Power Amplifiers</h3><ul>
-<li>  Can’t have high power, burn the circuit</li>
-<li>Transformers<ul>
-<li>  $R_1 = (\frac{n_1}{n_2})^2R_2$</li>
-<li>  Transformers are loseless</li>
-</ul>
-</li>
-<li>  Impedance Transformer</li>
-</ul>
-<h3 id="RF-Oscillators"><a href="#RF-Oscillators" class="headerlink" title="RF Oscillators"></a>RF Oscillators</h3><ul>
-<li>  Cellphones have to generate multiple band signals</li>
-<li>LC Oscillators<ul>
-<li>  $T = 2\pi\sqrt{LC}$</li>
-</ul>
-</li>
-<li>  Energy is stored in the inductor and capacitor</li>
-<li>Inductors have none-infinite q factor, creating a lossy component<ul>
-<li>  Underdamping response</li>
-</ul>
-</li>
-<li>Active Circuit<ul>
-<li>  Inject the lose energy back to the tank</li>
-<li>Self-sustained oscillators<ul>
-<li>  Crossed-coupled pair</li>
-<li>  Colpitts Oscillator</li>
-<li>  Hartley Oscillator  </li>
-<li>  Clapp Oscillator</li>
+<li>RX
+<ul>
+<li>Demodulator</li>
+<li>Information</li>
 </ul>
 </li>
 </ul>
+<h3 id="TX-and-RX-Circuit-Architecture">TX and RX Circuit Architecture</h3>
+<ul>
+<li>TX
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><msub><mi>ω</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I(t)cos(\omega_ct)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mord mathnormal">cos</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><msub><mi>ω</mi><mi>c</mi></msub><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(t)sin(\omega_ct)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Q</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mord mathnormal">s</span><span class="mord mathnormal">in</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span>
+<ul>
+<li>Fourier Orthogonal Pairs</li>
+</ul>
+</li>
+<li>LO and Mixer</li>
+<li>Power Amplifier</li>
+<li>Antenna</li>
+</ul>
+</li>
+<li>RX
+<ul>
+<li>Bandpass Filer</li>
+<li>LNA</li>
+<li>Mixer and LO</li>
+<li>Low Pass Filter</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Q</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Q(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">Q</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></li>
+</ul>
 </li>
 </ul>
-<h3 id="RF-Mixers"><a href="#RF-Mixers" class="headerlink" title="RF Mixers"></a>RF Mixers</h3><ul>
-<li>  An LTI system cannot multiply two signals</li>
-<li>Switch doing the trick<ul>
-<li>  Multiplying with a square wave</li>
-<li>Fourier expansion<br><img src="Assets/image.png" srcset="/img/loading.gif" alt="Switching Up-Conversion and Down-Conversion"></li>
-<li>  Filtering using a band pass filter for unwanted higher order signals</li>
+<h3 id="Passive-Components">Passive Components</h3>
+<ul>
+<li>Resistors<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>V</mi><mi>o</mi></msub><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>ω</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">v(t) = V_osin(\omega t) 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">s</span><span class="mord mathnormal">in</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>i</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><msub><mi>V</mi><mi>o</mi></msub><mi>R</mi></mfrac><mi>s</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>ω</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">i(t) = \frac{V_o}{R}sin(\omega t) 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.0463em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">s</span><span class="mord mathnormal">in</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>⋅</mo><mi>i</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">p(t) = v(t) \cdot i(t)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo stretchy="true">‾</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>T</mi></mfrac><msubsup><mo>∫</mo><msub><mi>t</mi><mi>o</mi></msub><mrow><msub><mi>t</mi><mi>o</mi></msub><mo>+</mo><mi>T</mi></mrow></msubsup><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mi>d</mi><mi>t</mi><mo>=</mo><mfrac><msubsup><mi>V</mi><mi>o</mi><mn>2</mn></msubsup><mrow><mn>2</mn><mi>R</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\overline{p(t)} = \frac{1}{T}\int_{t_{o}}^{t_{o}+T}p(t)dt = \frac{V_o^2}{2R}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span><span style="top:-3.87em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.6033em;vertical-align:-1.012em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.5912em;"><span style="top:-1.7881em;margin-left:-0.4445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.8129em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.012em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-2.453em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+<li>Capacitors<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>i</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>C</mi><mfrac><mrow><mi>d</mi><mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">i(t) = C\frac{dv(t)}{dt} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo stretchy="true">‾</mo></mover><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\overline{p(t)} = 0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span><span style="top:-3.87em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></p>
+</li>
+<li>Inductors<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>v</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>L</mi><mfrac><mrow><mi>d</mi><mi>i</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">v(t) = L\frac{di(t)}{dt} 
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.113em;vertical-align:-0.686em;"></span><span class="mord mathnormal">L</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">i</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mrow><mi>p</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><mo stretchy="true">‾</mo></mover><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\overline{p(t)} = 0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span><span style="top:-3.87em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></p>
+</li>
+<li>Low Pass Filter - RC circuit<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>A</mi><mi>v</mi></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><msub><mi>V</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><msub><mi>V</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mfrac><mo>=</mo><mfrac><mi>R</mi><mrow><mi>j</mi><mi>ω</mi><mi>R</mi><mi>C</mi><mo>+</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">A_v(\omega) = \frac{V_{out}}{V_{in}} = \frac{R}{j\omega RC+1}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.1963em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.2222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.2408em;vertical-align:-0.8804em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">jω</span><span class="mord mathnormal" style="margin-right:0.07153em;">RC</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8804em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+Magnitude:<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∣</mi><msub><mi>A</mi><mi>v</mi></msub><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo><mi mathvariant="normal">∣</mi><mo>=</mo><mfrac><mi>R</mi><msqrt><mrow><mn>1</mn><mo>+</mo><mo stretchy="false">(</mo><mi>ω</mi><mi>R</mi><mi>C</mi><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mfrac></mrow><annotation encoding="application/x-tex">|A_v(\omega)| = \frac{R}{\sqrt{1+(\omega RC)^2}}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">v</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.4903em;vertical-align:-1.13em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.175em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mord mathnormal" style="margin-right:0.07153em;">RC</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.895em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.305em;"><span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.13em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+</li>
+</ul>
+<h3 id="Passive-Component-Combinations">Passive Component Combinations</h3>
+<ul>
+<li>Series LC Resonator tank
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo><mo>=</mo><mi>j</mi><mi>ω</mi><mi>L</mi><mo>+</mo><mfrac><mn>1</mn><mrow><mi>j</mi><mi>ω</mi><mi>C</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Z(\omega) = j\omega L + \frac{1}{j\omega C}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">jω</span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.3262em;vertical-align:-0.4811em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">jω</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4811em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br>
+A frequency <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mi>r</mi></msub><mo>=</mo><mfrac><mn>1</mn><msqrt><mrow><mi>L</mi><mi>C</mi></mrow></msqrt></mfrac></mrow><annotation encoding="application/x-tex">\omega_r = \frac{1}{\sqrt{LC}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3831em;vertical-align:-0.538em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.5374em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9323em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight" style="padding-left:0.833em;"><span class="mord mathnormal mtight">L</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span><span style="top:-2.8923em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1077em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.538em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> gives short circuit<br>
+Other frequencies give open circuit</li>
+</ul>
+</li>
+<li>Parallel LC Resonator tank
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo stretchy="false">(</mo><mi>ω</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>j</mi><mi>ω</mi><mi>L</mi></mrow><mrow><mn>1</mn><mo>−</mo><msup><mi>ω</mi><mn>2</mn></msup><mi>L</mi><mi>C</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Z(\omega) = \frac{j\omega L}{1-\omega^2LC}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">Z</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3278em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9244em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7463em;"><span style="top:-2.786em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord mathnormal mtight">L</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4461em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">jω</span><span class="mord mathnormal mtight">L</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br>
+A frequency <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mi>r</mi></msub><mo>=</mo><mfrac><mn>1</mn><msqrt><mrow><mi>L</mi><mi>C</mi></mrow></msqrt></mfrac></mrow><annotation encoding="application/x-tex">\omega_r = \frac{1}{\sqrt{LC}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">ω</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.3831em;vertical-align:-0.538em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.5374em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9323em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight" style="padding-left:0.833em;"><span class="mord mathnormal mtight">L</span><span class="mord mathnormal mtight" style="margin-right:0.07153em;">C</span></span></span><span style="top:-2.8923em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1077em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.538em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> gives open circuit(Infinite impedance!)<br>
+Other frequencies give short circuit</li>
 </ul>
 </li>
 </ul>
-<h3 id="Non-Linearities"><a href="#Non-Linearities" class="headerlink" title="Non-Linearities"></a>Non-Linearities</h3><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">Q:</span> Why higher frequency?<br><span class="hljs-symbol">H:</span> Still possible, but require low wavelength<br><span class="hljs-symbol">Q:</span> Superheterodyne Receiver, switch cap, popular topologies<br><span class="hljs-symbol">H:</span> Other ways <span class="hljs-keyword">of</span> mixing, wide-application scope<br><span class="hljs-symbol">Q:</span> Modulation techniques <br><span class="hljs-symbol">H:</span> Modulator includes the LO, Mixer <span class="hljs-built_in">and</span> Summer, Carries <span class="hljs-built_in">is</span> the LO<br><span class="hljs-symbol">Q:</span> How <span class="hljs-keyword">to</span> add two signals?<br><span class="hljs-symbol">H:</span> OpAmps, KCL <br></code></pre></td></tr></table></figure>
+<h3 id="Filters">Filters</h3>
+<ul>
+<li>
+<p>Bandpass Filters</p>
+<ul>
+<li>LC series in series with the load resistor</li>
+<li>LC parallel in parallel with the load resistor</li>
+</ul>
+</li>
+<li>
+<p>Ladder Bandpass Filters</p>
+<ul>
+<li>Sharp Filters, high Quality Factor</li>
+</ul>
+</li>
+</ul>
+<h3 id="RF-Amplifiers">RF Amplifiers</h3>
+<ul>
+<li>OpAmps can’t be used for high frequencies; attennuation</li>
+<li>Single 1T amplifier
+<ul>
+<li>Parasitic capacitance
+<ul>
+<li>Always present creates a low impedance path at high frequencies</li>
+</ul>
+</li>
+<li>Creating an inductor so that to form a resonator
+<ul>
+<li>Bandpass behavior</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="RF-Power-Amplifiers">RF Power Amplifiers</h3>
+<ul>
+<li>Can’t have high power, burn the circuit</li>
+<li>Transformers
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>1</mn></msub><mo>=</mo><mo stretchy="false">(</mo><mfrac><msub><mi>n</mi><mn>1</mn></msub><msub><mi>n</mi><mn>2</mn></msub></mfrac><msup><mo stretchy="false">)</mo><mn>2</mn></msup><msub><mi>R</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">R_1 = (\frac{n_1}{n_2})^2R_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2592em;vertical-align:-0.4451em;"></span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7115em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3173em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>Transformers are loseless</li>
+</ul>
+</li>
+<li>Impedance Transformer</li>
+</ul>
+<h3 id="RF-Oscillators">RF Oscillators</h3>
+<ul>
+<li>Cellphones have to generate multiple band signals</li>
+<li>LC Oscillators
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mn>2</mn><mi>π</mi><msqrt><mrow><mi>L</mi><mi>C</mi></mrow></msqrt></mrow><annotation encoding="application/x-tex">T = 2\pi\sqrt{LC}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.04em;vertical-align:-0.1133em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9267em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathnormal">L</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span><span style="top:-2.8867em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702
+c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,-10,-9.5,-14
+c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54
+c44.2,-33.3,65.8,-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10
+s173,378,173,378c0.7,0,35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429
+c69,-144,104.5,-217.7,106.5,-221
+l0 -0
+c5.3,-9.3,12,-14,20,-14
+H400000v40H845.2724
+s-225.272,467,-225.272,467s-235,486,-235,486c-2.7,4.7,-9,7,-19,7
+c-6,0,-10,-1,-12,-3s-194,-422,-194,-422s-65,47,-65,47z
+M834 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1133em;"><span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+<li>Energy is stored in the inductor and capacitor</li>
+<li>Inductors have none-infinite q factor, creating a lossy component
+<ul>
+<li>Underdamping response</li>
+</ul>
+</li>
+<li>Active Circuit
+<ul>
+<li>Inject the lose energy back to the tank</li>
+<li>Self-sustained oscillators
+<ul>
+<li>Crossed-coupled pair</li>
+<li>Colpitts Oscillator</li>
+<li>Hartley Oscillator</li>
+<li>Clapp Oscillator</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="RF-Mixers">RF Mixers</h3>
+<ul>
+<li>An LTI system cannot multiply two signals</li>
+<li>Switch doing the trick
+<ul>
+<li>Multiplying with a square wave</li>
+<li>Fourier expansion</li>
+<li>Filtering using a band pass filter for unwanted higher order signals<br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3981.jpg" srcset="/img/loading.gif" alt="Mixers based on switches"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Non-Linearities">Non-Linearities</h3>
+<blockquote>
+<p>Q: Why higher frequency?<br>
+H: Still possible, but require low wavelength<br>
+Q: Superheterodyne Receiver, switch cap, popular topologies<br>
+H: Other ways of mixing, wide-application scope<br>
+Q: Modulation techniques<br>
+H: Modulator includes the LO, Mixer and Summer, Carries is the LO<br>
+Q: How to add two signals?<br>
+H: OpAmps, KCL</p>
+</blockquote>
+<h2 id="The-Basics-of-Silicon-Photonic-Circuits">The Basics of Silicon-Photonic Circuits</h2>
+<p><em>Sudip Shekhar</em></p>
+<h3 id="IC-technologies-for-photonics">IC technologies for photonics</h3>
+<ul>
+<li>IC technology roadmap
+<ul>
+<li>CMOS: 1980s</li>
+<li>RF-CMOS: 1990s</li>
+<li>CMOS SOI: 2010s</li>
+<li>Silicon Photonics CMOS SOI starts from 2010s(Silicon On Insulator, SOI)</li>
+<li>Improved performance: speed, latency, parallelism</li>
+<li>Miniaturize discrete or bulky components</li>
+</ul>
+</li>
+</ul>
+<h3 id="CMOS-Strengths-and-Weaknesses">CMOS Strengths and Weaknesses</h3>
+<ul>
+<li>Strengths
+<ul>
+<li>Providing gain</li>
+<li>Switching</li>
+<li>Generating clock frequencies up to 100s of GHz</li>
+<li>Realizing complex functionalities</li>
+</ul>
+</li>
+<li>Limitations
+<ul>
+<li>Driving high-speed data from one chip to another over long distances, due to Cu loss</li>
+<li>Generating 100s of THz signal</li>
+<li>Interacting (sensing, detecting) with different particles and waves</li>
+</ul>
+</li>
+</ul>
+<h3 id="Silicon-Photonics">Silicon Photonics</h3>
+<ul>
+<li>Complelment electronics: speed, latency, parallelism
+<ul>
+<li>Transceivers, Switches</li>
+</ul>
+</li>
+<li>Miniaturize discrete or bulky optics
+<ul>
+<li>LIDAR</li>
+<li>Filters</li>
+<li>Oscillators</li>
+</ul>
+</li>
+<li>Enable new applications
+<ul>
+<li>BioSensing</li>
+<li>Quantum Computing</li>
+</ul>
+</li>
+</ul>
+<h3 id="Datacenters">Datacenters</h3>
+<ul>
+<li>Pluggable modules<br>
+-   Mellanox Infiniband light fiber cables</li>
+</ul>
+<h3 id="Electrical-I-O-Channel-Loss">Electrical I/O Channel Loss</h3>
+<p><strong>ISI, Inter-Symbol Interference</strong></p>
+<ul>
+<li>Loss increases at higher data rates</li>
+<li>Loss increases with length of interconnect</li>
+<li>Equalizer helps but consumes power</li>
+<li>Attenuation, and low pass behavior</li>
+</ul>
+<h3 id="Optical-Fiber">Optical Fiber</h3>
+<ul>
+<li>Low loss</li>
+<li>Low frequency-dependent loss</li>
+<li>Wavelength-division multiplexing
+<ul>
+<li>Different colors of light can be linearly added</li>
+</ul>
+</li>
+</ul>
+<h3 id="Electro-Optical-Link">Electro-Optical Link</h3>
+<ul>
+<li>Coupler and Connector to modulate the light information</li>
+<li>Photodetector(PD) to convert light to electrical signal</li>
+<li>Drivers, amplifiers</li>
+<li>Control the frequency. Lights tend to have super large frequency and small wavelength</li>
+<li>TIA: Transimpedance Amplifier<br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3983.jpg" srcset="/img/loading.gif" alt="Electro-Optical Link"></li>
+</ul>
+<blockquote>
+<p>Q: Asynchronous communication in silicon photonic links?<br>
+Q: Multipath?<br>
+S: single mode fiber, getting rid of the question<br>
+Q: Key encoding(PAM modulation)<br>
+Q: Is the modulator controlled by a clock?</p>
+</blockquote>
+<ul>
+<li>SOI CMOS process</li>
+</ul>
+<h3 id="Photonics-links-path">Photonics links path</h3>
+<ul>
+<li>Lasers, waveguides, combiners, couplers, PD</li>
+<li>Si in between SiO2, total internal reflection
+<ul>
+<li>Waveguide bends: to be avoided</li>
+</ul>
+</li>
+<li>Operating wavelength: 1550nm and 1310nm</li>
+<li>Fiber-to-Waveguide couplers
+<ul>
+<li>Grating couplers</li>
+<li>Edge couplers</li>
+</ul>
+</li>
+<li>Splitter</li>
+</ul>
+<h3 id="Photodetector">Photodetector</h3>
+<ul>
+<li>Produce current from incident photons</li>
+<li>When photons with power P are incident on a PD, the current produced is
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo>=</mo><mfrac><mi>P</mi><mrow><mi>e</mi><mi>λ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">I = \frac{P}{e\lambda}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span><span class="mord mathnormal mtight">λ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></li>
+</ul>
+</li>
+</ul>
+<h3 id="Silicon-Photonic-Circuits">Silicon Photonic Circuits</h3>
+<ul>
+<li>Mach-Zehnder Interfereometer
+<ul>
+<li>Phase shifter</li>
+<li>Modulator</li>
+<li>Switch</li>
+<li>set the phase shift for constructively interference and destructively interference</li>
+</ul>
+</li>
+<li>How do we do the phase shifter?
+<ul>
+<li>Changing the phase of the light</li>
+<li>Refractive index, phase, attenuation</li>
+<li>Optical Path Difference</li>
+<li>Thermal Phase Shifter</li>
+<li>Silicon
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi><mo>=</mo><mfrac><mrow><mi>d</mi><mi>n</mi></mrow><mrow><mi>d</mi><mi>T</mi></mrow></mfrac><mo>=</mo><mn>1.84</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mrow><mo>−</mo><mn>4</mn></mrow></msup><msup><mi>K</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">K = \frac{dn}{dT} = 1.84 \times 10^{-4}K^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2251em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">d</span><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.84</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></li>
+</ul>
+</li>
+<li>Put a resistor next to the shifter</li>
+<li>High-Speed Phase Shifter
+<ul>
+<li>Dope the Si rib waveguide to make a pn junction</li>
+<li>Apply a voltage to the pn junction, change the free-carrier concentrations</li>
+<li>Complex refractive index = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>+</mo><mi>j</mi><mi>α</mi></mrow><annotation encoding="application/x-tex">n + j\alpha</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.854em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mord mathnormal" style="margin-right:0.0037em;">α</span></span></span></span></li>
+<li>Higher loss if the voltage is higher</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Mach-Zehnder-Interfereometer">Mach-Zehnder Interfereometer</h3>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>I</mi><mi>o</mi></msub><mo>=</mo><mfrac><msub><mi>I</mi><mi>i</mi></msub><mn>2</mn></mfrac><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>ϕ</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mfrac><msub><mi>I</mi><mi>i</mi></msub><mn>2</mn></mfrac><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mfrac><mrow><mi>π</mi><msub><mi>V</mi><mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow><msub><mi>V</mi><mi>π</mi></msub></mfrac><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I_o = \frac{I_i}{2}(1+cos(\phi)) = \frac{I_i}{2}(1+cos(\frac{\pi V_{in}}{V_{\pi}}))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">o</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2334em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">cos</span><span class="mopen">(</span><span class="mord mathnormal">ϕ</span><span class="mclose">))</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.2334em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.0785em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.3335em;vertical-align:-0.4451em;"></span><span class="mord mathnormal">cos</span><span class="mopen">(</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8884em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1645em;"><span style="top:-2.357em;margin-left:-0.2222em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.4101em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">π</span><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3281em;"><span style="top:-2.357em;margin-left:-0.2222em;margin-right:0.0714em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">in</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4451em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">))</span></span></span></span></li>
+<li>Switching just like a</li>
+</ul>
+<h3 id="MZM-Electro-Optical-Bandwidth">MZM Electro-Optical Bandwidth</h3>
+<ul>
+<li>RC parasitics</li>
+</ul>
+<h3 id="Silicon-Photonic-Circuits-2">Silicon Photonic Circuits</h3>
+<blockquote>
+<p>Q: PAM modulation, equalizer?<br>
+S: Synchronization problems can’t be removed by optical links<br>
+Q: Shot noise in the modulator?<br>
+Q: Do I have to worry about diffraction?<br>
+S: Eliminate diffraction. Not a problem<br>
+Q: What if I want diffraction?<br>
+S: Couple light into a chip, (grating coupler),<br>
+Q: Clock recovery<br>
+S: phase noise, amplitude modulation - not such a concern, AM radio error<br>
+Q: wavelength division multiplexing<br>
+S: Frequency-division multiplexing, in copper would have crosstalks - in optical fiber, the crosstalk is very small.</p>
+</blockquote>
+<p>There will be a tutorial session on Sunday and paper presentations on Monday onwards. I will be attending the tutorial session and taking notes as well.</p>
 
-<h2 id="The-Basics-of-Silicon-Photonic-Circuits"><a href="#The-Basics-of-Silicon-Photonic-Circuits" class="headerlink" title="The Basics of Silicon-Photonic Circuits"></a>The Basics of Silicon-Photonic Circuits</h2><p><em>Sudip Shekhar</em></p>
-<h3 id="IC-technologies-for-photonics"><a href="#IC-technologies-for-photonics" class="headerlink" title="IC technologies for photonics"></a>IC technologies for photonics</h3><ul>
-<li>IC technology roadmap<ul>
-<li>  CMOS: 1980s</li>
-<li>  RF-CMOS: 1990s</li>
-<li>  CMOS SOI: 2010s</li>
-<li>  Silicon Photonics CMOS SOI starts from 2010s(Silicon On Insulator, SOI)</li>
-<li>  Improved performance: speed, latency, parallelism</li>
-<li>  Miniaturize discrete or bulky components</li>
-</ul>
-</li>
-</ul>
-<h3 id="CMOS-Strengths-and-Weaknesses"><a href="#CMOS-Strengths-and-Weaknesses" class="headerlink" title="CMOS Strengths and Weaknesses"></a>CMOS Strengths and Weaknesses</h3><ul>
-<li>Strengths<ul>
-<li>  Providing gain</li>
-<li>  Switching</li>
-<li>  Generating clock frequencies up to 100s of GHz</li>
-<li>  Realizing complex functionalities</li>
-</ul>
-</li>
-<li>Limitations<ul>
-<li>  Driving high-speed data from one chip to another over long distances, due to Cu loss</li>
-<li>  Generating 100s of THz signal</li>
-<li>  Interacting (sensing, detecting) with different particles and waves</li>
-</ul>
-</li>
-</ul>
-<h3 id="Silicon-Photonics"><a href="#Silicon-Photonics" class="headerlink" title="Silicon Photonics"></a>Silicon Photonics</h3><ul>
-<li>Complelment electronics: speed, latency, parallelism<ul>
-<li>  Transceivers, Switches</li>
-</ul>
-</li>
-<li>Miniaturize discrete or bulky optics<ul>
-<li>  LIDAR</li>
-<li>  Filters</li>
-<li>  Oscillators</li>
-</ul>
-</li>
-<li>Enable new applications<ul>
-<li>  BioSensing</li>
-<li>  Quantum Computing</li>
-</ul>
-</li>
-</ul>
-<h3 id="Datacenters"><a href="#Datacenters" class="headerlink" title="Datacenters"></a>Datacenters</h3><ul>
-<li> Pluggable modules<ul>
-<li>  Mellanox Infiniband light fiber cables</li>
-</ul>
-</li>
-</ul>
-<h3 id="Electrical-I-O-Channel-Loss"><a href="#Electrical-I-O-Channel-Loss" class="headerlink" title="Electrical I/O Channel Loss"></a>Electrical I/O Channel Loss</h3><p><strong>ISI, Inter-Symbol Interference</strong></p>
-<ul>
-<li>  Loss increases at higher data rates</li>
-<li>  Loss increases with length of interconnect</li>
-<li>  Equalizer helps but consumes power</li>
-<li>  Attenuation, and low pass behavior</li>
-</ul>
-<h3 id="Optical-Fiber"><a href="#Optical-Fiber" class="headerlink" title="Optical Fiber"></a>Optical Fiber</h3><ul>
-<li>  Low loss</li>
-<li>  Low frequency-dependent loss</li>
-<li>Wavelength-division multiplexing<ul>
-<li>  Different colors of light can be linearly added</li>
-</ul>
-</li>
-</ul>
-<h3 id="Electro-Optical-Link"><a href="#Electro-Optical-Link" class="headerlink" title="Electro-Optical Link"></a>Electro-Optical Link</h3><ul>
-<li>  Coupler and Connector to modulate the light information</li>
-<li>  Photodetector(PD) to convert light to electrical signal</li>
-<li>  Drivers, amplifiers</li>
-<li>  Control the frequency. Lights tend to have super large frequency and small wavelength</li>
-<li>  TIA: Transimpedance Amplifier</li>
-</ul>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">Q:</span> Asynchronous communication <span class="hljs-keyword">in</span> silicon photonic links?<br><span class="hljs-symbol">Q:</span> Multipath?<br><span class="hljs-symbol">S:</span> <span class="hljs-type">single</span> mode fiber, getting rid <span class="hljs-keyword">of</span> the question<br><span class="hljs-symbol">Q:</span> <span class="hljs-keyword">Key</span> encoding(PAM modulation)<br><span class="hljs-symbol">Q:</span> <span class="hljs-built_in">Is</span> the modulator controlled <span class="hljs-keyword">by</span> a clock?<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li>  SOI CMOS process</li>
-</ul>
-<h3 id="Photonics-links-path"><a href="#Photonics-links-path" class="headerlink" title="Photonics links path"></a>Photonics links path</h3><ul>
-<li>  Lasers, waveguides, combiners, couplers, PD</li>
-<li>Si in between SiO2, total internal reflection<ul>
-<li>  Waveguide bends: to be avoided</li>
-</ul>
-</li>
-<li>  Operating wavelength: 1550nm and 1310nm</li>
-<li>Fiber-to-Waveguide couplers<ul>
-<li>  Grating couplers</li>
-<li>  Edge couplers</li>
-</ul>
-</li>
-<li>  Splitter</li>
-</ul>
-<h3 id="Photodetector"><a href="#Photodetector" class="headerlink" title="Photodetector"></a>Photodetector</h3><ul>
-<li>  Produce current from incident photons</li>
-<li>When photons with power P are incident on a PD, the current produced is<ul>
-<li>  $I = \frac{P}{e\lambda}$</li>
-</ul>
-</li>
-</ul>
-<h3 id="Silicon-Photonic-Circuits"><a href="#Silicon-Photonic-Circuits" class="headerlink" title="Silicon Photonic Circuits"></a>Silicon Photonic Circuits</h3><ul>
-<li>Mach-Zehnder Interfereometer<ul>
-<li>  Phase shifter</li>
-<li>  Modulator</li>
-<li>  Switch</li>
-<li>  set the phase shift for constructively interference and destructively interference</li>
-</ul>
-</li>
-<li>How do we do the phase shifter?<ul>
-<li><p>  Changing the phase of the light</p>
-</li>
-<li><p>  Refractive index, phase, attenuation</p>
-</li>
-<li><p>  Optical Path Difference</p>
-</li>
-<li><p>  Thermal Phase Shifter</p>
-</li>
-<li><p>Silicon</p>
-<ul>
-<li>  $K = \frac{dn}{dT} = 1.84 \times 10^{-4}K^{-1}$</li>
-</ul>
-</li>
-<li><p>  Put a resistor next to the shifter</p>
-</li>
-<li><p>High-Speed Phase Shifter</p>
-<ul>
-<li>  Dope the Si rib waveguide to make a pn junction</li>
-<li>  Apply a voltage to the pn junction, change the free-carrier concentrations</li>
-<li>  Complex refractive index = $n + j\alpha$</li>
-<li>  Higher loss if the voltage is higher</li>
-</ul>
-<h3 id="Mach-Zehnder-Interfereometer"><a href="#Mach-Zehnder-Interfereometer" class="headerlink" title="Mach-Zehnder Interfereometer"></a>Mach-Zehnder Interfereometer</h3></li>
-</ul>
-</li>
-<li>  $I_o = \frac{I_i}{2}(1+cos(\phi)) = \frac{I_i}{2}(1+cos(\frac{\pi V_{in}}{V_{\pi}}))$</li>
-<li>  Switching just like a </li>
-</ul>
-<h3 id="MZM-Electro-Optical-Bandwidth"><a href="#MZM-Electro-Optical-Bandwidth" class="headerlink" title="MZM Electro-Optical Bandwidth"></a>MZM Electro-Optical Bandwidth</h3><ul>
-<li> RC parasitics </li>
-</ul>
-<h3 id="Silicon-Photonic-Circuits-1"><a href="#Silicon-Photonic-Circuits-1" class="headerlink" title="Silicon Photonic Circuits"></a>Silicon Photonic Circuits</h3><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vbnet"><span class="hljs-symbol">Q:</span> PAM modulation, equalizer?<br><span class="hljs-symbol">S:</span> Synchronization problems can<span class="hljs-comment">&#x27;t be removed by optical links</span><br><span class="hljs-symbol">Q:</span> Shot noise <span class="hljs-keyword">in</span> the modulator?<br><span class="hljs-symbol">Q:</span> <span class="hljs-keyword">Do</span> I have <span class="hljs-keyword">to</span> worry about diffraction?<br><span class="hljs-symbol">S:</span> Eliminate diffraction. <span class="hljs-built_in">Not</span> a problem<br><span class="hljs-symbol">Q:</span> What <span class="hljs-keyword">if</span> I want diffraction?<br><span class="hljs-symbol">S:</span> Couple light <span class="hljs-keyword">into</span> a chip, (grating coupler),<br><span class="hljs-symbol">Q:</span> Clock recovery<br><span class="hljs-symbol">S:</span> phase noise, amplitude modulation - <span class="hljs-built_in">not</span> such a concern, AM radio <span class="hljs-keyword">error</span> <br><span class="hljs-symbol">Q:</span> wavelength division multiplexing<br><span class="hljs-symbol">S:</span> Frequency-division multiplexing, <span class="hljs-keyword">in</span> copper would have crosstalks - <span class="hljs-keyword">in</span> optical fiber, the crosstalk <span class="hljs-built_in">is</span> very small.  <br></code></pre></td></tr></table></figure>
             </div>
             <hr>
             <div>
@@ -1072,6 +1345,13 @@
 
 
 
+
+  
+
+  
+    <!-- KaTeX -->
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" />
+  
 
 
 
