@@ -17,7 +17,7 @@
   <meta name="description" content="真理位於大炮的射程範圍内">
   <meta name="author" content="雾杉cedar">
   <meta name="keywords" content="看书睡觉听音乐">
-  <title>ISSCC Circuit Insights Notes - 四方喫茶舘</title>
+  <title>ISSCC Notes - 四方喫茶舘</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="ISSCC Circuit Insights Notes">
+            <span class="h2" id="subtitle" title="ISSCC Notes">
               
             </span>
 
@@ -225,11 +225,12 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">ISSCC Circuit Insights Notes</h1>
+            <h1 style="display: none">ISSCC Notes</h1>
             
             <div class="markdown-body">
-              <h1>ISSCC Circuit Insight</h1>
-<p>So essentially, I have been attending the ISSCC 2024 conference and taking notes on the insights that I have been gathering from the conference. The ISSCC Circuit Insight targets fresh grads/graduating undergrads to get a sense of basic circuit theory, industrial trends and future prospects.<br>
+              <p>This file would essentially serve as a note-taking platform for the ISSCC 2024 conference.</p>
+<h1>ISSCC Circuit Insight, Feb 17th 2024</h1>
+<p>The ISSCC Circuit Insight targets fresh grads/graduating undergrads to get a sense of basic circuit theory, industrial trends and future prospects.<br>
 There are four key talks for today, which respectively covers digital, analog, RF and photonic circuits.<br>
 <img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3973.jpg" srcset="/img/loading.gif" alt="Opening"></p>
 <h2 id="Fundamentals-of-Digital-Circuit-Design">Fundamentals of Digital Circuit Design</h2>
@@ -1137,6 +1138,223 @@ Q: wavelength division multiplexing<br>
 S: Frequency-division multiplexing, in copper would have crosstalks - in optical fiber, the crosstalk is very small.</p>
 </blockquote>
 <p>There will be a tutorial session on Sunday and paper presentations on Monday onwards. I will be attending the tutorial session and taking notes as well.</p>
+<h1>ISSCC Tutorials, Feb 18th 2024</h1>
+<h2 id="Calibration-Techniques-in-PLLs">Calibration Techniques in PLLs</h2>
+<p><em>Salvatore Levantino</em><br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3996.jpg" srcset="/img/loading.gif" alt="IMG_3996"></p>
+<h3 id="General-Concepts-of-PLL">General Concepts of PLL</h3>
+<ul>
+<li>Architecture
+<ul>
+<li>Phase Detector</li>
+<li>Analog Loop Filter</li>
+<li>VCO</li>
+<li>Tracking the phase</li>
+</ul>
+</li>
+<li>Divide by Integer N
+<ul>
+<li>Digital counter (frequency divider) in feedback</li>
+<li>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>F</mi><mrow><mi>o</mi><mi>u</mi><mi>t</mi></mrow></msub><mo>=</mo><mi>N</mi><mo>⋅</mo><msub><mi>F</mi><mrow><mi>r</mi><mi>e</mi><mi>f</mi></mrow></msub></mrow><annotation encoding="application/x-tex">F_{out} = N \cdot F_{ref}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mord mathnormal mtight">u</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">re</span><span class="mord mathnormal mtight" style="margin-right:0.10764em;">f</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li>Frequency divider has a modulus control</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Delta \Sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">ΔΣ</span></span></span></span> modulator to dither MC to achieve frequency division</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Delta \Sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">ΔΣ</span></span></span></span> DAC<br>
+-   Suffer from quantization error, phase error is an integral of time<br>
+-   Frequency spurs</li>
+</ul>
+</li>
+<li>Calibrated DAC to mitigate <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Δ</mi><mi mathvariant="normal">Σ</mi></mrow><annotation encoding="application/x-tex">\Delta \Sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">ΔΣ</span></span></span></span> Noise</li>
+<li>The DAC requires calibration to match the gain of the divider/PD cascade</li>
+</ul>
+<h3 id="Common-Applications-of-PLLs">Common Applications of PLLs</h3>
+<ul>
+<li>Clock Multiplication</li>
+<li>Frequency synthesis</li>
+<li>Skew suppresion</li>
+<li>Clock Recovery</li>
+<li>FM modulation/demodulation</li>
+</ul>
+<h4 id="Frequency-Synthesis">Frequency Synthesis</h4>
+<ul>
+<li>Complex QAM schemes at mmW require low LO phase noise</li>
+</ul>
+<h3 id="Implementation-PLLs">Implementation PLLs</h3>
+<h4 id="Analog-charge-pump-PLL">Analog charge-pump PLL</h4>
+<ul>
+<li>Phase-frequency detector(PFD)
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I(t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span> depend of the phase difference</li>
+<li>using a filter for analog filtering purposes</li>
+<li>Area and power doesn’t allow for CMOS progression</li>
+</ul>
+</li>
+</ul>
+<h4 id="Digital-PLLs">Digital PLLs</h4>
+<ul>
+<li>DCO</li>
+<li>TDC, Time-to-Digital Converter
+<ul>
+<li>delay line structure based on FFs</li>
+<li>TDC is a digital circuit
+<ul>
+<li>Records the error with respect to the reference clock</li>
+<li>Thermal metered code</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DCO: LC oscillation using digitally coded capacitance.</li>
+<li>Digital loop filter</li>
+<li>PI control; proportional and integral
+<ul>
+<li>FIR filter</li>
+</ul>
+</li>
+<li>Pros and cons
+<ul>
+<li>digital filter replaces the bulky ones</li>
+<li>charge pump is absent(less power, power, area)</li>
+<li>More friendly to calibration</li>
+<li>TDC and DCO contribute to noise</li>
+</ul>
+</li>
+</ul>
+<h3 id="Cancellation-of-Delta-Sigma-Quantization-Noise">Cancellation of $  \Delta \Sigma $ Quantization Noise</h3>
+<ul>
+<li>The $ \Delta \Sigma $ noise can actually be cancelled</li>
+</ul>
+<h3 id="Adaptive-Filtering">Adaptive Filtering</h3>
+<ul>
+<li>Adaptive filtering
+<ul>
+<li>Linear Estimation</li>
+<li>Steepest Descent Algorithm
+<ul>
+<li>Cost function</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>w</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">[</mo><mi>k</mi><mo stretchy="false">]</mo><mo>=</mo><mover accent="true"><mi>w</mi><mo stretchy="true">‾</mo></mover><mo stretchy="false">[</mo><mi>k</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>−</mo><mi>μ</mi><mover accent="true"><mi mathvariant="normal">∇</mi><mo stretchy="true">‾</mo></mover><mi>J</mi><mo stretchy="false">(</mo><mi>w</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\overline{w}[k] = \overline{w}[k-1] - \mu \overline{\nabla }J(w)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6306em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span><span style="top:-3.5506em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6306em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02691em;">w</span></span></span><span style="top:-3.5506em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1333em;vertical-align:-0.25em;"></span><span class="mord mathnormal">μ</span><span class="mord overline"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8833em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∇</span></span></span><span style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span class="overline-line" style="border-bottom-width:0.04em;"></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mclose">)</span></span></span></span></li>
+<li>Convergence and Stability is dependent of steep size $\mu $</li>
+</ul>
+</li>
+<li>Stochastic Gradient Algorithms: LMS case(least mean square)</li>
+</ul>
+</li>
+<li>Classes of Adaptive filtering
+<ul>
+<li>Interference cancellation</li>
+<li>Inverse Modelling
+<ul>
+<li>Equalize the response, cancel the effect of the channel(likely low pass)</li>
+<li>Channel equalization</li>
+</ul>
+</li>
+<li>System Identification
+<ul>
+<li>Mimics the behavior of an unknown system</li>
+</ul>
+</li>
+<li>Linear Prediction</li>
+</ul>
+</li>
+</ul>
+<h3 id="Calibration-Examples">Calibration Examples</h3>
+<ul>
+<li>Applications
+<ul>
+<li>Quantization noise cancelaltion(interference cancellation)</li>
+<li>Automatic bandwidth control(System identification)</li>
+<li>Linear modulation(Inverse modeling)</li>
+</ul>
+</li>
+<li>LMS loop
+<ul>
+<li>Measure error, integrate, substract</li>
+<li>TDC nonlinearity</li>
+<li>Phase Interpolation to reduce TDC range
+<ul>
+<li>PI mismatches</li>
+<li>such mismatches in the PI phases produces spurious tones</li>
+<li>PI has to be linear as well, creating same stpes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multi-Pase LMS Adaptive Filter</li>
+<li>DTC-Assisted Bang-Bang Digital PLL
+<ul>
+<li>Only vary by 1 bit</li>
+<li>Power is reduced due to the Bang-Bang TDC</li>
+</ul>
+</li>
+<li>DTC-Assisted Sampling PLL</li>
+<li><strong>FoM: Jitter times power, inverse proportionality</strong></li>
+</ul>
+<h3 id="Automatic-Bandwidth-Control-in-PLLs">Automatic Bandwidth Control in PLLs</h3>
+<ul>
+<li>Loop Gain Sensitivity
+<ul>
+<li>Loop Gain Normalization</li>
+<li>Adaptive filtering stabilize the phase noise response</li>
+<li>Bandwidth control</li>
+</ul>
+</li>
+</ul>
+<h3 id="Linearized-FM-Modulation-of-a-PLL">Linearized FM Modulation of a PLL</h3>
+<ul>
+<li>
+<p>Direct FM Modulation</p>
+<ul>
+<li>Pros: low Power, fine resolution, linearity</li>
+<li>Cons: slow frequency switching, fractional spurs, modulation rate limited by loop BW</li>
+</ul>
+</li>
+<li>
+<p>Two-point injection<br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3991.jpg" srcset="/img/loading.gif" alt="IMG_3991"></p>
+<ul>
+<li>All-pass transfer function if the two gains match</li>
+<li>Enables fast direct-FM modulation of a PLL</li>
+<li>Requires gain calibration
+<ul>
+<li>Adapative filtering techniques applied</li>
+</ul>
+</li>
+<li>Gain imbalance correction
+<ul>
+<li>Integration to produce phase
+<ul>
+<li>Produce error, integrate, produce new gain</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DCO nonlinearity
+<ul>
+<li>DCO gain differs at the edges of tuning range</li>
+<li>Intra-band nonlinearity from capacitor mistmatches</li>
+<li>Chip modulation would contain frequency errors</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Adpative DPD Algorithm<br>
+<img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3992.jpg" srcset="/img/loading.gif" alt="IMG_3992"></p>
+<ul>
+<li>Digital Predistortion Algorithm
+<ul>
+<li>Estimate two different gains, and compensate</li>
+</ul>
+</li>
+<li>Getting two different gains using accumulators</li>
+<li>Frequency jump enables quick settling time</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3993.jpg" srcset="/img/loading.gif" alt="IMG_3993"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/images/IMG_3995.jpg" srcset="/img/loading.gif" alt="IMG_3995"></p>
 
             </div>
             <hr>
