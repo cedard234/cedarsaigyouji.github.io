@@ -4,7 +4,8 @@ category:
 date: {{ date }}
 excerpt: 
 tags: 
-comment: 
+comment: true
 banner_img: 
 index_img: 
+hide: false
 ---
