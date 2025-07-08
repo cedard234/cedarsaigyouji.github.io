@@ -237,7 +237,7 @@
 </li>
 <li><p><strong>自相关函数Autocorrelation Function</strong>：自相关函数描述了一个随机过程在不同时间点之间的相关性。<br>$$ R_x(\tau) &#x3D; E[X(t)X(t+\tau)] $$</p>
 <ul>
-<li>对于白噪音而言，自相关函数只有在 ( \tau &#x3D; 0 ) 时非零，其值为噪声功率。</li>
+<li>对于白噪音而言，自相关函数只有在 $\tau &#x3D; 0$ 时非零，其值为噪声功率。</li>
 </ul>
 </li>
 <li><p><strong>帕萨瓦尔定理Parseval’s Theorem</strong>：帕萨瓦尔定理指出，对于任何一个信号，以下等式成立：<br>$$ \int_{-\infty}^{\infty} |X(t)|^2 dt &#x3D; \int_{-\infty}^{\infty} S(f) df $$<br>如果该信号是周期性的，那么等式右侧的积分可以简化为一个周期内的积分：<br>$$ \int_{-\infty}^{\infty} S(f) df &#x3D; T \int_{-\frac{1}{2T}}^{\frac{1}{2T}} |X(t)|^2 dt $$<br>其中 ( T ) 是信号的周期。</p>
@@ -272,15 +272,23 @@
 <li>绝对抖动是一个小量。</li>
 <li>相位噪音在$kT_0$的附近缓慢变化。</li>
 </ul>
-<p>那么我们可以对相位噪音进行一阶泰勒展开，舍弃高阶项：<br>$$<br>\begin{aligned}<br>\phi_n(t_k) &amp;\approx \phi_n(kT_0 + a_k) \<br>&amp;&#x3D; \phi_n(kT_0) + \frac{d\phi_n(t_k)}{dt}\bigg|<em>{t&#x3D;kT_0} a_k<br>\end{aligned}<br>$$<br>$$<br>\begin{aligned}<br>a_k &amp;&#x3D; \cfrac{-\phi_n(kT_0)}{\omega_0 + \frac{d\phi_n(t_k)}{dt}\bigg|</em>{t&#x3D;kT_0}} \<br>&amp;\approx \cfrac{-\phi_n(kT_0)}{\omega_0} \<br>\end{aligned}<br>$$<br>这个十分重要的结论告诉我们，<strong>抖动是相位噪声采样过后的成比例结果</strong>。</p>
+<p>那么我们可以对相位噪音进行一阶泰勒展开，舍弃高阶项：<br>$$<br>\phi_n(t_k) \approx \phi_n(kT_0 + a_k)<br>&#x3D; \phi_n(kT_0) + \frac{d\phi_n(t_k)}{dt}\bigg|_{t&#x3D;kT_0} a_k<br>$$</p>
+<p>$$<br>a_k &#x3D; \cfrac{-\phi_n(kT_0)}{\omega_0 + \frac{d\phi_n(t_k)}{dt}\bigg|_{t&#x3D;kT_0}}<br>\approx \cfrac{-\phi_n(kT_0)}{\omega_0}<br>$$<br>这个十分重要的结论告诉我们，<strong>抖动是相位噪声采样过后的成比例结果</strong>。</p>
 <p>我们可以将相位噪声视作一个宽平稳过程。因此，抖动也将是一个平稳过程。因此，我们可以构建这两者的自相关函数：<br>$$ R_{\phi}(\tau) &#x3D; E[\phi_n(t)\phi_n(t+\tau)] $$<br>$$ R_{a}(m) &#x3D; E[a_k a_{k+m}] $$</p>
-<p>由于抖动是相位噪声采样过后的成比例结果，因此我们可以得到以下关系：<br>$$ R_{a}(m) &#x3D; \cfrac{1}{\omega_0^2} R_{\phi}(m) $$<br>最后一个需要增加的工程假设是，抖动是一个零均值过程。运用帕萨瓦尔定理，我们可以得到绝对抖动与相位噪声的功率谱密度之间的关系：<br>$$<br>\begin{aligned}<br> R_a(0) &amp;&#x3D; \sigma_a^2 &#x3D; \cfrac{1}{\omega_0^2} R_{\phi}(m) \<br>&amp;&#x3D; \cfrac{1}{\omega_0^2} \int_{-\infty}^{\infty} S_{\phi}(f) df<br>\end{aligned}<br>$$</p>
+<p>由于抖动是相位噪声采样过后的成比例结果，因此我们可以得到以下关系：<br>$$ R_{a}(m) &#x3D; \cfrac{1}{\omega_0^2} R_{\phi}(m) $$<br>最后一个需要增加的工程假设是，抖动是一个零均值过程。运用帕萨瓦尔定理，我们可以得到绝对抖动与相位噪声的功率谱密度之间的关系：<br>$$<br> R_a(0) &#x3D; \sigma_a^2 &#x3D; \cfrac{1}{\omega_0^2} R_{\phi}(m) \<br>&#x3D; \cfrac{1}{\omega_0^2} \int_{-\infty}^{\infty} S_{\phi}(f) df<br>$$</p>
 <p>也就是说，随机抖动的方差等于相位噪声功率谱密度的积分除以角频率的平方。</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/profession/">profession</a>
+                    
+                  </div>
                 
                 
                   <div class="post-meta">
@@ -327,8 +335,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'http://blog.cedard.top/uncategorized/2025.07.07.20/';
-        this.page.identifier = '/uncategorized/2025.07.07.20/';
+        this.page.url = 'http://blog.cedard.top/profession/2025.07.07.20/';
+        this.page.identifier = '/profession/2025.07.07.20/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
