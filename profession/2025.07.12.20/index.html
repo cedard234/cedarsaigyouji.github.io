@@ -282,7 +282,29 @@
 </ul>
 </li>
 </ul>
-<h3 id="切比雪夫滤波器的进一步分析"><a href="#切比雪夫滤波器的进一步分析" class="headerlink" title="切比雪夫滤波器的进一步分析"></a>切比雪夫滤波器的进一步分析</h3><h4 id="偶数阶切比雪夫多项式"><a href="#偶数阶切比雪夫多项式" class="headerlink" title="偶数阶切比雪夫多项式"></a>偶数阶切比雪夫多项式</h4>
+<h3 id="切比雪夫多项式的性质"><a href="#切比雪夫多项式的性质" class="headerlink" title="切比雪夫多项式的性质"></a>切比雪夫多项式的性质</h3><h4 id="偶数阶切比雪夫多项式"><a href="#偶数阶切比雪夫多项式" class="headerlink" title="偶数阶切比雪夫多项式"></a>偶数阶切比雪夫多项式</h4><p>偶数阶切比雪夫多项式和奇数阶的最大最小值分布有一些区别，我们来看一个例子。</p>
+<p><strong>例</strong>： 四阶切比雪夫多项式在角频率为0的时候还是最小值吗？<br>$$ \cos (4\cos^{-1}(0)) &#x3D; \cos (4 \times \frac{\pi}{2}) &#x3D; \cos (2\pi) &#x3D; 1 $$<br>延伸到任何偶数阶多项式，我们发现0的频率值都是1（最大值），因此偶数阶切比雪夫多项式是由最大值开始，奇数阶切比雪夫多项式则是由最小值开始。假设纹波还是1dB，八阶切比雪夫多项式的幅度响应如下：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100146.png" srcset="/img/loading.gif"></p>
+<p>可以看到，在DC时，幅度响应并非$1$，而是$ \frac{1}{\sqrt{1 + \epsilon^2}} $。</p>
+<h3 id="导带最大值与最小值"><a href="#导带最大值与最小值" class="headerlink" title="导带最大值与最小值"></a>导带最大值与最小值</h3><h4 id="导带最大值"><a href="#导带最大值" class="headerlink" title="导带最大值"></a>导带最大值</h4><p>如果导带取到最大值，那么切比雪夫多项式取到最小值。</p>
+<p>$$ \cos (n \cos^{-1}(\omega)) &#x3D; 0 $$<br>$$ \Rightarrow \omega &#x3D; \cos(\frac{(2m + 1)\pi}{2n}), \quad k &#x3D; 0, 1, \ldots, n - 1 $$</p>
+<p>可以发现，如果n是奇数，则导带最大值出现在$\omega &#x3D; 0$处；如果n是偶数，则导带最大值出现在$\omega &#x3D; 1$处。</p>
+<h4 id="导带最小值"><a href="#导带最小值" class="headerlink" title="导带最小值"></a>导带最小值</h4><p>如果导带取到最小值，那么切比雪夫多项式取到最大值。</p>
+<p>$$ \cos (n \cos^{-1}(\omega)) &#x3D; 1 $$<br>$$ \Rightarrow \omega &#x3D; \cos(\frac{2m\pi}{n}), \quad k &#x3D; 0, 1, \ldots, n - 1 $$</p>
+<p>可以发现，如果n是奇数，则导带最小值出现在$\omega &#x3D; 0$处；如果n是偶数，则导带最小值出现在$\omega &#x3D; 1$处。</p>
+<h3 id="纹波与阻带衰减"><a href="#纹波与阻带衰减" class="headerlink" title="纹波与阻带衰减"></a>纹波与阻带衰减</h3><p>我们可以看到，通过允许一定的纹波，切比雪夫滤波器能够在通带内实现更陡峭的滚降特性。并且如果纹波越大，阻带衰减也会越大。</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100845.png" srcset="/img/loading.gif"></p>
+<p>当$\epsilon &#x3D; 0$时，切比雪夫滤波器退化为巴特沃斯滤波器。</p>
+<h3 id="切比雪夫滤波器的极点"><a href="#切比雪夫滤波器的极点" class="headerlink" title="切比雪夫滤波器的极点"></a>切比雪夫滤波器的极点</h3><h4 id="极点的求解"><a href="#极点的求解" class="headerlink" title="极点的求解"></a>极点的求解</h4><p>现在我们来求切比雪夫滤波器的极点。</p>
+<p>$$ 1 + \epsilon^2 C_n^2(\omega) &#x3D; 0 $$</p>
+<p>$$ \cos (n \cos^{-1}(\frac{s}{j})) &#x3D; \pm \frac{j}{\epsilon} $$</p>
+<p>我们设</p>
+<p>$$ n \cos^{-1}(\frac{s}{j}) &#x3D; u + jv $$<br>其中$ u, v \in \mathbb{R} $。<br>那么，使用和角公式</p>
+<p>$$ \cos u \cos jv  - \sin u \sin jv &#x3D; \pm \frac{j}{\epsilon} $$<br>$$ \cos u \cosh v - j \sin u \sinh v &#x3D; \pm \frac{j}{\epsilon} $$<br>使实部和虚部分离：<br>$$ \begin{cases}<br>\cos u \cosh v &#x3D; 0 \\<br>-\sin u \sinh v &#x3D; \pm \frac{1}{\epsilon}<br>\end{cases} $$</p>
+<p>由于 $u$ 和 $v$ 是实数，，要使实部为0，$u$必须满足<br>$$ u &#x3D; (2m + 1) \frac{\pi}{2}, \quad m &#x3D; 0, 1, 2, \ldots $$<br>这会使得 $ \sin u &#x3D; (-1)^m $。解第二个方程：<br>$$ v &#x3D; \pm \sinh^{-1}\frac{1}{\epsilon} $$</p>
+<p>现在我们代入<br>$$ n \cos^{-1}\left(\frac{s}{j}\right) &#x3D; u + jv &#x3D; (2m + 1) \frac{\pi}{2} + j \sinh^{-1}\frac{1}{\epsilon} $$<br>得到极点的形式：<br>$$ \begin{aligned}<br>s &amp;&#x3D; j \cos\left(\frac{(2m + 1) \pi}{2n} + j\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right) \\<br>s &amp;&#x3D; j \left( \cos \left(\frac{(2m + 1) \pi}{2n}\right) \cosh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right) - j \sin\left(\frac{(2m + 1) \pi}{2n}\right) \sinh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right) \right)\\<br>s &amp;&#x3D; \pm \sin \left(\frac{(2m + 1) \pi}{2n}\right) \sinh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right) + j \cos \left(\frac{(2m + 1) \pi}{2n}\right) \cosh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right)<br>\end{aligned}<br>$$</p>
+<p>吐槽：公式太长了，打了好久，还是有点累。</p>
+
             </div>
             <hr>
             <div>
