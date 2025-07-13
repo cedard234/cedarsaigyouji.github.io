@@ -245,7 +245,7 @@
 <p>这一理论催生了网络合成理论的发展，为被动网络的系统性分析和设计提供了坚实的理论基础。</p>
 <p>滤波器按频率特性可分为低通、高通、带通和带阻滤波器等多种类型。值得注意的是，所有类型的滤波器都可以通过频率变换从低通滤波器原型导出，因此在系统设计层面，我们主要关注低通滤波器的设计即可。</p>
 <h2 id="传递函数的基本性质"><a href="#传递函数的基本性质" class="headerlink" title="传递函数的基本性质"></a>传递函数的基本性质</h2><h3 id="理想低通滤波器"><a href="#理想低通滤波器" class="headerlink" title="理想低通滤波器"></a>理想低通滤波器</h3><p>一个理想低通滤波器的传递函数应该具有以下特性：</p>
-<p>$$H(s) &#x3D; \frac{N(s)}{D(s)} &#x3D; \begin{cases}<br>1 &amp; \text{当 } 0 &lt; \omega &lt; 1 \<br>0 &amp; \text{当 } \omega &gt; 1<br>\end{cases}$$</p>
+<p>$$H(s) &#x3D; \frac{N(s)}{D(s)} &#x3D; \begin{cases}<br>1 &amp; \text{当 } 0 &lt; \omega &lt; 1 \\<br>0 &amp; \text{当 } \omega &gt; 1<br>\end{cases}$$</p>
 <p>当我们将复变量 $s$ 替换为 $j\omega$ 时，传递函数就转化为频率响应函数。</p>
 <h3 id="传递函数的共轭性质"><a href="#传递函数的共轭性质" class="headerlink" title="传递函数的共轭性质"></a>传递函数的共轭性质</h3><p>对于实值传递函数，以下重要性质成立：</p>
 <p>$$|H(j\omega)|^2 &#x3D; H(j\omega)H^*(j\omega) &#x3D; H(j\omega)H(-j\omega)$$</p>
