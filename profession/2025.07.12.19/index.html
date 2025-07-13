@@ -228,7 +228,7 @@
             <h1 style="display: none">tech-主动滤波器设计笔记(1)：巴特沃斯近似</h1>
             
             <div class="markdown-body">
-              <h1 id="主动滤波器设计笔记-1-：巴特沃斯近似"><a href="#主动滤波器设计笔记-1-：巴特沃斯近似" class="headerlink" title="主动滤波器设计笔记(1)：巴特沃斯近似"></a>主动滤波器设计笔记(1)：巴特沃斯近似</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在学习IIT Madras的<a target="_blank" rel="noopener" href="https://youtube.com/playlist?list=PL285BE2DDBCB6839F&si=wG2bXsgAiww36LUM">EE534</a>课程，该课程由Shanthi Pavan教授讲授，专注于主动滤波器设计。课程内容丰富，涵盖了实用的设计方法、严谨的理论推导以及宝贵的工程直觉。为了巩固学习成果，我将撰写一系列笔记来记录这些重要内容。正如费曼学习法所强调的，通过教授他人来验证和深化自己的理解是最有效的学习方式。</p>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在学习IIT Madras的<a target="_blank" rel="noopener" href="https://youtube.com/playlist?list=PL285BE2DDBCB6839F&si=wG2bXsgAiww36LUM">EE534</a>课程，该课程由Shanthi Pavan教授讲授，专注于主动滤波器设计。课程内容丰富，涵盖了实用的设计方法、严谨的理论推导以及宝贵的工程直觉。为了巩固学习成果，我将撰写一系列笔记来记录这些重要内容。正如费曼学习法所强调的，通过教授他人来验证和深化自己的理解是最有效的学习方式。</p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>在深入学习主动滤波器设计之前，我们首先需要理解一些关键概念：</p>
 <ul>
 <li><strong>主动元件（Active Element）</strong>：能够提供功率增益的元件，如晶体管、运算放大器、电流源和电压源等。</li>
@@ -302,6 +302,7 @@
 </ul>
 <p>与一阶巴特沃斯滤波器相比，二阶滤波器具有更高的品质因子，从而实现更陡峭的滚降特性。</p>
 <h3 id="极点分布的几何特性"><a href="#极点分布的几何特性" class="headerlink" title="极点分布的几何特性"></a>极点分布的几何特性</h3><p>从极点分布可以看出，巴特沃斯滤波器的极点均匀分布在单位圆上，且仅选择左半平面的极点以确保系统稳定性。这种均匀分布是巴特沃斯滤波器具有最大平坦特性的根本原因。</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712225817.png" srcset="/img/loading.gif" alt="极点分布"></p>
 <h3 id="常用的巴特沃斯滤波器多项式表"><a href="#常用的巴特沃斯滤波器多项式表" class="headerlink" title="常用的巴特沃斯滤波器多项式表"></a>常用的巴特沃斯滤波器多项式表</h3><table>
 <thead>
 <tr>
@@ -337,6 +338,7 @@
 </tr>
 </tbody></table>
 <p>可以发现，当阶数为奇数的时候，-1一定是极点之一，而当阶数为偶数时，-1不是极点。而无论阶数如何，都没有极点会落在j轴上。</p>
+<h3 id="巴特沃斯滤波器的Bode-Plot"><a href="#巴特沃斯滤波器的Bode-Plot" class="headerlink" title="巴特沃斯滤波器的Bode Plot"></a>巴特沃斯滤波器的Bode Plot</h3><p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712224937.png" srcset="/img/loading.gif" alt="Bode Plot"></p>
 <hr>
 
             </div>
