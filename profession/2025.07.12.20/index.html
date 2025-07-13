@@ -1,0 +1,545 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="真理位於大炮的射程範圍内">
+  <meta name="author" content="雾杉cedar">
+  <meta name="keywords" content="看书睡觉听音乐">
+  <title>tech-主动滤波器设计笔记(2)：切比雪夫近似 - 四方喫茶舘</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>四方喫茶舘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/defaultbg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="tech-主动滤波器设计笔记(2)：切比雪夫近似">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-07-12 20:02" pubdate>
+        July 12, 2025 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">tech-主动滤波器设计笔记(2)：切比雪夫近似</h1>
+            
+            <div class="markdown-body">
+              <p>在上一篇中，我们讨论了巴特沃斯近似的设计方法及其特性。那么在进入一个新的滤波器设计方法之前，我们一定要问这个问题：</p>
+<h2 id="为什么巴特沃斯滤波器不是最佳选择？"><a href="#为什么巴特沃斯滤波器不是最佳选择？" class="headerlink" title="为什么巴特沃斯滤波器不是最佳选择？"></a>为什么巴特沃斯滤波器不是最佳选择？</h2><p>巴特沃斯滤波器十分简单，因此它在滤波器设计中被广泛使用。然而，在有些时候巴特沃斯滤波器并不是最优选择。</p>
+<p>我们要知道的是对于一个N阶的滤波器，需要物理实现的最少的感抗元件的个数是N个。在设计一个滤波器的时候，一般来说我们被给定一个导带的最小值和一个阻带的最大值；巴特沃斯滤波器的衰减在导带中最大平坦，然而这个性质在上述给定spec的时候可能显得有些多余。我们将在切比雪夫滤波器的例子中看到，如果我们容许导带中的一些纹波(ripple)，那么使用低阶的滤波器就可以实现更大的阻带衰减。这在早期的滤波器设计中十分有用，因为使用更少的元件意味着更少的成本和更小的体积。即便在现代的集成电路设计中，使用更少的电容和电感也意味着更小的芯片面积和更低的功耗。</p>
+<h2 id="第一类切比雪夫滤波器-Chebyshev-Filter"><a href="#第一类切比雪夫滤波器-Chebyshev-Filter" class="headerlink" title="第一类切比雪夫滤波器 (Chebyshev Filter)"></a>第一类切比雪夫滤波器 (Chebyshev Filter)</h2><h3 id="设计思路与幅度函数特性"><a href="#设计思路与幅度函数特性" class="headerlink" title="设计思路与幅度函数特性"></a>设计思路与幅度函数特性</h3><p>切比雪夫滤波器的幅度函数长这样：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712230644.png" srcset="/img/loading.gif"></p>
+<p>我们引入一个参数ε来控制导带中的纹波(ripple)。假如说我们定义：</p>
+<p>$$|H(j\omega)|^2 &#x3D; \frac{1}{D(\omega^2)} &#x3D; \frac{1}{1 + \epsilon^2 F_1(\omega^2)}$$</p>
+<p>那么$ F_1(\omega^2) $应该要长这个样子：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712233123.png" srcset="/img/loading.gif"></p>
+<h3 id="切比雪夫多项式的推导"><a href="#切比雪夫多项式的推导" class="headerlink" title="切比雪夫多项式的推导"></a>切比雪夫多项式的推导</h3><p>由于$F_1$在 $0$, $\omega_2$, $\omega_4$处的值为0，我们可以做这样的多项式插值：</p>
+<p>$$F_1(\omega^2) &#x3D; k^2 \omega^2 (\omega^2 - \omega_2^2)^2(\omega^2 - \omega_4^2)^2$$</p>
+<p>如果我们将$F_1$减去1，我们可以做同样的插值，注意到现在$F_1$在 $\omega_1$, $\omega_3$, $1$处的值为0：</p>
+<p>$$F_1(\omega^2) - 1 &#x3D; k^2 (\omega^2 - \omega_1^2)(\omega^2 - \omega_3^2)(\omega^2 - 1)$$</p>
+<p>设 $C_5(\omega)^2 &#x3D; F_1(\omega^2)$，因此：</p>
+<p>$$C_5(\omega) &#x3D; k \omega (\omega^2 - \omega_2^2)(\omega^2 - \omega_4^2)$$</p>
+<p>那么$C_5$将在$\omega_1$, $\omega_3$处取到极值，因此我们同样对$C_5$做插值：</p>
+<p>$$\frac{dC_5(\omega)}{d\omega} &#x3D; k_{unknown}(\omega^2 - \omega_1^2)(\omega^2 - \omega_3^2)$$</p>
+<p>注意到，当$\omega$很大的时候，$C_5(\omega) \approx k \omega^5$，因此它的导数在$\omega$很大的时候应该有系数$5k$，因此$k_{unknown} &#x3D; 5k$。</p>
+<h3 id="微分方程的求解"><a href="#微分方程的求解" class="headerlink" title="微分方程的求解"></a>微分方程的求解</h3><p>回顾$F_1 - 1$的插值，我们发现这两个表达式之差一个$(\omega^2 - 1)$项，因此我们可以列出以下ODE：</p>
+<p>$$\frac{1}{5}\frac{dC_5}{d\omega} &#x3D; \frac{C_5^2 - 1}{\omega^2 - 1}$$</p>
+<p>整理得到：</p>
+<p>$$\frac{dC_5}{\sqrt{C_5^2 - 1}} &#x3D; \frac{5 d\omega}{\sqrt{\omega^2 - 1}}$$</p>
+<p>对两边积分：</p>
+<p>$$\int \frac{dC_5}{\sqrt{C_5^2 - 1}} &#x3D; \int \frac{5 d\omega}{\sqrt{\omega^2 - 1}}$$</p>
+<p>$$\cosh^{-1}(C_5) &#x3D; 5 \cosh^{-1}(\omega) + C_{constant}$$</p>
+<p>如果我们想要让 $C_5(1) &#x3D; 1$，那么我们可以设 $C_{constant} &#x3D; -5 \cosh^{-1}(1) &#x3D; 0$。</p>
+<p>因此：</p>
+<p>$$C_5(\omega) &#x3D; \cosh(5\cosh^{-1}(\omega))$$</p>
+<h3 id="一般化结果"><a href="#一般化结果" class="headerlink" title="一般化结果"></a>一般化结果</h3><p>一般化这个结果，我们可以得到：</p>
+<p>$$C_n(\omega) &#x3D; \cosh(n \cosh^{-1}(\omega))$$</p>
+<h3 id="需要进一步讨论的问题"><a href="#需要进一步讨论的问题" class="headerlink" title="需要进一步讨论的问题"></a>需要进一步讨论的问题</h3><p>我们应该思考以下两个重要问题：</p>
+<ol>
+<li><p><strong>这是一个多项式吗？</strong></p>
+</li>
+<li><p><strong>如果$\omega$在$[0, 1]$区间内，我们应该怎样定义$C_n(\omega)$？</strong></p>
+</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/profession/">profession</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Mathematics/">Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Filter-Design/">Filter Design</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Active-Filter/">Active Filter</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Chebyshev-Filter/">Chebyshev Filter</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/profession/2025.07.12.19/">
+                        <span class="hidden-mobile">tech-主动滤波器设计笔记(1)：巴特沃斯近似</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'http://blog.cedard.top/profession/2025.07.12.20/';
+        this.page.identifier = '/profession/2025.07.12.20/';
+      };
+      Fluid.utils.waitElementVisible('disqus_thread', function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
