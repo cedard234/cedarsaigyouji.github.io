@@ -228,55 +228,64 @@
             <h1 style="display: none">tech-相位噪声与抖动的关系</h1>
             
             <div class="markdown-body">
-              <h2 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a>准备知识</h2><p>在进行相位噪声与抖动的关系分析之前，需要了解一些基本的随机过程和信号处理的概念。以下是一些关键概念：</p>
+              <p>在现代数字通信系统和时钟生成电路中，相位噪声和抖动是两个关键的性能指标。本文将从理论基础出发，深入分析相位噪声与抖动之间的数学关系，并探讨其在工程实践中的应用意义。</p>
+<h2 id="1-理论基础"><a href="#1-理论基础" class="headerlink" title="1. 理论基础"></a>1. 理论基础</h2><h3 id="1-1-随机过程与平稳性"><a href="#1-1-随机过程与平稳性" class="headerlink" title="1.1 随机过程与平稳性"></a>1.1 随机过程与平稳性</h3><p>在分析相位噪声与抖动的关系之前，需要建立必要的随机过程理论基础。</p>
+<h4 id="1-1-1-平稳过程的定义"><a href="#1-1-1-平稳过程的定义" class="headerlink" title="1.1.1 平稳过程的定义"></a>1.1.1 平稳过程的定义</h4><p><strong>平稳过程（Stationary Process）</strong>是指其统计特性不随时间变化的随机过程。对于平稳过程，其均值和方差在时间上保持恒定。</p>
+<p><strong>宽平稳过程（Wide-Sense Stationary Process）</strong>是平稳过程的一个重要特例，其定义为：</p>
+<ul>
+<li>均值恒定：$E[X(t)] &#x3D; \mu_X$（常数）</li>
+<li>自相关函数仅依赖于时间差：$R_X(t_1, t_2) &#x3D; R_X(t_2 - t_1)$</li>
+</ul>
+<p>白噪声是宽平稳过程的典型例子。</p>
+<h4 id="1-1-2-自相关函数"><a href="#1-1-2-自相关函数" class="headerlink" title="1.1.2 自相关函数"></a>1.1.2 自相关函数</h4><p><strong>自相关函数（Autocorrelation Function）</strong>描述了随机过程在不同时间点之间的相关性：</p>
+<p>$$R_x(\tau) &#x3D; E[X(t)X(t+\tau)]$$</p>
+<p>对于白噪声，自相关函数具有以下特性：<br>$$R_{\text{white}}(\tau) &#x3D; \sigma^2 \delta(\tau)$$</p>
+<p>其中$\sigma^2$为噪声功率，$\delta(\tau)$为狄拉克函数。</p>
+<h3 id="1-2-频域分析理论"><a href="#1-2-频域分析理论" class="headerlink" title="1.2 频域分析理论"></a>1.2 频域分析理论</h3><h4 id="1-2-1-功率谱密度"><a href="#1-2-1-功率谱密度" class="headerlink" title="1.2.1 功率谱密度"></a>1.2.1 功率谱密度</h4><p><strong>功率谱密度（Power Spectral Density, PSD）</strong>描述了随机过程在频域中的功率分布：</p>
+<p>$$S_x(f) &#x3D; \lim_{T \to \infty} \frac{1}{T} E[|X_T(f)|^2]$$</p>
+<h4 id="1-2-2-维纳-辛钦定理"><a href="#1-2-2-维纳-辛钦定理" class="headerlink" title="1.2.2 维纳-辛钦定理"></a>1.2.2 维纳-辛钦定理</h4><p><strong>维纳-辛钦定理（Wiener-Khinchin Theorem）</strong>建立了时域自相关函数与频域功率谱密度之间的重要关系：</p>
+<p>$$S_x(f) &#x3D; \int_{-\infty}^{\infty} R_x(\tau) e^{-j2\pi f\tau} d\tau$$</p>
+<p>$$R_x(\tau) &#x3D; \int_{-\infty}^{\infty} S_x(f) e^{j2\pi f\tau} df$$</p>
+<p>这表明功率谱密度是自相关函数的傅里叶变换。</p>
+<h4 id="1-2-3-帕萨瓦尔定理"><a href="#1-2-3-帕萨瓦尔定理" class="headerlink" title="1.2.3 帕萨瓦尔定理"></a>1.2.3 帕萨瓦尔定理</h4><p><strong>帕萨瓦尔定理（Parseval’s Theorem）</strong>给出了时域和频域能量的等价关系：</p>
+<p>$$\int_{-\infty}^{\infty} |x(t)|^2 dt &#x3D; \int_{-\infty}^{\infty} S_x(f) df$$</p>
+<p>对于周期信号，有：<br>$$\int_{-\infty}^{\infty} S_x(f) df &#x3D; T \int_{-\frac{1}{2T}}^{\frac{1}{2T}} |x(t)|^2 dt$$</p>
+<p>其中$T$为信号周期。</p>
+<h3 id="1-3-时间与相位关系"><a href="#1-3-时间与相位关系" class="headerlink" title="1.3 时间与相位关系"></a>1.3 时间与相位关系</h3><p>相位与时间的基本关系由下式给出：<br>$$\Delta \phi &#x3D; \omega \Delta t$$</p>
+<p>其中：</p>
+<ul>
+<li>$\Delta \phi$：相位变化</li>
+<li>$\omega$：角频率</li>
+<li>$\Delta t$：时间间隔</li>
+</ul>
+<h2 id="2-抖动标准差与相位噪声的数学关系"><a href="#2-抖动标准差与相位噪声的数学关系" class="headerlink" title="2. 抖动标准差与相位噪声的数学关系"></a>2. 抖动标准差与相位噪声的数学关系</h2><h3 id="2-1-绝对抖动的定义"><a href="#2-1-绝对抖动的定义" class="headerlink" title="2.1 绝对抖动的定义"></a>2.1 绝对抖动的定义</h3><p>对于矩形波信号，<strong>绝对抖动（Absolute Jitter）</strong>定义为信号边沿相对于理想时刻的偏移。</p>
+<p>考虑第$k$个周期，如果相位噪声的时域表示为$\phi_n(t_k)$，则实际的相位满足：</p>
+<p>$$\omega_0 t_k + \phi_n(t_k) &#x3D; 2\pi k$$</p>
+<p>因此，绝对抖动可以表示为：</p>
+<p>$$<br>\begin{aligned}<br>a_k &amp;&#x3D; t_k - \frac{2\pi k}{\omega_0} \\<br>&amp;&#x3D; \frac{\phi_n(t_k)}{\omega_0}<br>\end{aligned}<br>$$</p>
+<h3 id="2-2-小信号近似分析"><a href="#2-2-小信号近似分析" class="headerlink" title="2.2 小信号近似分析"></a>2.2 小信号近似分析</h3><p>基于以下工程假设：</p>
 <ol>
-<li><p><strong>平稳过程Stationary Process</strong>：平稳过程是指其统计特性不随时间变化的随机过程。平稳过程的均值和方差在时间上是恒定的。</p>
-<ul>
-<li><strong>宽平稳过程Wide-Sense Stationary Process</strong>：宽平稳过程是指其均值恒定且自相关函数仅依赖于时间差的平稳过程。作为平稳过程的一个特例，白噪音是宽平稳过程。</li>
-</ul>
-</li>
-<li><p><strong>自相关函数Autocorrelation Function</strong>：自相关函数描述了一个随机过程在不同时间点之间的相关性。<br>$$ R_x(\tau) &#x3D; E[X(t)X(t+\tau)] $$</p>
-<ul>
-<li>对于白噪音而言，自相关函数只有在 $\tau &#x3D; 0$ 时非零，其值为噪声功率。</li>
-</ul>
-</li>
-<li><p><strong>帕萨瓦尔定理Parseval’s Theorem</strong>：帕萨瓦尔定理指出，对于任何一个信号，以下等式成立：<br>$$ \int_{-\infty}^{\infty} |X(t)|^2 dt &#x3D; \int_{-\infty}^{\infty} S(f) df $$<br>如果该信号是周期性的，那么等式右侧的积分可以简化为一个周期内的积分：<br>$$ \int_{-\infty}^{\infty} S(f) df &#x3D; T \int_{-\frac{1}{2T}}^{\frac{1}{2T}} |X(t)|^2 dt $$<br>其中 ( T ) 是信号的周期。</p>
-</li>
-<li><p><strong>功率谱密度Power Spectral Density, PSD</strong>：功率谱密度是描述随机过程在频域中功率分布的函数。<br>$$ S_x(f) &#x3D; \lim_{T \to \infty} \frac{1}{T} E[|X_T(f)|^2] $$</p>
-</li>
-<li><p><strong>维纳-辛钦定理Wiener-Khinchin Theorem</strong>：维纳-辛钦定理指出，对于一个宽平稳过程：</p>
-<ul>
-<li>上述功率谱密度存在。</li>
-<li>并且，功率谱密度与自相关函数之间存在以下关系：<br>$$ S_x(f) &#x3D; \int_{-\infty}^{\infty} R_x(\tau) e^{-j 2 \pi f \tau} d\tau $$<ul>
-<li>也就是说，功率谱密度是自相关函数的傅里叶变换。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>自相关函数的进一步分析</p>
-<ul>
-<li>根据定义，<br>$$ R_x(\tau) &#x3D; E[X(t)X(t+\tau)] $$<br> 也就是说，$x(t)$的平均功率等价于$x(t)$的均方功率。</li>
-<li>如果说$E[X(t)] &#x3D; 0$，我们称$x(t)$为零均值过程。此时$R_x(0)$等价于$x(t)$的方差。也就是说，对于零均值过程，<strong>平均功率就是方差</strong>。</li>
-</ul>
-</li>
-<li><p><strong>时间与相位的关系</strong><br>$$ \Delta \phi &#x3D; \omega \Delta t $$</p>
-<ul>
-<li>其中，$\Delta \phi$是相位变化，$\omega$是角频率，$\Delta t$是时间间隔。</li>
-</ul>
-</li>
+<li>绝对抖动是小量</li>
+<li>相位噪声在$kT_0$附近缓慢变化</li>
 </ol>
-<h2 id="绝对抖动-Absolute-Jitter-与相位噪音的关系"><a href="#绝对抖动-Absolute-Jitter-与相位噪音的关系" class="headerlink" title="绝对抖动(Absolute Jitter)与相位噪音的关系"></a>绝对抖动(Absolute Jitter)与相位噪音的关系</h2><p>对于一个矩形波而言，它的绝对抖动是在信号的上升沿或下降沿处的相位偏移。假如由于噪音影响，一个信号不在理想的上升沿或下降沿处，而是在一个偏移的相位处，那么这个偏移就可以被视为抖动。在第k个周期，如果相位噪声的时域表示为 $\phi_n(t_k)$，则第k个周期满足：<br>$$ \omega_0 t_k + \phi_n(t_k) &#x3D;  2\pi k    $$</p>
-<p>因此我们定义绝对抖动为：<br>$$ a_k &#x3D; t_k - \frac{2\pi k}{\omega_0} &#x3D; \frac{\phi_n(t_k)}{\omega_0} $$</p>
-<p>我们做如下假设：</p>
-<ul>
-<li>绝对抖动是一个小量。</li>
-<li>相位噪音在$kT_0$的附近缓慢变化。</li>
-</ul>
-<p>那么我们可以对相位噪音进行一阶泰勒展开，舍弃高阶项：<br>$$<br>\phi_n(t_k) \approx \phi_n(kT_0 + a_k)<br>&#x3D; \phi_n(kT_0) + \frac{d\phi_n(t_k)}{dt}\bigg|_{t&#x3D;kT_0} a_k<br>$$</p>
-<p>$$<br>a_k &#x3D; \cfrac{-\phi_n(kT_0)}{\omega_0 + \frac{d\phi_n(t_k)}{dt}\bigg|_{t&#x3D;kT_0}}<br>\approx \cfrac{-\phi_n(kT_0)}{\omega_0}<br>$$<br>这个十分重要的结论告诉我们，<strong>抖动是相位噪声采样过后的成比例结果</strong>。</p>
-<p>我们可以将相位噪声视作一个宽平稳过程。因此，抖动也将是一个平稳过程。因此，我们可以构建这两者的自相关函数：<br>$$ R_{\phi}(\tau) &#x3D; E[\phi_n(t)\phi_n(t+\tau)] $$<br>$$ R_{a}(m) &#x3D; E[a_k a_{k+m}] $$</p>
-<p>由于抖动是相位噪声采样过后的成比例结果，因此我们可以得到以下关系：<br>$$ R_{a}(m) &#x3D; \cfrac{1}{\omega_0^2} R_{\phi}(m) $$<br>最后一个需要增加的工程假设是，抖动是一个零均值过程。运用帕萨瓦尔定理，我们可以得到绝对抖动与相位噪声的功率谱密度之间的关系：<br>$$<br> R_a(0) &#x3D; \sigma_a^2 &#x3D; \cfrac{1}{\omega_0^2} R_{\phi}(m) \<br>&#x3D; \cfrac{1}{\omega_0^2} \int_{-\infty}^{\infty} S_{\phi}(f) df<br>$$</p>
-<p>也就是说，随机抖动的方差等于相位噪声功率谱密度的积分除以角频率的平方。</p>
+<p>对相位噪声进行一阶泰勒展开：</p>
+<p>$$<br>\begin{aligned}<br>\phi_n(t_k) &amp;\approx \phi_n(kT_0 + a_k) \\<br>&amp;&#x3D; \phi_n(kT_0) + \frac{d\phi_n(t)}{dt}\bigg|_{t&#x3D;kT_0} a_k<br>\end{aligned}<br>$$</p>
+<p>将此式代入绝对抖动的表达式：</p>
+<p>$$<br>a_k &#x3D; \frac{\phi_n(kT_0)}{\omega_0 - \frac{d\phi_n(t)}{dt}\bigg|_{t&#x3D;kT_0}}<br>$$</p>
+<p>在小信号近似下，$\frac{d\phi_n(t)}{dt} \ll \omega_0$，因此：</p>
+<p>$$a_k \approx \frac{\phi_n(kT_0)}{\omega_0}$$</p>
+<h3 id="2-3-统计特性分析"><a href="#2-3-统计特性分析" class="headerlink" title="2.3 统计特性分析"></a>2.3 统计特性分析</h3><h4 id="2-3-1-自相关函数关系"><a href="#2-3-1-自相关函数关系" class="headerlink" title="2.3.1 自相关函数关系"></a>2.3.1 自相关函数关系</h4><p>将相位噪声视为宽平稳过程，其自相关函数为：<br>$$R_{\phi}(\tau) &#x3D; E[\phi_n(t)\phi_n(t+\tau)]$$</p>
+<p>相应地，抖动的自相关函数为：<br>$$R_{a}(m) &#x3D; E[a_k a_{k+m}]$$</p>
+<p>由于抖动是相位噪声的比例采样结果，可得：</p>
+<p>$$R_{a}(m) &#x3D; \frac{1}{\omega_0^2} R_{\phi}(mT_0)$$</p>
+<h4 id="2-3-2-功率谱密度关系"><a href="#2-3-2-功率谱密度关系" class="headerlink" title="2.3.2 功率谱密度关系"></a>2.3.2 功率谱密度关系</h4><p>应用维纳-辛钦定理，抖动的功率谱密度与相位噪声功率谱密度之间存在以下关系：</p>
+<p>$$S_a(f) &#x3D; \frac{1}{\omega_0^2} S_{\phi}(f)$$</p>
+<h3 id="2-4-抖动方差的计算"><a href="#2-4-抖动方差的计算" class="headerlink" title="2.4 抖动方差的计算"></a>2.4 抖动方差的计算</h3><p>假设抖动为零均值过程，其方差（即均方根抖动）可通过以下方式计算：</p>
+<p>$$<br>\begin{aligned}<br>\sigma_a^2 &amp;&#x3D; R_a(0) \\<br>&amp;&#x3D; \frac{1}{\omega_0^2} R_{\phi}(0) \\<br>&amp;&#x3D; \frac{1}{\omega_0^2} \int_{-\infty}^{\infty} S_{\phi}(f) df<br>\end{aligned}<br>$$</p>
+<p>这是相位噪声与抖动关系的核心结论：</p>
+<blockquote>
+<p><strong>随机抖动的方差等于相位噪声功率谱密度的积分除以角频率的平方。</strong></p>
+</blockquote>
 
             </div>
             <hr>
@@ -301,6 +310,8 @@
                       <a class="hover-with-bg" href="/tags/Jitter/">Jitter</a>
                     
                       <a class="hover-with-bg" href="/tags/Mathematics/">Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Signal-Processing/">Signal Processing</a>
                     
                   </div>
                 
