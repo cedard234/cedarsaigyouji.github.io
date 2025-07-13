@@ -252,7 +252,7 @@
 <p>整理得：</p>
 <p>$$\frac{dC_5}{\sqrt{C_5^2 - 1}} &#x3D; \frac{5 d\omega}{\sqrt{\omega^2 - 1}}$$</p>
 <p>对两边积分：</p>
-<p>$$<br>\begin{aligned}<br>\int \frac{dC_5}{\sqrt{C_5^2 - 1}} &amp;&#x3D; \int \frac{5 d\omega}{\sqrt{\omega^2 - 1}} \<br>\cosh^{-1}(C_5) &amp;&#x3D; 5 \cosh^{-1}(\omega) + C_{constant}<br>\end{aligned}<br>$$</p>
+<p>$$<br>\begin{aligned}<br>\int \frac{dC_5}{\sqrt{C_5^2 - 1}} &amp;&#x3D; \int \frac{5 d\omega}{\sqrt{\omega^2 - 1}} \\<br>\cosh^{-1}(C_5) &amp;&#x3D; 5 \cosh^{-1}(\omega) + C_{constant}<br>\end{aligned}<br>$$</p>
 <p>应用边界条件$C_5(1) &#x3D; 1$，得$C_{constant} &#x3D; -5 \cosh^{-1}(1) &#x3D; 0$。</p>
 <p>因此：</p>
 <p>$$C_5(\omega) &#x3D; \cosh(5\cosh^{-1}(\omega))$$</p>
@@ -266,9 +266,9 @@
 <li>当$0 &lt; x &lt; 1$时：$\cosh^{-1}(x) &#x3D; j \cos^{-1}(x)$</li>
 </ul>
 <h4 id="2-3-2-切比雪夫多项式的定义"><a href="#2-3-2-切比雪夫多项式的定义" class="headerlink" title="2.3.2 切比雪夫多项式的定义"></a>2.3.2 切比雪夫多项式的定义</h4><p>基于上述关系，切比雪夫多项式的完整定义为：</p>
-<p>$$T_n(\omega) &#x3D; \begin{cases}<br>\cosh(n \cosh^{-1}(\omega)), &amp; \text{当 }\omega \geq 1 \<br>\cos(n \cos^{-1}(\omega)), &amp; \text{当 }0 \leq \omega \leq 1<br>\end{cases}$$</p>
+<p>$$T_n(\omega) &#x3D; \begin{cases}<br>\cosh(n \cosh^{-1}(\omega)), &amp; \text{当 }\omega \geq 1 \\<br>\cos(n \cos^{-1}(\omega)), &amp; \text{当 }0 \leq \omega \leq 1<br>\end{cases}$$</p>
 <h4 id="2-3-3-多项式性质的验证"><a href="#2-3-3-多项式性质的验证" class="headerlink" title="2.3.3 多项式性质的验证"></a>2.3.3 多项式性质的验证</h4><p>对于$|\omega| \leq 1$的情况，可以验证：</p>
-<p>$$<br>\begin{aligned}<br>T_1(\omega) &amp;&#x3D; \cos(\cos^{-1}(\omega)) &#x3D; \omega \<br>T_2(\omega) &amp;&#x3D; \cos(2\cos^{-1}(\omega)) &#x3D; 2\omega^2 - 1<br>\end{aligned}<br>$$</p>
+<p>$$<br>\begin{aligned}<br>T_1(\omega) &amp;&#x3D; \cos(\cos^{-1}(\omega)) &#x3D; \omega \\<br>T_2(\omega) &amp;&#x3D; \cos(2\cos^{-1}(\omega)) &#x3D; 2\omega^2 - 1<br>\end{aligned}<br>$$</p>
 <p>通过三角恒等式（倍角公式），可证明$T_n(\omega)$确实是$\omega$的n次多项式。</p>
 <h3 id="2-4-切比雪夫滤波器的工程术语"><a href="#2-4-切比雪夫滤波器的工程术语" class="headerlink" title="2.4 切比雪夫滤波器的工程术语"></a>2.4 切比雪夫滤波器的工程术语</h3><p>这种多项式以俄国数学家帕夫努季·切比雪夫（Pafnuty Chebyshev）命名，称为<strong>切比雪夫多项式</strong>。基于切比雪夫近似的滤波器称为<strong>切比雪夫滤波器</strong>，在文献中也常见以下术语：</p>
 <ul>
