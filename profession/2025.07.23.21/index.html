@@ -17,7 +17,7 @@
   <meta name="description" content="真理位於大炮的射程範圍内">
   <meta name="author" content="雾杉cedar">
   <meta name="keywords" content="看书睡觉听音乐">
-  <title>tech-主动滤波器(5)：双端LC滤波器(2) - 四方喫茶舘</title>
+  <title>tech-主动滤波器(6):频率变换(1) - 四方喫茶舘</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="tech-主动滤波器(5)：双端LC滤波器(2)">
+            <span class="h2" id="subtitle" title="tech-主动滤波器(6):频率变换(1)">
               
             </span>
 
@@ -188,7 +188,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2025-07-23 19:28" pubdate>
+      <time datetime="2025-07-23 21:35" pubdate>
         July 23, 2025 pm
       </time>
     </span>
@@ -225,83 +225,136 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">tech-主动滤波器(5)：双端LC滤波器(2)</h1>
+            <h1 style="display: none">tech-主动滤波器(6):频率变换(1)</h1>
             
             <div class="markdown-body">
-              <p>在上一节中，我们解释了如何使用双端LC滤波器的标准形式来设计一个全极点滤波器。总结起来，我们有以下的设计流程：</p>
+              <p>到目前为止，我们的所有讨论都是基于低通滤波器的。我们讨论了：</p>
+<ul>
+<li>如何进行理想低通滤波器的近似</li>
+<li>基本的网络合成方法：使用双端LC滤波器的标准形式来设计全极点滤波器，以及第二类切比雪夫滤波器</li>
+</ul>
+<p>从这一节开始，我们讨论如何将一个低通滤波器转换为其他类型的滤波器，比如高通、带通和带阻滤波器。也就是说，在以后的工程实践中，我们并不需要从头开始设计每一种滤波器，而是可以通过频率变换，将一个低通原型滤波器转换为其他类型的滤波器。</p>
+<h2 id="1-频率变换的基础：缩放操作"><a href="#1-频率变换的基础：缩放操作" class="headerlink" title="1. 频率变换的基础：缩放操作"></a>1. 频率变换的基础：缩放操作</h2><h3 id="1-1-低通缩放-Scaling"><a href="#1-1-低通缩放-Scaling" class="headerlink" title="1.1 低通缩放(Scaling)"></a>1.1 低通缩放(Scaling)</h3><p>我们知道最基本的频率变换：<strong>缩放(Scaling)</strong> 。我们之前所有设计的滤波器的截止频率都是1 rad&#x2F;s，然而在现实生活中，这个值显然不现实。对于一个吉他的效果器而言，我们可能需要的截止频率是1000 rad&#x2F;s。我们可以通过缩放来实现这个目标。</p>
+<p>假如我们原来的传递函数是$H(s)$，只要把$s$替换为$s&#x2F;\omega_0$，就可以得到一个新的传递函数$H(s&#x2F;\omega_0)$，其中$\omega_0$是我们想要的截止频率：</p>
+<p>$$s \rightarrow \frac{s}{\omega_0} \quad \therefore \quad H(s) \rightarrow H\left(\frac{s}{\omega_0}\right)$$</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723214628.png" srcset="/img/loading.gif"></p>
+<p>使用缩放操作，我们有以下关系：</p>
+<p>$$\omega \rightarrow \frac{\omega}{\omega_0}, \quad j\omega \rightarrow j\frac{\omega}{\omega_0}, \quad s \rightarrow \frac{s}{\omega_0}$$</p>
+<h3 id="1-2-元件阻抗的变换"><a href="#1-2-元件阻抗的变换" class="headerlink" title="1.2 元件阻抗的变换"></a>1.2 元件阻抗的变换</h3><p>我们可以看到，使用缩放操作，我们只需要变换原网络里的角频率。哪些元件的值里包括了角频率？答案是只有感性元件有这个特征，因此我们有下列表格展示在缩放情况下的阻抗变换：</p>
+<table>
+<thead>
+<tr>
+<th>元件类型</th>
+<th>原阻抗</th>
+<th>缩放后的阻抗</th>
+<th>评论</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>电阻(R)</td>
+<td>$R$</td>
+<td>$R$</td>
+<td>无变化</td>
+</tr>
+<tr>
+<td>电感(L)</td>
+<td>$sL$</td>
+<td>$\frac{sL}{\omega_0}$</td>
+<td>除以$\omega_0$</td>
+</tr>
+<tr>
+<td>电容(C)</td>
+<td>$\frac{1}{sC}$</td>
+<td>$\frac{\omega_0}{sC}$</td>
+<td>乘以$\omega_0$</td>
+</tr>
+<tr>
+<td>主动元件(G)</td>
+<td>$G$</td>
+<td>$G$</td>
+<td>无变化</td>
+</tr>
+</tbody></table>
+<p><strong>重要结论：只有感性元件的阻抗在缩放时会发生变化。</strong></p>
+<p>这种低通到低通的变换非常简单，并且是线性操作。然而很不幸，如果我们要将一个低通滤波器转换为高通滤波器，转换函数将不会是一个线性函数。</p>
+<p>一个值得注意的事实是，感性元件在经过变换之后，依然是感性元件。由于感性元件也是无损耗的，因此我们想要保留这个特性，从而保证在变换之后的滤波器依然是无损耗的。</p>
+<h2 id="2-频率变换的基本原则"><a href="#2-频率变换的基本原则" class="headerlink" title="2. 频率变换的基本原则"></a>2. 频率变换的基本原则</h2><p>频率变换不是想怎么变就能怎么变的。假如我们有以下的变换映射：</p>
+<p>$$\omega \rightarrow f(\omega)$$</p>
+<p>那么，$f(\omega)$必须满足以下条件：</p>
 <ol>
-<li>设计传递函数$H(j\omega)$</li>
-<li>进行各种归一化假设</li>
-<li>通过$H(j\omega)$推导反射系数$\Gamma(s)$</li>
-<li>通过$\Gamma(s)$推导输入阻抗$Z_{in}(s)$</li>
-<li>通过$Z_{in}(s)$推导整个滤波器的电路结构</li>
+<li><strong>零点映射</strong>：$\omega &#x3D; 0$必须移动到$f(\omega) &#x3D; 0$，也就是说$\omega$的零点必须移动到$f(\omega)$的零点</li>
+<li><strong>极点映射</strong>：$\omega &#x3D; \infty$必须移动到$f(\omega) &#x3D; \infty$，也就是说$\omega$的极点必须移动到$f(\omega)$的极点</li>
+<li><strong>截止频率映射</strong>：$\omega$的截止频率也必须移动到$f(\omega)$的截止频率</li>
 </ol>
-<p>我们知道，使用双端LC滤波器的标准形式，输入阻抗可以表示为：</p>
-<p>$$Z_{in}(s) &#x3D; sL_1 + \cfrac{1}{sC_1 + \cfrac{1}{sL_3 + \cfrac{1}{\ddots}}}$$</p>
-<p>这是一个有限的连分数形式。我们可以通过这个公式推导出$Z_{in}(s)$，从而得到滤波器的电路结构。</p>
-<p>本节将对LC标准形式进行总结，并讲解一些特殊情况的处理方法。</p>
-<h2 id="1-全极点LC滤波器的性质"><a href="#1-全极点LC滤波器的性质" class="headerlink" title="1. 全极点LC滤波器的性质"></a>1. 全极点LC滤波器的性质</h2><p>双端LC滤波器具有以下重要性质：</p>
+<h3 id="2-1-带通滤波器的变换"><a href="#2-1-带通滤波器的变换" class="headerlink" title="2.1 带通滤波器的变换"></a>2.1 带通滤波器的变换</h3><p>根据上述原则，我们可以得知如果我们要把一个低通滤波器变成一个带通滤波器，我们需要满足以下条件：</p>
 <ol>
-<li><strong>反射系数特性</strong>：在通带内，反射系数几乎为0；在阻带内，反射系数接近1</li>
-<li><strong>零点特性</strong>：在传递函数的零点处，反射系数为0</li>
-<li><strong>阶数限制</strong>：使用LC标准形式，我们只能实现传递函数的分子和分母阶数差不超过1的滤波器<ul>
-<li>这是因为在频率趋近于无穷时，输入阻抗只能表现为L、R、C中任意一种形式的特性</li>
+<li><strong>零点映射</strong>：低通滤波器的零点必须移动到带通滤波器的零点，即$\omega &#x3D; 0 \rightarrow f(\pm 1) &#x3D; 0$<ul>
+<li>我们同样做了归一化假设</li>
 </ul>
 </li>
-<li><strong>可实现的滤波器类型</strong>：<ul>
-<li>奇数阶或偶数阶巴特沃斯滤波器</li>
-<li>奇数阶第一类切比雪夫滤波器</li>
-<li><strong>无法实现偶数阶第一类切比雪夫滤波器</strong>，因为其直流增益不等于1&#x2F;2</li>
-</ul>
-</li>
+<li><strong>极点映射</strong>：低通滤波器的极点必须移动到带通滤波器的极点，即$\omega &#x3D; \infty \rightarrow f(0, \pm \infty) &#x3D; \infty$</li>
 </ol>
-<p>那么，我们能否实现第二类切比雪夫滤波器？答案是肯定的，但需要对双端LC标准形式做适当的改进。</p>
-<h2 id="2-第二类切比雪夫滤波器的电路实现"><a href="#2-第二类切比雪夫滤波器的电路实现" class="headerlink" title="2. 第二类切比雪夫滤波器的电路实现"></a>2. 第二类切比雪夫滤波器的电路实现</h2><h3 id="2-1-有限零点与谐振回路"><a href="#2-1-有限零点与谐振回路" class="headerlink" title="2.1 有限零点与谐振回路"></a>2.1 有限零点与谐振回路</h3><p>第二类切比雪夫滤波器具有有限零点，而标准的双端LC形式只能实现全极点滤波器。因此，仅使用标准形式无法插入有限零点，从而无法实现第二类切比雪夫滤波器。</p>
-<p>解决方案是引入<strong>谐振回路(Resonant Tank)</strong> 。</p>
-<h4 id="并联谐振回路"><a href="#并联谐振回路" class="headerlink" title="并联谐振回路"></a>并联谐振回路</h4><p>并联谐振回路的结构如下：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723205716.png" srcset="/img/loading.gif"></p>
-<p>对于并联谐振回路，其输入阻抗为：</p>
-<p>$$Z_{in}(j\omega) &#x3D; \frac{1}{j\omega C} \parallel j\omega L &#x3D; \frac{j\omega L&#x2F;C}{1 - \omega^2 LC}$$</p>
-<h4 id="串联谐振回路"><a href="#串联谐振回路" class="headerlink" title="串联谐振回路"></a>串联谐振回路</h4><p>对于串联谐振回路，其输入阻抗为：</p>
-<p>$$Z_{in}(j\omega) &#x3D; j\omega L + \frac{1}{j\omega C} &#x3D; -j\frac{1 - \omega^2 LC}{\omega C}$$</p>
-<h4 id="谐振特性"><a href="#谐振特性" class="headerlink" title="谐振特性"></a>谐振特性</h4><p>在$\omega &#x3D; \frac{1}{\sqrt{LC}}$时：</p>
+<p>因此，我们可以得出结论，转换函数至少需要拥有如下形式：</p>
+<p>$$f(\omega) \propto \frac{(\omega + 1)(\omega - 1)}{\omega} &#x3D; \frac{\omega^2 - 1}{\omega}$$</p>
+<p>注意到这只是一个成正比的关系，因为我们并不知道转换函数是否有其他的因子。</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723220606.png" srcset="/img/loading.gif"></p>
+<h3 id="2-2-高通滤波器的变换"><a href="#2-2-高通滤波器的变换" class="headerlink" title="2.2 高通滤波器的变换"></a>2.2 高通滤波器的变换</h3><p>同样的，对于高通滤波器而言，我们需要满足以下条件：</p>
+<ol>
+<li><strong>零点映射</strong>：低通滤波器的零点必须移动到高通滤波器的极点，即$\omega &#x3D; 0 \rightarrow f(\infty) &#x3D; \infty$</li>
+<li><strong>极点映射</strong>：低通滤波器的极点必须移动到高通滤波器的零点，即$\omega &#x3D; \infty \rightarrow f(0) &#x3D; 0$</li>
+<li><strong>截止频率映射</strong>：高通滤波器的截止频率满足$f(1) &#x3D; 1$</li>
+</ol>
+<p>因此，我们可以得出结论，转换函数至少需要拥有如下形式：</p>
+<p>$$f(\omega) \propto \frac{1}{\omega}$$</p>
+<p>再次注意到这只是一个成正比的关系，因为我们并不知道转换函数是否有其他的因子。</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723221048.png" srcset="/img/loading.gif"></p>
+<h3 id="2-3-带阻滤波器的变换"><a href="#2-3-带阻滤波器的变换" class="headerlink" title="2.3 带阻滤波器的变换"></a>2.3 带阻滤波器的变换</h3><p>同样的，对于带阻滤波器而言，我们需要满足以下条件：</p>
+<ol>
+<li><strong>零点映射</strong>：低通滤波器的零点必须移动到带阻滤波器的极点，即$\omega &#x3D; 0 \rightarrow f(\pm 1) &#x3D; \infty$</li>
+<li><strong>极点映射</strong>：低通滤波器的极点必须移动到带阻滤波器的零点，即$\omega &#x3D; \infty \rightarrow f(0, \pm \infty) &#x3D; 0$</li>
+</ol>
+<p>因此，我们可以得出结论，转换函数至少需要拥有如下形式：</p>
+<p>$$f(\omega) \propto \frac{\omega}{(\omega + 1)(\omega - 1)} &#x3D; \frac{\omega}{\omega^2 - 1}$$</p>
+<p>我们需要做最后一次提示，注意到这只是一个成正比的关系，因为我们并不知道转换函数是否有其他的因子。</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723221208.png" srcset="/img/loading.gif"></p>
+<h2 id="2-4-可实现性条件"><a href="#2-4-可实现性条件" class="headerlink" title="2.4 可实现性条件"></a>2.4 可实现性条件</h2><p>除了要满足上述映射要求之外，滤波器的基本稳定性要求也必须得到满足。也就是说，滤波器的极点必须在左半平面内，否则滤波器就会不稳定。由于传递函数的倒函数也是一个有效的传递函数，因此这个要求也必须满足于零点上。</p>
+<p><strong>稳定性要求</strong>：</p>
 <ul>
-<li>串联谐振回路的阻抗为0</li>
-<li>并联谐振回路的阻抗为无穷大</li>
+<li>所有极点必须位于左半平面</li>
+<li>所有零点也必须位于左半平面或虚轴上</li>
+<li>变换后的滤波器必须保持因果性和稳定性</li>
 </ul>
-<p>这个特殊的角频率称为**谐振频率(Resonant Frequency)**。利用谐振回路的这一特性，我们就可以在滤波器中插入有限零点。</p>
-<h3 id="2-2-设计实例：三阶第二类切比雪夫滤波器"><a href="#2-2-设计实例：三阶第二类切比雪夫滤波器" class="headerlink" title="2.2 设计实例：三阶第二类切比雪夫滤波器"></a>2.2 设计实例：三阶第二类切比雪夫滤波器</h3><p>让我们尝试实现一个三阶第二类切比雪夫滤波器，使用如下电路结构：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723210641.png" srcset="/img/loading.gif"></p>
-<h4 id="2-2-1-输入阻抗函数"><a href="#2-2-1-输入阻抗函数" class="headerlink" title="2.2.1 输入阻抗函数"></a>2.2.1 输入阻抗函数</h4><p>三阶第二类切比雪夫滤波器对应的输入阻抗为：</p>
-<p>$$Z_{in}(s) &#x3D; \frac{2s^3 + 0.6746s^2 + 0.2271s + 0.0400}{0.6746s^2 + 0.2271s + 0.0400}$$</p>
-<blockquote>
-<p><strong>设计提示</strong> (Shanthi Pavan): 当设计具有无理系数的滤波器时，舍入规则的经验法则是保持有效数字位数等于滤波器的阶数。例如，三阶滤波器应保留3位有效数字。否则，舍入误差会在求解电路其余部分时产生负阻抗。</p>
-</blockquote>
-<h4 id="2-2-2-高频特性分析"><a href="#2-2-2-高频特性分析" class="headerlink" title="2.2.2 高频特性分析"></a>2.2.2 高频特性分析</h4><p>在无限频率时，由于电容短路，电感占据阻抗的主导地位，因此：</p>
-<p>$$L_1 + L_2 \parallel L_3 &#x3D; \frac{2}{0.6746}$$</p>
-<h4 id="2-2-3-零点条件"><a href="#2-2-3-零点条件" class="headerlink" title="2.2.3 零点条件"></a>2.2.3 零点条件</h4><p>由于$Z_{in}(s) &#x3D; sL_1 + Z_{in1}(s)$，我们需要确保在传递函数的零点处，串联谐振回路的阻抗为0。</p>
-<p>这样设计的原因有两个：</p>
-<ul>
-<li>在传递函数的零点处，反射系数为0</li>
-<li>当谐振回路将剩余阻抗全部短路时，所有输入能量都被反射，负载端电压为0</li>
-</ul>
-<p>因此，在零点频率$\omega_z$处：</p>
-<p>$$Z_{in}(j\omega_z) &#x3D; j\omega_z L_1$$</p>
-<p>通过计算可得：$L_1 &#x3D; 2.8384\text{H}$</p>
-<h4 id="2-2-4-剩余电路分析"><a href="#2-2-4-剩余电路分析" class="headerlink" title="2.2.4 剩余电路分析"></a>2.2.4 剩余电路分析</h4><p>去掉$L_1$后，剩余部分的输入导纳为：</p>
-<p>$$Y_{in}(s) &#x3D; \frac{0.6742s^2 + 0.2271s + 0.0400}{0.0852s^3 + 0.0299s^2 + 0.1135s + 0.0400}$$</p>
-<p>串联谐振回路的导纳为：</p>
-<p>$$Y_{\text{resonant}}(s) &#x3D; \frac{sC_2}{1 + s^2L_2C_2}$$</p>
-<p>在$\omega_z$处，导纳趋近于无穷大，且$\omega_z &#x3D; \frac{1}{\sqrt{L_2C_2}}$。</p>
-<p>关键观察：在接近$\omega_z$时，$Y_{\text{resonant}}(s)$和$Y_{in1}(s)$的行为非常相似：</p>
-<p>$$\lim_{s \to j\omega_z} Y_{in1}(s) &#x3D; \lim_{s \to j\omega_z} Y_{\text{resonant}}(s)$$</p>
-<p>由于只有一个未知数，可求得：$C_2 &#x3D; 5.6745\text{F}$</p>
-<p>剩余求解过程比较直接。使用与上一节相同的方法，可求得：$L_3 &#x3D; 2.838\text{H}$</p>
-<p>代入所有值后，剩余阻抗为1Ω，正符合我们的负载预期。</p>
-<h3 id="2-3-偶数阶第二类切比雪夫滤波器的局限性"><a href="#2-3-偶数阶第二类切比雪夫滤波器的局限性" class="headerlink" title="2.3 偶数阶第二类切比雪夫滤波器的局限性"></a>2.3 偶数阶第二类切比雪夫滤波器的局限性</h3><p>很遗憾，我们无法使用双端LC滤波器实现偶数阶第二类切比雪夫滤波器，因为在频率趋近无穷大时，要求的传递函数值非零，这与LC电路的物理特性相矛盾。</p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>本节完成了对双端LC滤波器标准形式的总结，并介绍了如何使用谐振回路来实现奇数阶第二类切比雪夫滤波器。</p>
-<p>到目前为止，我们的讨论都集中在低通滤波器的设计。读者可能会好奇：我们如何设计其他类型的滤波器——高通、带通、带阻滤波器？</p>
-<p>在接下来的章节中，我们将展示一种优雅的数学变换方法，通过频率变换技术，可以将一个低通原型滤波器等价地转换为其他类型的滤波器。这种方法不仅在理论上具有重要意义，在工程实践中也有广泛应用。</p>
+<h2 id="3-变换函数的性质总结"><a href="#3-变换函数的性质总结" class="headerlink" title="3. 变换函数的性质总结"></a>3. 变换函数的性质总结</h2><p>通过以上分析，我们可以总结出各种滤波器变换的基本形式：</p>
+<table>
+<thead>
+<tr>
+<th>滤波器类型</th>
+<th>变换函数形式</th>
+<th>零点-极点映射特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>低通→低通</td>
+<td>$s&#x2F;\omega_0$</td>
+<td>线性缩放</td>
+</tr>
+<tr>
+<td>低通→高通</td>
+<td>$&#x2F;\omega$</td>
+<td>零极点互换</td>
+</tr>
+<tr>
+<td>低通→带通</td>
+<td>$(\omega^2-1)&#x2F;\omega$</td>
+<td>一个极点&#x2F;零点分裂为两个</td>
+</tr>
+<tr>
+<td>低通→带阻</td>
+<td>$\omega&#x2F;(\omega^2-1)$</td>
+<td>一个极点&#x2F;零点分裂为两个</td>
+</tr>
+</tbody></table>
+<p>最后一次提示，以上变换函数都是成正比的关系，实际应用中可能需要根据具体情况添加其他因子。但是在下一节中，我们将证明其他因子只会是一个常数。</p>
 
             </div>
             <hr>
@@ -327,7 +380,7 @@
                     
                       <a class="hover-with-bg" href="/tags/Signal-Processing/">Signal Processing</a>
                     
-                      <a class="hover-with-bg" href="/tags/Doubly-Terminated-LC-Filter/">Doubly-Terminated LC Filter</a>
+                      <a class="hover-with-bg" href="/tags/Frequency-Transformation/">Frequency Transformation</a>
                     
                   </div>
                 
@@ -338,18 +391,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/profession/2025.07.23.21/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">tech-主动滤波器(6):频率变换(1)</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/essay/2025.07.22.22/">
-                        <span class="hidden-mobile">essay-Rock and Roll Ain't Noise Pollution</span>
+                      <a href="/profession/2025.07.23.19/">
+                        <span class="hidden-mobile">tech-主动滤波器(5)：双端LC滤波器(2)</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -368,8 +415,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'http://blog.cedard.top/profession/2025.07.23.19/';
-        this.page.identifier = '/profession/2025.07.23.19/';
+        this.page.url = 'http://blog.cedard.top/profession/2025.07.23.21/';
+        this.page.identifier = '/profession/2025.07.23.21/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
