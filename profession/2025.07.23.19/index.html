@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -268,7 +268,7 @@
 <h2 id="2-第二类切比雪夫滤波器的电路实现"><a href="#2-第二类切比雪夫滤波器的电路实现" class="headerlink" title="2. 第二类切比雪夫滤波器的电路实现"></a>2. 第二类切比雪夫滤波器的电路实现</h2><h3 id="2-1-有限零点与谐振回路"><a href="#2-1-有限零点与谐振回路" class="headerlink" title="2.1 有限零点与谐振回路"></a>2.1 有限零点与谐振回路</h3><p>第二类切比雪夫滤波器具有有限零点，而标准的双端LC形式只能实现全极点滤波器。因此，仅使用标准形式无法插入有限零点，从而无法实现第二类切比雪夫滤波器。</p>
 <p>解决方案是引入<strong>谐振回路(Resonant Tank)</strong> 。</p>
 <h4 id="并联谐振回路"><a href="#并联谐振回路" class="headerlink" title="并联谐振回路"></a>并联谐振回路</h4><p>并联谐振回路的结构如下：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723205716.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723205716.png"></p>
 <p>对于并联谐振回路，其输入阻抗为：</p>
 <p>$$Z_{in}(j\omega) &#x3D; \frac{1}{j\omega C} \parallel j\omega L &#x3D; \frac{j\omega L&#x2F;C}{1 - \omega^2 LC}$$</p>
 <h4 id="串联谐振回路"><a href="#串联谐振回路" class="headerlink" title="串联谐振回路"></a>串联谐振回路</h4><p>对于串联谐振回路，其输入阻抗为：</p>
@@ -280,7 +280,7 @@
 </ul>
 <p>这个特殊的角频率称为**谐振频率(Resonant Frequency)**。利用谐振回路的这一特性，我们就可以在滤波器中插入有限零点。</p>
 <h3 id="2-2-设计实例：三阶第二类切比雪夫滤波器"><a href="#2-2-设计实例：三阶第二类切比雪夫滤波器" class="headerlink" title="2.2 设计实例：三阶第二类切比雪夫滤波器"></a>2.2 设计实例：三阶第二类切比雪夫滤波器</h3><p>让我们尝试实现一个三阶第二类切比雪夫滤波器，使用如下电路结构：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723210641.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723210641.png"></p>
 <h4 id="2-2-1-输入阻抗函数"><a href="#2-2-1-输入阻抗函数" class="headerlink" title="2.2.1 输入阻抗函数"></a>2.2.1 输入阻抗函数</h4><p>三阶第二类切比雪夫滤波器对应的输入阻抗为：</p>
 <p>$$Z_{in}(s) &#x3D; \frac{2s^3 + 0.6746s^2 + 0.2271s + 0.0400}{0.6746s^2 + 0.2271s + 0.0400}$$</p>
 <blockquote>
@@ -482,10 +482,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
 
 
 

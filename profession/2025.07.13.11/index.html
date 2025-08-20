@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -240,7 +240,7 @@
               <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在前一节中，我们详细讨论了切比雪夫滤波器的设计原理与数学推导。简言之，切比雪夫滤波器通过允许<strong>通带(passband)</strong> 内的纹波来实现更陡峭的过渡带，从而在给定的阻带衰减要求下，使用更少的元件。我们可以把切比雪夫滤波器视为巴特沃斯滤波器的一种推广。</p>
 <p>然而，切比雪夫滤波器和巴特沃斯滤波器对<strong>阻带(stopband)</strong> 没有任何特殊要求，这也就是说这两个滤波器专注于设计通带的特性，而阻带的特性是伴随而来的。<strong>第二类切比雪夫滤波器(Inverse Chebyshev Filter)</strong> 则是切比雪夫滤波器的一个变种，它允许在阻带内引入纹波，从而进一步优化通带和阻带的特性；然而通带的特性便是伴随而来的。</p>
 <h2 id="1-第二类切比雪夫滤波器的基本特性"><a href="#1-第二类切比雪夫滤波器的基本特性" class="headerlink" title="1. 第二类切比雪夫滤波器的基本特性"></a>1. 第二类切比雪夫滤波器的基本特性</h2><p>第二类切比雪夫滤波器，也被称为<strong>反切比雪夫滤波器(Inverse Chebyshev Filter)</strong> ，是切比雪夫滤波器的一个变种。它的幅度响应如下：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713125226.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713125226.png"></p>
 <p>可以看到，第二类切比雪夫滤波器在阻带内引入了纹波。第二类切比雪夫滤波器相比切比雪夫滤波器而言，有了一个本质上的区别：由于阻带内的纹波，我们需要在阻带内引入零点。也就是说，第二类切比雪夫滤波器的传递函数不再是一个全极点滤波器。我们将在后面的章节中看到，这个区别将导致第二类切比雪夫滤波器在电路实现上有显著区别。</p>
 <h3 id="1-1-主要特点总结"><a href="#1-1-主要特点总结" class="headerlink" title="1.1 主要特点总结"></a>1.1 主要特点总结</h3><ul>
 <li><strong>通带特性</strong>：最大平坦（类似巴特沃斯滤波器）</li>
@@ -251,7 +251,7 @@
 <h2 id="2-第二类切比雪夫滤波器的数学推导"><a href="#2-第二类切比雪夫滤波器的数学推导" class="headerlink" title="2. 第二类切比雪夫滤波器的数学推导"></a>2. 第二类切比雪夫滤波器的数学推导</h2><h3 id="2-1-幅度响应函数的构造"><a href="#2-1-幅度响应函数的构造" class="headerlink" title="2.1 幅度响应函数的构造"></a>2.1 幅度响应函数的构造</h3><p>我们同样来构造幅度响应的分母函数。与第一类切比雪夫滤波器类似，我们定义：</p>
 <p>$$|H(j\omega)|^2 &#x3D; \frac{1}{1 + \frac{1}{\epsilon^2} F(\omega^2)}$$</p>
 <p>$F$函数应该长得像这样：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713130459.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713130459.png"></p>
 <p>可以发现，如果经过x轴和y轴的反函数变换，$F$函数可以直接用切比雪夫多项式来表示：</p>
 <p>$$F(\omega^2) &#x3D; \frac{1}{T_n^2\left(\frac{1}{\omega}\right)}$$</p>
 <h3 id="2-2-完整的幅度响应表达式"><a href="#2-2-完整的幅度响应表达式" class="headerlink" title="2.2 完整的幅度响应表达式"></a>2.2 完整的幅度响应表达式</h3><p>因此，第二类切比雪夫滤波器的幅度响应可以表示为：</p>
@@ -350,7 +350,7 @@
 <li><strong>第二类切比雪夫滤波器</strong>：适用于对通带平坦度要求较高，可以容忍阻带纹波的应用</li>
 <li><strong>椭圆函数滤波器</strong>：适用于对滚降速度要求极高，可以容忍通带和阻带纹波的应用</li>
 </ul>
-<p>下图展示了四种滤波器的典型幅度响应：<br><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713134719.png" srcset="/img/loading.gif"></p>
+<p>下图展示了四种滤波器的典型幅度响应：<br><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713134719.png"></p>
 <h2 id="8-常用的切比雪夫多项式表"><a href="#8-常用的切比雪夫多项式表" class="headerlink" title="8. 常用的切比雪夫多项式表"></a>8. 常用的切比雪夫多项式表</h2><table>
 <thead>
 <tr>
@@ -568,10 +568,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
 
 
 

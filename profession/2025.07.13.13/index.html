@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -245,7 +245,7 @@
 <p>要使得两端阻抗成共轭关系，我们需要在输入端和输出端都引入一个<strong>匹配网络(Matching Network)</strong> 。匹配网络的作用是将输入端和输出端的阻抗变换为相同的共轭阻抗。一般来说，匹配网络会优先使用感抗元件（电容，电感）而非阻抗元件（电阻），因为感抗元件只消耗感性功率而不消耗有功功率，因此不消耗实际能量。</p>
 <p>需要注意的是，阻抗匹配不一定能实现最大功率传输。最大功率传输的条件是输入端和输出端的阻抗完全相等，而阻抗匹配仅仅是使得输入端和输出端的阻抗模长相等。</p>
 <h3 id="1-2-双端LC滤波器的基本结构"><a href="#1-2-双端LC滤波器的基本结构" class="headerlink" title="1.2 双端LC滤波器的基本结构"></a>1.2 双端LC滤波器的基本结构</h3><p>滤波器的建立和匹配网络十分相似。我们把下面的电路称为<strong>双端LC滤波器(Doubly-Terminated LC Filter)</strong> ，也被称为<strong>双端LC标准型(Doubly-Terminated LC Canonical Form)</strong> ，或者<strong>双端LC梯形网络(Doubly-Terminated LC Ladder)</strong> 。它的基本结构如下：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713181555.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713181555.png"></p>
 <p>使用双端LC滤波器的标准形式，我们可以实现任何全极点滤波器。需要注意的是，感抗元件的数量对应于滤波器的极点数量——对于全极点滤波器而言，这就是系统的阶数。</p>
 <p>那么接下来的问题就是，假如说我们给定一个滤波器的传递函数，我们要如何设计双端LC滤波器的感抗元件呢？直觉上来说，我们可以建立这个二端网络的阻抗矩阵：</p>
 <p>$$Z &#x3D; \begin{bmatrix}<br>Z_{11} &amp; Z_{12} \\<br>Z_{21} &amp; Z_{22}<br>\end{bmatrix}$$</p>
@@ -290,7 +290,7 @@
 <p>使用归一化条件$Z_0 &#x3D; 1$，我们可以求得输入阻抗：</p>
 <p>$$Z_{in}(s) &#x3D; \frac{2s^3 + 2s^2 + 2s + 1}{2s^2 + 2s + 1}$$</p>
 <p>现在让我们来思考一个问题。以下的两个网络都是三阶标准型，我们应该选择哪一个来实现我们的滤波器？</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713191605.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713191605.png"></p>
 <p>答案应该是左边的网络，因为当频率趋近于无穷大时，我们希望阻抗趋近于无穷大，而只有左边的网络才能满足这个条件。右边的网络在高频时的阻抗趋近于0，这会导致信号被短路。</p>
 <p>在$s \to \infty$时，阻抗大小趋近于1，因此可以求得第一个电感的值为1H。移除掉这个电感，再对接下来的电路进行同样的分析，我们可以得到第二个电容的值为2F，第二个电感的值为1H，而最后的负载电阻值为1Ω，正如我们所期望的。</p>
 <h3 id="1-6-小结"><a href="#1-6-小结" class="headerlink" title="1.6 小结"></a>1.6 小结</h3><p>在这个例子中，我们展示了如何使用双端LC滤波器的标准形式来实现一个三阶巴特沃斯滤波器。我们通过计算反射系数和输入阻抗来设计滤波器的感抗元件，并确保在高频时阻抗趋近于无穷大。这个方法依然可以用在第一类切比雪夫滤波器的设计上，但是对于第二类切比雪夫滤波器，由于有限的零点，我们需要引入<strong>谐振回路(Resonant Tank)</strong>  来实现有限的零点。我们将在下一节中讨论这个例子。</p>
@@ -465,10 +465,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
 
 
 

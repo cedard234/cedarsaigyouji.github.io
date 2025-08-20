@@ -55,7 +55,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -242,11 +242,11 @@
 <p>对于一个N阶滤波器，物理实现所需的最少无源元件（电感或电容）数量为N个。在实际工程设计中，通常给定通带最小增益和阻带最大增益的技术指标。巴特沃斯滤波器在通带内具有最大平坦特性，但这一特性在满足给定规格时可能过于严格。</p>
 <p>如本文将要证明的，切比雪夫滤波器通过在通带内引入可控的纹波，能够以更低的阶数实现相同的阻带衰减性能。这一特性在早期模拟滤波器设计中具有重要意义，因为较少的元件意味着更低的成本和更小的体积。即使在现代集成电路设计中，减少电容和电感的使用仍然意味着更小的芯片面积和更低的功耗。</p>
 <h2 id="2-第一类切比雪夫滤波器"><a href="#2-第一类切比雪夫滤波器" class="headerlink" title="2. 第一类切比雪夫滤波器"></a>2. 第一类切比雪夫滤波器</h2><h3 id="2-1-设计原理与幅度响应特性"><a href="#2-1-设计原理与幅度响应特性" class="headerlink" title="2.1 设计原理与幅度响应特性"></a>2.1 设计原理与幅度响应特性</h3><p>切比雪夫滤波器的典型幅度响应如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712230644.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712230644.png"></p>
 <p>我们引入参数$\epsilon$来控制通带内的纹波幅度。定义滤波器的幅度平方响应为：</p>
 <p>$$|H(j\omega)|^2 &#x3D; \frac{1}{D(\omega^2)} &#x3D; \frac{1}{1 + \epsilon^2 F_1(\omega^2)}$$</p>
 <p>其中$F_1(\omega^2)$的理想特性函数应具有如下形式：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712233123.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712233123.png"></p>
 <h3 id="2-2-切比雪夫多项式的数学推导"><a href="#2-2-切比雪夫多项式的数学推导" class="headerlink" title="2.2 切比雪夫多项式的数学推导"></a>2.2 切比雪夫多项式的数学推导</h3><h4 id="2-2-1-插值法构造多项式"><a href="#2-2-1-插值法构造多项式" class="headerlink" title="2.2.1 插值法构造多项式"></a>2.2.1 插值法构造多项式</h4><p>基于$F_1$在$0$、$\omega_2$、$\omega_4$处的零点，可以构造如下多项式插值：</p>
 <p>$$F_1(\omega^2) &#x3D; k^2 \omega^2 (\omega^2 - \omega_2^2)^2(\omega^2 - \omega_4^2)^2$$</p>
 <p>对于$F_1(\omega^2) - 1$，考虑到其在$\omega_1$、$\omega_3$、$1$处的零点，可得：</p>
@@ -301,7 +301,7 @@
 <li>奇数阶切比雪夫多项式：在$\omega &#x3D; 0$处取最小值</li>
 </ul>
 <p>这导致偶数阶切比雪夫滤波器在直流处的幅度响应不为1，而是$\frac{1}{\sqrt{1 + \epsilon^2}}$，如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100146.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100146.png"></p>
 <h3 id="3-2-通带极值点的分布"><a href="#3-2-通带极值点的分布" class="headerlink" title="3.2 通带极值点的分布"></a>3.2 通带极值点的分布</h3><h4 id="3-2-1-通带最大值"><a href="#3-2-1-通带最大值" class="headerlink" title="3.2.1 通带最大值"></a>3.2.1 通带最大值</h4><p>通带最大值对应于切比雪夫多项式的最小值：</p>
 <p>$$\cos(n \cos^{-1}(\omega)) &#x3D; 0$$</p>
 <p>解得：</p>
@@ -311,7 +311,7 @@
 <p>解得：</p>
 <p>$$\omega &#x3D; \cos\left(\frac{2m\pi}{n}\right), \quad m &#x3D; 0, 1, \ldots, n - 1$$</p>
 <h3 id="3-3-纹波与阻带衰减的关系"><a href="#3-3-纹波与阻带衰减的关系" class="headerlink" title="3.3 纹波与阻带衰减的关系"></a>3.3 纹波与阻带衰减的关系</h3><p>通过允许一定的纹波，切比雪夫滤波器能够在通带内实现更陡峭的滚降特性。纹波越大，阻带衰减也越大：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100845.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100845.png"></p>
 <p><strong>特殊情况</strong>：当$\epsilon &#x3D; 0$时，切比雪夫滤波器退化为巴特沃斯滤波器。</p>
 <h2 id="4-切比雪夫滤波器的极点分析"><a href="#4-切比雪夫滤波器的极点分析" class="headerlink" title="4. 切比雪夫滤波器的极点分析"></a>4. 切比雪夫滤波器的极点分析</h2><h3 id="4-1-极点方程的建立"><a href="#4-1-极点方程的建立" class="headerlink" title="4.1 极点方程的建立"></a>4.1 极点方程的建立</h3><p>切比雪夫滤波器的极点满足：</p>
 <p>$$1 + \epsilon^2 T_n^2(\omega) &#x3D; 0$$</p>
@@ -339,7 +339,7 @@
 </ul>
 <p><strong>特殊情况</strong>：当$\epsilon \to 0$时，椭圆退化为单位圆，对应巴特沃斯滤波器。</p>
 <p>以下是5阶切比雪夫滤波器的极点分布示意图（$\epsilon &#x3D; 0.1$）：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713110142.png" srcset="/img/loading.gif"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713110142.png"></p>
 <p>在下一篇中，我们将讨论切比雪夫滤波器的变种，即<strong>第二类切比雪夫滤波器</strong>，也被称为<strong>反切比雪夫滤波器</strong>。</p>
 
             </div>
@@ -512,10 +512,6 @@
 
 <!-- Plugins -->
 
-
-  
-    <script  src="/js/lazyload.js" ></script>
-  
 
 
 
