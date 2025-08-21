@@ -17,7 +17,7 @@
   <meta name="description" content="旅游日志，技术笔记，生活杂谈">
   <meta name="author" content="雾杉cedar">
   <meta name="keywords" content="test">
-  <title>tech-主动滤波器(6)：频率变换(1) - 四方喫茶舘</title>
+  <title>tech-主动滤波器(7):频率变换(2) - 四方喫茶舘</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="tech-主动滤波器(6)：频率变换(1)">
+            <span class="h2" id="subtitle" title="tech-主动滤波器(7):频率变换(2)">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2025-07-23 21:35" pubdate>
-        July 23, 2025 pm
+      <time datetime="2025-08-20 19:57" pubdate>
+        August 20, 2025 pm
       </time>
     </span>
   
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
+      18
        mins reading time
     </span>
   
@@ -234,136 +234,75 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">tech-主动滤波器(6)：频率变换(1)</h1>
+            <h1 style="display: none">tech-主动滤波器(7):频率变换(2)</h1>
             
             <div class="markdown-body">
-              <p>到目前为止，我们的所有讨论都是基于低通滤波器的。我们讨论了：</p>
-<ul>
-<li>如何进行理想低通滤波器的近似</li>
-<li>基本的网络合成方法：使用双端LC滤波器的标准形式来设计全极点滤波器，以及第二类切比雪夫滤波器</li>
-</ul>
-<p>从这一节开始，我们讨论如何将一个低通滤波器转换为其他类型的滤波器，比如高通、带通和带阻滤波器。也就是说，在以后的工程实践中，我们并不需要从头开始设计每一种滤波器，而是可以通过频率变换，将一个低通原型滤波器转换为其他类型的滤波器。</p>
-<h2 id="1-频率变换的基础：缩放操作"><a href="#1-频率变换的基础：缩放操作" class="headerlink" title="1. 频率变换的基础：缩放操作"></a>1. 频率变换的基础：缩放操作</h2><h3 id="1-1-低通缩放-Scaling"><a href="#1-1-低通缩放-Scaling" class="headerlink" title="1.1 低通缩放(Scaling)"></a>1.1 低通缩放(Scaling)</h3><p>我们知道最基本的频率变换：<strong>缩放(Scaling)</strong> 。我们之前所有设计的滤波器的截止频率都是1 rad&#x2F;s，然而在现实生活中，这个值显然不现实。对于一个吉他的效果器而言，我们可能需要的截止频率是1000 rad&#x2F;s。我们可以通过缩放来实现这个目标。</p>
-<p>假如我们原来的传递函数是$H(s)$，只要把$s$替换为$s&#x2F;\omega_0$，就可以得到一个新的传递函数$H(s&#x2F;\omega_0)$，其中$\omega_0$是我们想要的截止频率：</p>
-<p>$$s \rightarrow \frac{s}{\omega_0} \quad \therefore \quad H(s) \rightarrow H\left(\frac{s}{\omega_0}\right)$$</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723214628.png"></p>
-<p>使用缩放操作，我们有以下关系：</p>
-<p>$$\omega \rightarrow \frac{\omega}{\omega_0}, \quad j\omega \rightarrow j\frac{\omega}{\omega_0}, \quad s \rightarrow \frac{s}{\omega_0}$$</p>
-<h3 id="1-2-元件阻抗的变换"><a href="#1-2-元件阻抗的变换" class="headerlink" title="1.2 元件阻抗的变换"></a>1.2 元件阻抗的变换</h3><p>我们可以看到，使用缩放操作，我们只需要变换原网络里的角频率。哪些元件的值里包括了角频率？答案是只有感性元件有这个特征，因此我们有下列表格展示在缩放情况下的阻抗变换：</p>
-<table>
-<thead>
-<tr>
-<th>元件类型</th>
-<th>原阻抗</th>
-<th>缩放后的阻抗</th>
-<th>评论</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>电阻(R)</td>
-<td>$R$</td>
-<td>$R$</td>
-<td>无变化</td>
-</tr>
-<tr>
-<td>电感(L)</td>
-<td>$sL$</td>
-<td>$\frac{sL}{\omega_0}$</td>
-<td>除以$\omega_0$</td>
-</tr>
-<tr>
-<td>电容(C)</td>
-<td>$\frac{1}{sC}$</td>
-<td>$\frac{\omega_0}{sC}$</td>
-<td>乘以$\omega_0$</td>
-</tr>
-<tr>
-<td>主动元件(G)</td>
-<td>$G$</td>
-<td>$G$</td>
-<td>无变化</td>
-</tr>
-</tbody></table>
-<p><strong>重要结论：只有感性元件的阻抗在缩放时会发生变化。</strong></p>
-<p>这种低通到低通的变换非常简单，并且是线性操作。然而很不幸，如果我们要将一个低通滤波器转换为高通滤波器，转换函数将不会是一个线性函数。</p>
-<p>一个值得注意的事实是，感性元件在经过变换之后，依然是感性元件。由于感性元件也是无损耗的，因此我们想要保留这个特性，从而保证在变换之后的滤波器依然是无损耗的。</p>
-<h2 id="2-频率变换的基本原则"><a href="#2-频率变换的基本原则" class="headerlink" title="2. 频率变换的基本原则"></a>2. 频率变换的基本原则</h2><p>频率变换不是想怎么变就能怎么变的。假如我们有以下的变换映射：</p>
-<p>$$\omega \rightarrow f(\omega)$$</p>
-<p>那么，$f(\omega)$必须满足以下条件：</p>
+              <p>在上一节中，我们讨论了频率变换的工程直觉。简而言之，频率变换的核心准则只有一条：</p>
+<blockquote>
+<p>零频点应映射到新的零点，无穷频点应映射到新的极点。</p>
+</blockquote>
+<p>基于这一原则，我们通过直觉推导了从低通滤波器到其他类型滤波器的映射关系。然而，这些推导仅能得到“成正比”的关系，属于必要但不充分条件。</p>
+<p>本节将进一步探讨纯LC电路的实现特性，并给出充分性证明。</p>
+<h2 id="特勒根定理（Tellegen’s-Theorem）"><a href="#特勒根定理（Tellegen’s-Theorem）" class="headerlink" title="特勒根定理（Tellegen’s Theorem）"></a>特勒根定理（Tellegen’s Theorem）</h2><p>在深入分析任何网络之前，我们先引入特勒根定理，为后续推导提供新的数学工具。</p>
+<p>考虑如下图所示的网络，底部节点接地，各节点已标注电压与电流。每条支路可包含任意被动或主动元件，且可能为线性或非线性。</p>
+<p>我们约定如下：</p>
 <ol>
-<li><strong>零点映射</strong>：$\omega &#x3D; 0$必须移动到$f(\omega) &#x3D; 0$，也就是说$\omega$的零点必须移动到$f(\omega)$的零点</li>
-<li><strong>极点映射</strong>：$\omega &#x3D; \infty$必须移动到$f(\omega) &#x3D; \infty$，也就是说$\omega$的极点必须移动到$f(\omega)$的极点</li>
-<li><strong>截止频率映射</strong>：$\omega$的截止频率也必须移动到$f(\omega)$的截止频率</li>
+<li>电流方向：流入节点为正，流出为负。</li>
+<li>电压极性：高电位端为正，低电位端为负。</li>
 </ol>
-<h3 id="2-1-带通滤波器的变换"><a href="#2-1-带通滤波器的变换" class="headerlink" title="2.1 带通滤波器的变换"></a>2.1 带通滤波器的变换</h3><p>根据上述原则，我们可以得知如果我们要把一个低通滤波器变成一个带通滤波器，我们需要满足以下条件：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820215143.png"></p>
+<p>首先，我们可在节点1、2、3建立KCL方程，或用矩阵形式表示：</p>
+<p>$$\begin{bmatrix}<br>-1 &amp; 0 &amp; 0 &amp; 1 &amp; -1 &amp; 0 \\<br>1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; -1 &amp; 0 &amp; 0 &amp; 1 &amp; 1<br>\end{bmatrix} \begin{bmatrix}<br>i_1 \\ i_2 \\ i_3 \\ i_4 \\ i_5 \\ i_6<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br>0 \\ 0 \\ 0<br>\end{bmatrix} $$</p>
+<p>记为 $\textbf{A}\textbf{I} &#x3D; \textbf{0}$。</p>
+<p>这一关系总是成立，否则电流将无故产生或消失，违背物理定律。$\textbf{A}$ 的每一行对应一个节点的KCL，每一列对应一条支路的电流方向。</p>
+<p>定义<strong>支路电压（Branch Voltage）</strong>为第n支路的电压，例如支路1的电压为 $V_1 - V_2$。构建<strong>支路电压向量</strong>，满足：</p>
+<p>$$ \textbf{V}_B &#x3D; - \textbf{A}^T \textbf{V} $$</p>
+<p>以本例验证：</p>
+<p>$$\textbf{V}_B&#x3D;\begin{bmatrix}<br>V_1 - V_2 \\<br>-V_2 + V_3 \\<br>-V_2 \\<br>-V_1 \\<br>V_1 - V_3 \\<br>-V_3<br>\end{bmatrix} &#x3D; -\begin{bmatrix}<br>-1 &amp; 1 &amp; 0 \\<br>0 &amp; -1 &amp; 1 \\<br>0 &amp; 1 &amp; 0 \\<br>1 &amp; 0 &amp; 0 \\<br>-1 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix}<br>V_1 \\<br>V_2 \\<br>V_3 \end{bmatrix}<br>&#x3D; -A^T V $$</p>
+<p>由能量守恒，有：</p>
+<p>$$ \textbf{V}_B^T \textbf{I} &#x3D; 0 $$</p>
+<p>或展开为：</p>
+<p>$$ \sum_k v_{bk}i_k &#x3D; 0 $$</p>
+<p>证明如下：</p>
+<p>$$<br>\begin{aligned}<br>\textbf{V}_B^T \cdot \textbf{I} &amp;&#x3D; (-A^T \textbf{V}_B)^T \cdot \textbf{I} \\<br>&amp;&#x3D; -\textbf{V}_B^T A \cdot \textbf{I} \\<br>&amp;&#x3D; -\textbf{V}_B^T \cdot \textbf{0} \\<br>&amp;&#x3D; 0<br>\end{aligned}<br>$$</p>
+<p>上述推导基于KCL和KVL，并未假设元件类型或线性特性。特勒根定理进一步指出，即使支路电流和支路电压分别对应不同网络的元件，这一广义能量守恒关系依然成立。</p>
+<p>考虑如下两个网络，A与B实现方式完全不同，A可能由电容、电感组成，B则可能包含主动源或其他元件。</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820222659.png"></p>
+<p>同样有：</p>
+<p>$$<br>\begin{aligned}<br>\sum_k{v_{b1k}i_{2k}} &amp;&#x3D; - [A^T \textbf{V}_1]^T \textbf{I}_2 \\<br>&amp;&#x3D; - \textbf{V}_1^T A \cdot \textbf{I}_2 \\<br>&amp;&#x3D; - \textbf{V}_1^T \cdot \textbf{0} \\<br>&amp;&#x3D; 0<br>\end{aligned}<br>$$</p>
+<p>这一结论极具普适性，表明只要网络结构相同，无论元件如何分布，广义能量守恒都成立。该定理适用于任意线性或非线性电路。</p>
+<p>对于感性元件，功率定义为 $P &#x3D; VI^*$，因此可得：</p>
+<p>$$\textbf{V}^T_B \textbf{I}^* &#x3D; \sum_k v_{bk} i_k^* &#x3D; 0 $$</p>
+<h2 id="LC网络的极点与零点"><a href="#LC网络的极点与零点" class="headerlink" title="LC网络的极点与零点"></a>LC网络的极点与零点</h2><p>考虑一个仅由LC元件组成的无损耗网络：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820223215.png"></p>
+<p>由能量守恒，有：</p>
+<p>$$<br>\begin{aligned}<br>|I_{1}(s)|^2 Z(s) &amp;&#x3D;<br>\sum_{\text{All L and C}} v_k(s) i_k^*(s) \\<br>&amp;&#x3D; \sum_{\text{All L}} s L_k i_k(s) i_k^*(s) + \sum_{\text{All C}} \frac{1}{sC_k} i_k(s) i_k^*(s) \\<br>&amp;&#x3D; \sum_{\text{All L}} s L_k |I_k(s)|^2 + \sum_{\text{All C}} \frac{1}{s C_k} |I_k(s)|^2<br>\end{aligned}<br>$$</p>
+<p>令 $I_1(s) &#x3D; 1$，则</p>
+<p>$$<br>\begin{aligned}<br>Z(s) &amp;&#x3D; \sum_{\text{All L}} s L_k |I_k(s)|^2 + \sum_{\text{All C}} \frac{1}{sC_k} |I_k(s)|^2 \\<br>&amp;&#x3D; \sum_{\text{All L}} s P_1 + \sum_{\text{All C}} \frac{1}{s} P_2<br>\end{aligned}<br>$$</p>
+<p>其中 $C$, $L$, $|I|^2$ 均为正实数，因此 $P_1, P_2 &gt; 0$。</p>
+<p>由此可得两点结论：</p>
 <ol>
-<li><strong>零点映射</strong>：低通滤波器的零点必须移动到带通滤波器的零点，即$\omega &#x3D; 0 \rightarrow f(\pm 1) &#x3D; 0$<ul>
-<li>我们同样做了归一化假设</li>
-</ul>
-</li>
-<li><strong>极点映射</strong>：低通滤波器的极点必须移动到带通滤波器的极点，即$\omega &#x3D; \infty \rightarrow f(0, \pm \infty) &#x3D; \infty$</li>
+<li>若频率变量 $s$ 为实数，则 $Z(s)$ 也为实数。</li>
+<li>若 $s$ 有正实部，则 $Z(s)$ 的实部也为正。</li>
 </ol>
-<p>因此，我们可以得出结论，转换函数至少需要拥有如下形式：</p>
-<p>$$f(\omega) \propto \frac{(\omega + 1)(\omega - 1)}{\omega} &#x3D; \frac{\omega^2 - 1}{\omega}$$</p>
-<p>注意到这只是一个成正比的关系，因为我们并不知道转换函数是否有其他的因子。</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723220606.png"></p>
-<h3 id="2-2-高通滤波器的变换"><a href="#2-2-高通滤波器的变换" class="headerlink" title="2.2 高通滤波器的变换"></a>2.2 高通滤波器的变换</h3><p>同样的，对于高通滤波器而言，我们需要满足以下条件：</p>
+<p>我们将满足此性质的函数称为<strong>正实函数（Positive Real Function）</strong>。即对于仅含L和C的网络，有：</p>
+<p>$$<br>\Re{[Z(s)]} \begin{cases} &gt; 0 \text{ if } \Re[s] &gt; 0 \\ &#x3D; 0 \text{ if } \Re[s] &#x3D; 0 \\ &lt; 0 \text{ if } \Re[s] &lt; 0<br>\end{cases}<br>$$</p>
+<h3 id="复变函数的极点行为观察"><a href="#复变函数的极点行为观察" class="headerlink" title="复变函数的极点行为观察"></a>复变函数的极点行为观察</h3><p>观察复变函数在极点附近的行为。以 $\frac{1}{s - p_1}$ 为例，在极点 $p_1$ 左侧，函数实部为负；在右侧，实部为正。</p>
+<p>若引入带有相位的<strong>留数（Residue）</strong>，则分界线会随留数相位旋转。例如，绘制 $\frac{\angle 45^{\circ}}{s}$ 的实部分布：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231112.png"></p>
+<p>若极点为重复极点，如 $\frac{1}{s^2}$，其实部分布如下：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231317.png"></p>
+<p>而我们期望的函数实部行为应如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231459.png"></p>
+<p>因此，为使函数实部符合预期，需满足以下条件：</p>
 <ol>
-<li><strong>零点映射</strong>：低通滤波器的零点必须移动到高通滤波器的极点，即$\omega &#x3D; 0 \rightarrow f(\infty) &#x3D; \infty$</li>
-<li><strong>极点映射</strong>：低通滤波器的极点必须移动到高通滤波器的零点，即$\omega &#x3D; \infty \rightarrow f(0) &#x3D; 0$</li>
-<li><strong>截止频率映射</strong>：高通滤波器的截止频率满足$f(1) &#x3D; 1$</li>
+<li>无左半平面极点，否则分界线将不在虚轴。</li>
+<li>无右半平面极点，同理。</li>
+<li>虚轴上的极点必须为简单极点（重数为1），否则分界线将非对称分割复平面。</li>
+<li>留数必须为正实数，否则分界线将发生旋转。</li>
 </ol>
-<p>因此，我们可以得出结论，转换函数至少需要拥有如下形式：</p>
-<p>$$f(\omega) \propto \frac{1}{\omega}$$</p>
-<p>再次注意到这只是一个成正比的关系，因为我们并不知道转换函数是否有其他的因子。</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723221048.png"></p>
-<h3 id="2-3-带阻滤波器的变换"><a href="#2-3-带阻滤波器的变换" class="headerlink" title="2.3 带阻滤波器的变换"></a>2.3 带阻滤波器的变换</h3><p>同样的，对于带阻滤波器而言，我们需要满足以下条件：</p>
-<ol>
-<li><strong>零点映射</strong>：低通滤波器的零点必须移动到带阻滤波器的极点，即$\omega &#x3D; 0 \rightarrow f(\pm 1) &#x3D; \infty$</li>
-<li><strong>极点映射</strong>：低通滤波器的极点必须移动到带阻滤波器的零点，即$\omega &#x3D; \infty \rightarrow f(0, \pm \infty) &#x3D; 0$</li>
-</ol>
-<p>因此，我们可以得出结论，转换函数至少需要拥有如下形式：</p>
-<p>$$f(\omega) \propto \frac{\omega}{(\omega + 1)(\omega - 1)} &#x3D; \frac{\omega}{\omega^2 - 1}$$</p>
-<p>我们需要做最后一次提示，注意到这只是一个成正比的关系，因为我们并不知道转换函数是否有其他的因子。</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723221208.png"></p>
-<h2 id="2-4-可实现性条件"><a href="#2-4-可实现性条件" class="headerlink" title="2.4 可实现性条件"></a>2.4 可实现性条件</h2><p>除了要满足上述映射要求之外，滤波器的基本稳定性要求也必须得到满足。也就是说，滤波器的极点必须在左半平面内，否则滤波器就会不稳定。由于传递函数的倒函数也是一个有效的传递函数，因此这个要求也必须满足于零点上。</p>
-<p><strong>稳定性要求</strong>：</p>
-<ul>
-<li>所有极点必须位于左半平面</li>
-<li>所有零点也必须位于左半平面或虚轴上</li>
-<li>变换后的滤波器必须保持因果性和稳定性</li>
-</ul>
-<h2 id="3-变换函数的性质总结"><a href="#3-变换函数的性质总结" class="headerlink" title="3. 变换函数的性质总结"></a>3. 变换函数的性质总结</h2><p>通过以上分析，我们可以总结出各种滤波器变换的基本形式：</p>
-<table>
-<thead>
-<tr>
-<th>滤波器类型</th>
-<th>变换函数形式</th>
-<th>零点-极点映射特征</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>低通→低通</td>
-<td>$s&#x2F;\omega_0$</td>
-<td>线性缩放</td>
-</tr>
-<tr>
-<td>低通→高通</td>
-<td>$1&#x2F;\omega$</td>
-<td>零极点互换</td>
-</tr>
-<tr>
-<td>低通→带通</td>
-<td>$(\omega^2-1)&#x2F;\omega$</td>
-<td>一个极点&#x2F;零点分裂为两个</td>
-</tr>
-<tr>
-<td>低通→带阻</td>
-<td>$\omega&#x2F;(\omega^2-1)$</td>
-<td>一个极点&#x2F;零点分裂为两个</td>
-</tr>
-</tbody></table>
-<p>最后一次提示，以上变换函数都是成正比的关系，实际应用中可能需要根据具体情况添加其他因子。但是在下一节中，我们将证明其他因子只会是一个常数。</p>
+<p>此外，实系数函数的极点必以共轭对出现。上述讨论对导纳同样适用，因此零点也满足类似约束。</p>
+<p>下一节将进一步探讨LC网络在虚轴上的零极点分布。</p>
 
             </div>
             <hr>
@@ -400,18 +339,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/profession/2025.08.20.19/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">tech-主动滤波器(7):频率变换(2)</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/profession/2025.07.23.19/">
-                        <span class="hidden-mobile">tech-主动滤波器(5)：双端LC滤波器(2)</span>
+                      <a href="/profession/2025.07.23.21/">
+                        <span class="hidden-mobile">tech-主动滤波器(6)：频率变换(1)</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -430,8 +363,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'http://blog.cedard.top/profession/2025.07.23.21/';
-        this.page.identifier = '/profession/2025.07.23.21/';
+        this.page.url = 'http://blog.cedard.top/profession/2025.08.20.19/';
+        this.page.identifier = '/profession/2025.08.20.19/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');

@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>tech-主动滤波器(7):频率变换(2)</title>
+    <link href="/profession/2025.08.20.19/"/>
+    <url>/profession/2025.08.20.19/</url>
+    
+    <content type="html"><![CDATA[<p>在上一节中，我们讨论了频率变换的工程直觉。简而言之，频率变换的核心准则只有一条：</p><blockquote><p>零频点应映射到新的零点，无穷频点应映射到新的极点。</p></blockquote><p>基于这一原则，我们通过直觉推导了从低通滤波器到其他类型滤波器的映射关系。然而，这些推导仅能得到“成正比”的关系，属于必要但不充分条件。</p><p>本节将进一步探讨纯LC电路的实现特性，并给出充分性证明。</p><h2 id="特勒根定理（Tellegen’s-Theorem）"><a href="#特勒根定理（Tellegen’s-Theorem）" class="headerlink" title="特勒根定理（Tellegen’s Theorem）"></a>特勒根定理（Tellegen’s Theorem）</h2><p>在深入分析任何网络之前，我们先引入特勒根定理，为后续推导提供新的数学工具。</p><p>考虑如下图所示的网络，底部节点接地，各节点已标注电压与电流。每条支路可包含任意被动或主动元件，且可能为线性或非线性。</p><p>我们约定如下：</p><ol><li>电流方向：流入节点为正，流出为负。</li><li>电压极性：高电位端为正，低电位端为负。</li></ol><p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820215143.png"></p><p>首先，我们可在节点1、2、3建立KCL方程，或用矩阵形式表示：</p><p>$$\begin{bmatrix}<br>-1 &amp; 0 &amp; 0 &amp; 1 &amp; -1 &amp; 0 \\<br>1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; -1 &amp; 0 &amp; 0 &amp; 1 &amp; 1<br>\end{bmatrix} \begin{bmatrix}<br>i_1 \\ i_2 \\ i_3 \\ i_4 \\ i_5 \\ i_6<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br>0 \\ 0 \\ 0<br>\end{bmatrix} $$</p><p>记为 $\textbf{A}\textbf{I} &#x3D; \textbf{0}$。</p><p>这一关系总是成立，否则电流将无故产生或消失，违背物理定律。$\textbf{A}$ 的每一行对应一个节点的KCL，每一列对应一条支路的电流方向。</p><p>定义<strong>支路电压（Branch Voltage）</strong>为第n支路的电压，例如支路1的电压为 $V_1 - V_2$。构建<strong>支路电压向量</strong>，满足：</p><p>$$ \textbf{V}_B &#x3D; - \textbf{A}^T \textbf{V} $$</p><p>以本例验证：</p><p>$$\textbf{V}_B&#x3D;\begin{bmatrix}<br>V_1 - V_2 \\<br>-V_2 + V_3 \\<br>-V_2 \\<br>-V_1 \\<br>V_1 - V_3 \\<br>-V_3<br>\end{bmatrix} &#x3D; -\begin{bmatrix}<br>-1 &amp; 1 &amp; 0 \\<br>0 &amp; -1 &amp; 1 \\<br>0 &amp; 1 &amp; 0 \\<br>1 &amp; 0 &amp; 0 \\<br>-1 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix}<br>V_1 \\<br>V_2 \\<br>V_3 \end{bmatrix}<br>&#x3D; -A^T V $$</p><p>由能量守恒，有：</p><p>$$ \textbf{V}_B^T \textbf{I} &#x3D; 0 $$</p><p>或展开为：</p><p>$$ \sum_k v_{bk}i_k &#x3D; 0 $$</p><p>证明如下：</p><p>$$<br>\begin{aligned}<br>\textbf{V}_B^T \cdot \textbf{I} &amp;&#x3D; (-A^T \textbf{V}_B)^T \cdot \textbf{I} \\<br>&amp;&#x3D; -\textbf{V}_B^T A \cdot \textbf{I} \\<br>&amp;&#x3D; -\textbf{V}_B^T \cdot \textbf{0} \\<br>&amp;&#x3D; 0<br>\end{aligned}<br>$$</p><p>上述推导基于KCL和KVL，并未假设元件类型或线性特性。特勒根定理进一步指出，即使支路电流和支路电压分别对应不同网络的元件，这一广义能量守恒关系依然成立。</p><p>考虑如下两个网络，A与B实现方式完全不同，A可能由电容、电感组成，B则可能包含主动源或其他元件。</p><p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820222659.png"></p><p>同样有：</p><p>$$<br>\begin{aligned}<br>\sum_k{v_{b1k}i_{2k}} &amp;&#x3D; - [A^T \textbf{V}_1]^T \textbf{I}_2 \\<br>&amp;&#x3D; - \textbf{V}_1^T A \cdot \textbf{I}_2 \\<br>&amp;&#x3D; - \textbf{V}_1^T \cdot \textbf{0} \\<br>&amp;&#x3D; 0<br>\end{aligned}<br>$$</p><p>这一结论极具普适性，表明只要网络结构相同，无论元件如何分布，广义能量守恒都成立。该定理适用于任意线性或非线性电路。</p><p>对于感性元件，功率定义为 $P &#x3D; VI^*$，因此可得：</p><p>$$\textbf{V}^T_B \textbf{I}^* &#x3D; \sum_k v_{bk} i_k^* &#x3D; 0 $$</p><h2 id="LC网络的极点与零点"><a href="#LC网络的极点与零点" class="headerlink" title="LC网络的极点与零点"></a>LC网络的极点与零点</h2><p>考虑一个仅由LC元件组成的无损耗网络：</p><p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820223215.png"></p><p>由能量守恒，有：</p><p>$$<br>\begin{aligned}<br>|I_{1}(s)|^2 Z(s) &amp;&#x3D;<br>\sum_{\text{All L and C}} v_k(s) i_k^*(s) \\<br>&amp;&#x3D; \sum_{\text{All L}} s L_k i_k(s) i_k^*(s) + \sum_{\text{All C}} \frac{1}{sC_k} i_k(s) i_k^*(s) \\<br>&amp;&#x3D; \sum_{\text{All L}} s L_k |I_k(s)|^2 + \sum_{\text{All C}} \frac{1}{s C_k} |I_k(s)|^2<br>\end{aligned}<br>$$</p><p>令 $I_1(s) &#x3D; 1$，则</p><p>$$<br>\begin{aligned}<br>Z(s) &amp;&#x3D; \sum_{\text{All L}} s L_k |I_k(s)|^2 + \sum_{\text{All C}} \frac{1}{sC_k} |I_k(s)|^2 \\<br>&amp;&#x3D; \sum_{\text{All L}} s P_1 + \sum_{\text{All C}} \frac{1}{s} P_2<br>\end{aligned}<br>$$</p><p>其中 $C$, $L$, $|I|^2$ 均为正实数，因此 $P_1, P_2 &gt; 0$。</p><p>由此可得两点结论：</p><ol><li>若频率变量 $s$ 为实数，则 $Z(s)$ 也为实数。</li><li>若 $s$ 有正实部，则 $Z(s)$ 的实部也为正。</li></ol><p>我们将满足此性质的函数称为<strong>正实函数（Positive Real Function）</strong>。即对于仅含L和C的网络，有：</p><p>$$<br>\Re{[Z(s)]} \begin{cases} &gt; 0 \text{ if } \Re[s] &gt; 0 \\ &#x3D; 0 \text{ if } \Re[s] &#x3D; 0 \\ &lt; 0 \text{ if } \Re[s] &lt; 0<br>\end{cases}<br>$$</p><h3 id="复变函数的极点行为观察"><a href="#复变函数的极点行为观察" class="headerlink" title="复变函数的极点行为观察"></a>复变函数的极点行为观察</h3><p>观察复变函数在极点附近的行为。以 $\frac{1}{s - p_1}$ 为例，在极点 $p_1$ 左侧，函数实部为负；在右侧，实部为正。</p><p>若引入带有相位的<strong>留数（Residue）</strong>，则分界线会随留数相位旋转。例如，绘制 $\frac{\angle 45^{\circ}}{s}$ 的实部分布：</p><p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231112.png"></p><p>若极点为重复极点，如 $\frac{1}{s^2}$，其实部分布如下：</p><p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231317.png"></p><p>而我们期望的函数实部行为应如下图所示：</p><p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231459.png"></p><p>因此，为使函数实部符合预期，需满足以下条件：</p><ol><li>无左半平面极点，否则分界线将不在虚轴。</li><li>无右半平面极点，同理。</li><li>虚轴上的极点必须为简单极点（重数为1），否则分界线将非对称分割复平面。</li><li>留数必须为正实数，否则分界线将发生旋转。</li></ol><p>此外，实系数函数的极点必以共轭对出现。上述讨论对导纳同样适用，因此零点也满足类似约束。</p><p>下一节将进一步探讨LC网络在虚轴上的零极点分布。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>profession</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Mathematics</tag>
+      
+      <tag>Filter Design</tag>
+      
+      <tag>Active Filter</tag>
+      
+      <tag>Signal Processing</tag>
+      
+      <tag>Frequency Transformation</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>tech-主动滤波器(6)：频率变换(1)</title>
     <link href="/profession/2025.07.23.21/"/>
     <url>/profession/2025.07.23.21/</url>
