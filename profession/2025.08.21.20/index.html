@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      20
        mins reading time
     </span>
   
@@ -327,8 +327,6 @@
 <th>变换公式</th>
 <th>元件变换方式</th>
 <th>阶数变化</th>
-<th>截止频率关系</th>
-<th>品质因子Q定义</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -336,24 +334,18 @@
 <td>$s \rightarrow Q\left(\frac{s}{\omega_0} + \frac{\omega_0}{s}\right)$</td>
 <td>电感 $\rightarrow$ 串联电感+电容<br>电容 $\rightarrow$ 并联电感+电容</td>
 <td>翻倍</td>
-<td>$\omega_a\omega_b &#x3D; \omega_0^2$<br>$\omega_a-\omega_b &#x3D; \omega_0&#x2F;Q$</td>
-<td>$Q &#x3D; \frac{\omega_0}{\omega_a-\omega_b}$</td>
 </tr>
 <tr>
 <td>低通 → 高通</td>
 <td>$s \rightarrow \frac{\omega_0}{s}$</td>
 <td>电感 $\rightarrow$ 电容<br>电容 $\rightarrow$ 电感</td>
 <td>不变</td>
-<td>$\omega_{HP} &#x3D; \omega_0$</td>
-<td>无</td>
 </tr>
 <tr>
 <td>低通 → 带阻</td>
 <td>$s \rightarrow \frac{1}{Q\left(\frac{s}{\omega_0} + \frac{\omega_0}{s}\right)}$</td>
 <td>电感 $\rightarrow$ 并联电感+电容<br>电容 $\rightarrow$ 串联电感+电容</td>
 <td>翻倍</td>
-<td>$\omega_a\omega_b &#x3D; \omega_0^2$<br>$\omega_a-\omega_b &#x3D; \omega_0&#x2F;Q$</td>
-<td>$Q &#x3D; \frac{\omega_0}{\omega_a-\omega_b}$</td>
 </tr>
 </tbody></table>
 <hr>
