@@ -17,7 +17,7 @@
   <meta name="description" content="旅游日志，技术笔记，生活杂谈">
   <meta name="author" content="雾杉cedar">
   <meta name="keywords" content="test">
-  <title>tech-主动滤波器(7)：频率变换(2) - 四方喫茶舘</title>
+  <title>tech-主动滤波器(8)：频率变换(3) - 四方喫茶舘</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -178,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="tech-主动滤波器(7)：频率变换(2)">
+            <span class="h2" id="subtitle" title="tech-主动滤波器(8)：频率变换(3)">
               
             </span>
 
@@ -188,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2025-08-20 19:57" pubdate>
-        August 20, 2025 pm
+      <time datetime="2025-08-21 20:58" pubdate>
+        August 21, 2025 pm
       </time>
     </span>
   
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      21
        mins reading time
     </span>
   
@@ -234,75 +234,132 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">tech-主动滤波器(7)：频率变换(2)</h1>
+            <h1 style="display: none">tech-主动滤波器(8)：频率变换(3)</h1>
             
             <div class="markdown-body">
-              <p>在上一节中，我们讨论了频率变换的工程直觉。简而言之，频率变换的核心准则只有一条：</p>
-<blockquote>
-<p>零频点应映射到新的零点，无穷频点应映射到新的极点。</p>
-</blockquote>
-<p>基于这一原则，我们通过直觉推导了从低通滤波器到其他类型滤波器的映射关系。然而，这些推导仅能得到“成正比”的关系，属于必要但不充分条件。</p>
-<p>本节将进一步探讨纯LC电路的实现特性，并给出充分性证明。</p>
-<h2 id="特勒根定理（Tellegen’s-Theorem）"><a href="#特勒根定理（Tellegen’s-Theorem）" class="headerlink" title="特勒根定理（Tellegen’s Theorem）"></a>特勒根定理（Tellegen’s Theorem）</h2><p>在深入分析任何网络之前，我们先引入特勒根定理，为后续推导提供新的数学工具。</p>
-<p>考虑如下图所示的网络，底部节点接地，各节点已标注电压与电流。每条支路可包含任意被动或主动元件，且可能为线性或非线性。</p>
-<p>我们约定如下：</p>
+              <p>在上一节中，我们得出了两个关于纯LC电路输入阻抗的重要结论：</p>
 <ol>
-<li>电流方向：流入节点为正，流出为负。</li>
-<li>电压极性：高电位端为正，低电位端为负。</li>
+<li>阻抗的零点和极点必须位于虚轴上。</li>
+<li>阻抗（以及导纳）的留数必须是正实数。</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820215143.png"></p>
-<p>首先，我们可在节点1、2、3建立KCL方程，或用矩阵形式表示：</p>
-<p>$$\begin{bmatrix}<br>-1 &amp; 0 &amp; 0 &amp; 1 &amp; -1 &amp; 0 \\<br>1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; -1 &amp; 0 &amp; 0 &amp; 1 &amp; 1<br>\end{bmatrix} \begin{bmatrix}<br>i_1 \\ i_2 \\ i_3 \\ i_4 \\ i_5 \\ i_6<br>\end{bmatrix} &#x3D; \begin{bmatrix}<br>0 \\ 0 \\ 0<br>\end{bmatrix} $$</p>
-<p>记为 $\textbf{A}\textbf{I} &#x3D; \textbf{0}$。</p>
-<p>这一关系总是成立，否则电流将无故产生或消失，违背物理定律。$\textbf{A}$ 的每一行对应一个节点的KCL，每一列对应一条支路的电流方向。</p>
-<p>定义<strong>支路电压（Branch Voltage）</strong>为第n支路的电压，例如支路1的电压为 $V_1 - V_2$。构建<strong>支路电压向量</strong>，满足：</p>
-<p>$$ \textbf{V}_B &#x3D; - \textbf{A}^T \textbf{V} $$</p>
-<p>以本例验证：</p>
-<p>$$\textbf{V}_B&#x3D;\begin{bmatrix}<br>V_1 - V_2 \\<br>-V_2 + V_3 \\<br>-V_2 \\<br>-V_1 \\<br>V_1 - V_3 \\<br>-V_3<br>\end{bmatrix} &#x3D; -\begin{bmatrix}<br>-1 &amp; 1 &amp; 0 \\<br>0 &amp; -1 &amp; 1 \\<br>0 &amp; 1 &amp; 0 \\<br>1 &amp; 0 &amp; 0 \\<br>-1 &amp; 0 &amp; 1 \\<br>0 &amp; 0 &amp; 1 \end{bmatrix} \begin{bmatrix}<br>V_1 \\<br>V_2 \\<br>V_3 \end{bmatrix}<br>&#x3D; -A^T V $$</p>
-<p>由能量守恒，有：</p>
-<p>$$ \textbf{V}_B^T \textbf{I} &#x3D; 0 $$</p>
-<p>或展开为：</p>
-<p>$$ \sum_k v_{bk}i_k &#x3D; 0 $$</p>
-<p>证明如下：</p>
-<p>$$<br>\begin{aligned}<br>\textbf{V}_B^T \cdot \textbf{I} &amp;&#x3D; (-A^T \textbf{V}_B)^T \cdot \textbf{I} \\<br>&amp;&#x3D; -\textbf{V}_B^T A \cdot \textbf{I} \\<br>&amp;&#x3D; -\textbf{V}_B^T \cdot \textbf{0} \\<br>&amp;&#x3D; 0<br>\end{aligned}<br>$$</p>
-<p>上述推导基于KCL和KVL，并未假设元件类型或线性特性。特勒根定理进一步指出，即使支路电流和支路电压分别对应不同网络的元件，这一广义能量守恒关系依然成立。</p>
-<p>考虑如下两个网络，A与B实现方式完全不同，A可能由电容、电感组成，B则可能包含主动源或其他元件。</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820222659.png"></p>
-<p>同样有：</p>
-<p>$$<br>\begin{aligned}<br>\sum_k{v_{b1k}i_{2k}} &amp;&#x3D; - [A^T \textbf{V}_1]^T \textbf{I}_2 \\<br>&amp;&#x3D; - \textbf{V}_1^T A \cdot \textbf{I}_2 \\<br>&amp;&#x3D; - \textbf{V}_1^T \cdot \textbf{0} \\<br>&amp;&#x3D; 0<br>\end{aligned}<br>$$</p>
-<p>这一结论极具普适性，表明只要网络结构相同，无论元件如何分布，广义能量守恒都成立。该定理适用于任意线性或非线性电路。</p>
-<p>对于感性元件，功率定义为 $P &#x3D; VI^*$，因此可得：</p>
-<p>$$\textbf{V}^T_B \textbf{I}^* &#x3D; \sum_k v_{bk} i_k^* &#x3D; 0 $$</p>
-<h2 id="LC网络的极点与零点"><a href="#LC网络的极点与零点" class="headerlink" title="LC网络的极点与零点"></a>LC网络的极点与零点</h2><p>考虑一个仅由LC元件组成的无损耗网络：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820223215.png"></p>
-<p>由能量守恒，有：</p>
-<p>$$<br>\begin{aligned}<br>|I_{1}(s)|^2 Z(s) &amp;&#x3D;<br>\sum_{\text{All L and C}} v_k(s) i_k^*(s) \\<br>&amp;&#x3D; \sum_{\text{All L}} s L_k i_k(s) i_k^*(s) + \sum_{\text{All C}} \frac{1}{sC_k} i_k(s) i_k^*(s) \\<br>&amp;&#x3D; \sum_{\text{All L}} s L_k |I_k(s)|^2 + \sum_{\text{All C}} \frac{1}{s C_k} |I_k(s)|^2<br>\end{aligned}<br>$$</p>
-<p>令 $I_1(s) &#x3D; 1$，则</p>
-<p>$$<br>\begin{aligned}<br>Z(s) &amp;&#x3D; \sum_{\text{All L}} s L_k |I_k(s)|^2 + \sum_{\text{All C}} \frac{1}{sC_k} |I_k(s)|^2 \\<br>&amp;&#x3D; \sum_{\text{All L}} s P_1 + \sum_{\text{All C}} \frac{1}{s} P_2<br>\end{aligned}<br>$$</p>
-<p>其中 $C$, $L$, $|I|^2$ 均为正实数，因此 $P_1, P_2 &gt; 0$。</p>
-<p>由此可得两点结论：</p>
-<ol>
-<li>若频率变量 $s$ 为实数，则 $Z(s)$ 也为实数。</li>
-<li>若 $s$ 有正实部，则 $Z(s)$ 的实部也为正。</li>
-</ol>
-<p>我们将满足此性质的函数称为<strong>正实函数（Positive Real Function）</strong>。即对于仅含L和C的网络，有：</p>
-<p>$$<br>\Re{[Z(s)]} \begin{cases} &gt; 0 \text{ if } \Re[s] &gt; 0 \\ &#x3D; 0 \text{ if } \Re[s] &#x3D; 0 \\ &lt; 0 \text{ if } \Re[s] &lt; 0<br>\end{cases}<br>$$</p>
-<h3 id="复变函数的极点行为观察"><a href="#复变函数的极点行为观察" class="headerlink" title="复变函数的极点行为观察"></a>复变函数的极点行为观察</h3><p>观察复变函数在极点附近的行为。以 $\frac{1}{s - p_1}$ 为例，在极点 $p_1$ 左侧，函数实部为负；在右侧，实部为正。</p>
-<p>若引入带有相位的<strong>留数（Residue）</strong>，则分界线会随留数相位旋转。例如，绘制 $\frac{\angle 45^{\circ}}{s}$ 的实部分布：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231112.png"></p>
-<p>若极点为重复极点，如 $\frac{1}{s^2}$，其实部分布如下：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231317.png"></p>
-<p>而我们期望的函数实部行为应如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250820231459.png"></p>
-<p>因此，为使函数实部符合预期，需满足以下条件：</p>
-<ol>
-<li>无左半平面极点，否则分界线将不在虚轴。</li>
-<li>无右半平面极点，同理。</li>
-<li>虚轴上的极点必须为简单极点（重数为1），否则分界线将非对称分割复平面。</li>
-<li>留数必须为正实数，否则分界线将发生旋转。</li>
-</ol>
-<p>此外，实系数函数的极点必以共轭对出现。上述讨论对导纳同样适用，因此零点也满足类似约束。</p>
-<p>下一节将进一步探讨LC网络在虚轴上的零极点分布。</p>
+<p>本节将进一步分析纯LC网络阻抗在虚轴上的行为，并探讨频率变换的唯一性与实现方式。</p>
+<h2 id="柯西-黎曼方程-Cauchy-Riemann-Equations"><a href="#柯西-黎曼方程-Cauchy-Riemann-Equations" class="headerlink" title="柯西-黎曼方程 (Cauchy-Riemann Equations)"></a>柯西-黎曼方程 (Cauchy-Riemann Equations)</h2><p>对于复平面上的<strong>解析函数</strong> $f(x, y) &#x3D; u(x, y) + iv(x, y)$，其中 $u(x, y)$ 和 $v(x, y)$ 分别为实部和虚部，柯西-黎曼方程给出了函数解析的必要条件：</p>
+<p>$$<br>\begin{aligned}<br>\frac{\partial u}{\partial x} &amp;&#x3D; \frac{\partial v}{\partial y} \\<br>\frac{\partial u}{\partial y} &amp;&#x3D; -\frac{\partial v}{\partial x}<br>\end{aligned}<br>$$</p>
+<p>由于LC网络的阻抗是有理函数，必然满足解析性，因此阻抗也必须满足柯西-黎曼方程。对于 $Z(s)$，有：</p>
+<p>$$<br>\frac{\partial}{\partial \sigma}\Re [Z(\sigma + j\omega)] &#x3D; \frac{\partial}{\partial \omega}\Im [Z(\sigma + j\omega)]<br>$$</p>
+<p>也就是说，阻抗实部对实频率的变化率等于虚部对虚频率的变化率。</p>
+<p>结合上一节的正实性结论，进一步有：</p>
+<p>$$<br>\frac{\partial}{\partial \omega}\Im [Z(\sigma + j\omega)]  &#x3D; \frac{\partial}{\partial \sigma}\Re [Z(\sigma + j\omega)]  &gt; 0<br>$$</p>
+<p>并且，如果输入信号频率为实数，阻抗为实数；若频率为纯虚数，阻抗也为纯虚数。因此：</p>
+<p>$$<br>\left.Z(s)\right|_{s&#x3D;j\omega} &#x3D; jX(\omega) \quad \therefore \frac{dX(\omega)}{d\omega} &gt; 0<br>$$</p>
+<p>简单验证如下：</p>
+<ul>
+<li>对于电感：$Z(j\omega) &#x3D; j\omega L \implies \frac{dX(\omega)}{d\omega} &#x3D; L &gt; 0$</li>
+<li>对于电容：$Z(j\omega) &#x3D; \frac{1}{j\omega C} &#x3D; \frac{j}{-\omega C} \implies \frac{dX(\omega)}{d\omega} &#x3D; \frac{1}{\omega^2 C} &gt; 0$</li>
+</ul>
+<p>因此，LC网络输入阻抗在虚轴上的导数始终为正。这意味着在虚轴上不可能出现连续的极点或零点，否则会与单调性矛盾。如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821222931.png"></p>
+<p>所以，<strong>极点和零点在虚轴上必定交替出现</strong>：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821223914.png"></p>
+<p>并且，零点数与极点数的差额最多为1。综合所有结论，频率变换的推导实际上是唯一的。</p>
+<hr>
+<h2 id="频率变换回顾"><a href="#频率变换回顾" class="headerlink" title="频率变换回顾"></a>频率变换回顾</h2><h3 id="低通-带通变换"><a href="#低通-带通变换" class="headerlink" title="低通-带通变换"></a>低通-带通变换</h3><p>低通-带通变换的映射关系如下：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821223243.png"></p>
+<p>根据频率变换的第一节，变换函数需满足：</p>
+<p>$$<br>f(\omega) \propto \frac{(\omega + 1)(\omega - 1)}{\omega} &#x3D; \frac{\omega^2 - 1}{\omega}<br>$$</p>
+<p>我们无法引入新的零点，因为差额已经为1.我们也无法引入新的极点。若新的极点为0，那么极点0的重数将不是1.若新的极点模长小于1，将不满足极点-零点交替出现的原则。若新的极点模长为1，将与零点抵消。若新的极点模长大于1，在频率为无穷大的时候的响应就不满足直觉。</p>
+<p>由于无法引入新的极点或零点，唯一可调的是比例常数 $K$，且 $K$ 必须为正实数：</p>
+<p>$$<br>f(\omega) &#x3D; K\frac{(\omega - 1)(\omega + 1)}{\omega}<br>$$</p>
+<p>假设原低通滤波器带宽为 $\omega_{LP}$，则带通滤波器的两个截止频率满足：</p>
+<p>$$<br>\omega_{LP} &#x3D; K\frac{\omega^2 - 1}{\omega}<br>$$</p>
+<p>舍弃负频率，解得：</p>
+<p>$$<br>\begin{cases}<br>\omega_a &#x3D; \frac{\omega_{LP}}{2K} + \sqrt{1 + \frac{\omega_{LP}^2}{4K^2}} \\<br>\omega_b &#x3D; \frac{\omega_{LP}}{2K} - \sqrt{1 + \frac{\omega_{LP}^2}{4K^2}}<br>\end{cases}<br>$$</p>
+<p>有：</p>
+<p>$$<br>\omega_a \omega_b &#x3D; \omega_{LP}^2 &#x3D; 1<br>$$</p>
+<p>$$<br>\omega_a - \omega_b &#x3D; \frac{\omega_{LP}}{K}<br>$$</p>
+<p>即，两个截止频率的几何平均为中心频率。带通滤波器的<strong>品质因子(Q)</strong> 定义为：</p>
+<p>$$<br>Q &#x3D; \frac{\text{Center Frequency}}{\text{Bandwidth}} &#x3D; \frac{\omega_{LP}}{\omega_a - \omega_b} &#x3D; K<br>$$</p>
+<p>最终映射为：</p>
+<p>$$<br>s \rightarrow Q\left(\frac{s}{\omega_0} + \frac{\omega_0}{s}\right)<br>$$</p>
+<p>电感的变换：</p>
+<p>$$<br>sL \rightarrow Q\left(\frac{s}{\omega_0} + \frac{\omega_0}{s}\right)L<br>$$</p>
+<p>即，电感 $L$ 变为电感 $\frac{LQ}{\omega_0}$ 与电容 $\frac{1}{QL\omega_0}$ 的串联：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821225335.png"></p>
+<p>这个结论符合我们的工程直觉，因为在DC的电感时一个短路，而在$\omega_0$的新电路也是短路。无穷频率的电感将是断路，而DC+无穷频率的新电路也是断路。</p>
+<p>电容的变换：</p>
+<p>$$<br>C \rightarrow \frac{QC}{\omega_0} \parallel \frac{1}{QC\omega_0}<br>$$</p>
+<p>即，电容 $C$ 变为电容 $\frac{QC}{\omega_0}$ 与电感 $\frac{1}{QC\omega_0}$ 的并联：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821225656.png"></p>
+<p>DC的电容是断路，而在$\omega_0$的新电路也是断路。无穷频率的电容是短路，而DC+无穷频率的新电路也是短路。</p>
+<p>因此，低通-带通变换后，LC滤波器的阶数翻倍：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821225807.png"></p>
+<hr>
+<h3 id="低通-高通变换"><a href="#低通-高通变换" class="headerlink" title="低通-高通变换"></a>低通-高通变换</h3><p>低通-高通变换如下：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821225844.png"></p>
+<p>变换关系为：</p>
+<p>$$<br>f(\omega) \propto \frac{1}{\omega}<br>$$</p>
+<p>我们无法引入新的极点，否则零极点差额将会超过1.我们亦无法引入新的零点，否则无穷大的响应将不满足直觉。</p>
+<p>因此我们能改变的只有成比例常数：</p>
+<p>$$<br>f(\omega) &#x3D; \frac{-K}{\omega}<br>$$</p>
+<p>我们一定要引入负号，否则新的阻抗不会是增函数。最终映射为：</p>
+<p>$$<br>j\omega \rightarrow -j\frac{K}{\omega} \rightarrow \frac{K}{j\omega}<br>$$</p>
+<p>若需任意高通频率：</p>
+<p>$$<br>s \rightarrow \frac{\omega_0}{s}<br>$$</p>
+<p>低通-高通变换后，电容变为电感，电感变为电容：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821230501.png"></p>
+<hr>
+<h3 id="低通-带阻变换"><a href="#低通-带阻变换" class="headerlink" title="低通-带阻变换"></a>低通-带阻变换</h3><p>低通-带阻变换如下：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821230547.png"></p>
+<p>变换关系为：</p>
+<p>$$<br>f(\omega) \propto \frac{\omega}{(\omega + 1)(\omega - 1)} &#x3D; \frac{\omega}{\omega^2 - 1}<br>$$</p>
+<p>与带通变换一样，我们无法加入任何新的极点或零点。同样，唯一未知量为比例系数，且必须为负实数：</p>
+<p>$$<br>f(\omega) &#x3D; \frac{-K\omega}{\omega^2 - 1}<br>$$</p>
+<p>带阻滤波器的两个截止频率的几何平均为中心频率，品质因子定义同前。最终映射为：</p>
+<p>$$<br>s \rightarrow \frac{1}{Q\left(\frac{s}{\omega_0} + \frac{\omega_0}{s}\right)}<br>$$</p>
+<p>电感变为电容与电感的并联，电容变为电容与电感的串联：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821231104.png"></p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821231116.png"></p>
+<hr>
+<p>综上，频率变换的形式和参数均由网络的物理特性唯一决定，无法随意添加极点或零点。所有变换均严格遵循正实性和极点零点交替分布的原则。</p>
+<hr>
+<h2 id="频率变换类型总结表"><a href="#频率变换类型总结表" class="headerlink" title="频率变换类型总结表"></a>频率变换类型总结表</h2><p>下表总结了几种从低通出发的频率变换类型及其特性。</p>
+<table>
+<thead>
+<tr>
+<th>变换类型</th>
+<th>变换公式</th>
+<th>元件变换方式</th>
+<th>阶数变化</th>
+<th>截止频率关系</th>
+<th>品质因子Q定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>低通 → 带通</td>
+<td>$s \rightarrow Q\left(\frac{s}{\omega_0} + \frac{\omega_0}{s}\right)$</td>
+<td>电感 $\rightarrow$ 串联电感+电容<br>电容 $\rightarrow$ 并联电感+电容</td>
+<td>翻倍</td>
+<td>$\omega_a\omega_b &#x3D; \omega_0^2$<br>$\omega_a-\omega_b &#x3D; \omega_0&#x2F;Q$</td>
+<td>$Q &#x3D; \frac{\omega_0}{\omega_a-\omega_b}$</td>
+</tr>
+<tr>
+<td>低通 → 高通</td>
+<td>$s \rightarrow \frac{\omega_0}{s}$</td>
+<td>电感 $\rightarrow$ 电容<br>电容 $\rightarrow$ 电感</td>
+<td>不变</td>
+<td>$\omega_{HP} &#x3D; \omega_0$</td>
+<td>无</td>
+</tr>
+<tr>
+<td>低通 → 带阻</td>
+<td>$s \rightarrow \frac{1}{Q\left(\frac{s}{\omega_0} + \frac{\omega_0}{s}\right)}$</td>
+<td>电感 $\rightarrow$ 并联电感+电容<br>电容 $\rightarrow$ 串联电感+电容</td>
+<td>翻倍</td>
+<td>$\omega_a\omega_b &#x3D; \omega_0^2$<br>$\omega_a-\omega_b &#x3D; \omega_0&#x2F;Q$</td>
+<td>$Q &#x3D; \frac{\omega_0}{\omega_a-\omega_b}$</td>
+</tr>
+</tbody></table>
+<hr>
 
             </div>
             <hr>
@@ -339,18 +396,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/profession/2025.08.21.20/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">tech-主动滤波器(8)：频率变换(3)</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/profession/2025.07.23.21/">
-                        <span class="hidden-mobile">tech-主动滤波器(6)：频率变换(1)</span>
+                      <a href="/profession/2025.08.20.19/">
+                        <span class="hidden-mobile">tech-主动滤波器(7)：频率变换(2)</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -369,8 +420,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'http://blog.cedard.top/profession/2025.08.20.19/';
-        this.page.identifier = '/profession/2025.08.20.19/';
+        this.page.url = 'http://blog.cedard.top/profession/2025.08.21.20/';
+        this.page.identifier = '/profession/2025.08.21.20/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
