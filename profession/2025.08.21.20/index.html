@@ -262,8 +262,8 @@
 <p>所以，<strong>极点和零点在虚轴上必定交替出现</strong>：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821223914.png"></p>
 <p>并且，零点数与极点数的差额最多为1。综合所有结论，频率变换的推导实际上是唯一的。</p>
-<hr>
-<h2 id="频率变换回顾"><a href="#频率变换回顾" class="headerlink" title="频率变换回顾"></a>频率变换回顾</h2><h3 id="低通-带通变换"><a href="#低通-带通变换" class="headerlink" title="低通-带通变换"></a>低通-带通变换</h3><p>低通-带通变换的映射关系如下：</p>
+<h2 id="充分必要的频率变换"><a href="#充分必要的频率变换" class="headerlink" title="充分必要的频率变换"></a>充分必要的频率变换</h2><p>我们建立了所有需要证明充分性的理论基础，现在是时候来检验我们之前直觉推导的频率变换的唯一性了。</p>
+<h3 id="低通-带通变换"><a href="#低通-带通变换" class="headerlink" title="低通-带通变换"></a>低通-带通变换</h3><p>低通-带通变换的映射关系如下：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821223243.png"></p>
 <p>根据频率变换的第一节，变换函数需满足：</p>
 <p>$$<br>f(\omega) \propto \frac{(\omega + 1)(\omega - 1)}{\omega} &#x3D; \frac{\omega^2 - 1}{\omega}<br>$$</p>
@@ -293,7 +293,6 @@
 <p>DC的电容是断路，而在$\omega_0$的新电路也是断路。无穷频率的电容是短路，而DC+无穷频率的新电路也是短路。</p>
 <p>因此，低通-带通变换后，LC滤波器的阶数翻倍：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821225807.png"></p>
-<hr>
 <h3 id="低通-高通变换"><a href="#低通-高通变换" class="headerlink" title="低通-高通变换"></a>低通-高通变换</h3><p>低通-高通变换如下：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821225844.png"></p>
 <p>变换关系为：</p>
@@ -307,7 +306,6 @@
 <p>$$<br>s \rightarrow \frac{\omega_0}{s}<br>$$</p>
 <p>低通-高通变换后，电容变为电感，电感变为电容：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821230501.png"></p>
-<hr>
 <h3 id="低通-带阻变换"><a href="#低通-带阻变换" class="headerlink" title="低通-带阻变换"></a>低通-带阻变换</h3><p>低通-带阻变换如下：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821230547.png"></p>
 <p>变换关系为：</p>
@@ -319,7 +317,6 @@
 <p>电感变为电容与电感的并联，电容变为电容与电感的串联：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821231104.png"></p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250821231116.png"></p>
-<hr>
 <p>综上，频率变换的形式和参数均由网络的物理特性唯一决定，无法随意添加极点或零点。所有变换均严格遵循正实性和极点零点交替分布的原则。</p>
 <hr>
 <h2 id="频率变换类型总结表"><a href="#频率变换类型总结表" class="headerlink" title="频率变换类型总结表"></a>频率变换类型总结表</h2><p>下表总结了几种从低通出发的频率变换类型及其特性。</p>
