@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      11
        mins reading time
     </span>
   
@@ -237,7 +237,27 @@
             <h1 style="display: none">tech-主动滤波器(9):频率变换(4)</h1>
             
             <div class="markdown-body">
-              
+              <p>在频率变换（3）里，我们证明了频率变换（1）里直觉性的推导实际上是充分必要的解。基于我们的证明，我们提出了几种基本的从低通滤波器衍生其他三种高通，带通和带阻滤波器的方法。</p>
+<p>除了这三种简单的频率变换之外，这一节我们讨论几种特殊的频率变换方法。</p>
+<h2 id="理查变换-The-Richard’s-Transformation"><a href="#理查变换-The-Richard’s-Transformation" class="headerlink" title="理查变换 (The Richard’s Transformation)"></a>理查变换 (The Richard’s Transformation)</h2><p>假如说我们想要把一个低通滤波器变成一个带通滤波器，但是这个带通滤波器要有周期性响应，如下图：<br><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250825223308.png"></p>
+<p>在图中，我们将原本带宽为1 rad&#x2F;s的低通滤波器变换为中心频率为π，2π…以及π的整数倍的带通滤波器。我们该如何实现这种滤波器？</p>
+<p>根据频率变换（1）里讲的两条基本原则：</p>
+<ol>
+<li><strong>零点映射</strong>：$\omega &#x3D; 0$必须移动到$f(\omega) &#x3D; 0$，也就是说$\omega$的零点必须移动到$f(\omega)$的零点</li>
+<li><strong>极点映射</strong>：$\omega &#x3D; \infty$必须移动到$f(\omega) &#x3D; \infty$，也就是说$\omega$的极点必须移动到$f(\omega)$的极点</li>
+</ol>
+<p>我们知道，这个变换的零点一定在$0$, $\pm \pi, \pm 2\pi, \ldots, k\pi $的位置上，而变换的极点一定在$\pm \frac{\pi}{2}, \pm \frac{3\pi}{2}, \ldots, (2k+1)\frac{\pi}{2}$的位置上$k \in \mathbb{Z}$。</p>
+<p>也就是说，我们的变换应该满足这样的形式：</p>
+<p>$$ \begin{aligned}<br>f(\omega) &amp;&#x3D; \frac{l \omega (\omega^2 - \pi^2)(\omega^2 - (2\pi)^2)\ldots}{(\omega^2 - (\frac{\pi}{2})^2)(\omega^2 - (\frac{3\pi}{2})^2)\ldots} \\<br>&amp;&#x3D; l_1\frac{[\omega(1-\frac{\omega}{\pi}^2)(1-\frac{\omega}{(2\pi)}^2)\ldots(1-\frac{\omega}{(k\pi)}^2)]}{[(1-\frac{\omega}{(\frac{\pi}{2})}^2)(1-\frac{\omega}{(\frac{3\pi}{2})}^2)\ldots(1 - \frac{\omega}{k\pi + \frac{\pi}{2}}^2)]}<br>\\<br>&amp;&#x3D; l_1 \frac{\displaystyle\prod_{k&#x3D;1}^{\infty}\omega(1 - \frac{\omega}{(k\pi)}^2)}{\displaystyle\prod_{k&#x3D;1}^{\infty}(1 - \frac{\omega}{(k\pi + \frac{\pi}{2})}^2)}<br>\end{aligned} $$</p>
+<p>实际上，如果我们绘制分子这个无限乘积，它看起来就像：<br><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250825232402.png"></p>
+<p>事实上，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Sinc_function#:~:text=The%20normalized%20sinc%20function%20has%20a%20simple%20representation%20as%20the%20infinite%20product%3A">欧拉告诉我们</a>这两个无限乘积都是三角函数：</p>
+<p>$$ \begin{aligned}<br>\sin(\omega) &amp;&#x3D; \prod_{k&#x3D;1}^{\infty}\omega(1 - \frac{\omega}{(k\pi)}^2) \\<br>\cos(\omega) &amp;&#x3D; \prod_{k&#x3D;1}^{\infty}(1 - \frac{\omega}{(k\pi + \frac{\pi}{2})}^2)<br>\end{aligned} $$</p>
+<p>因此，我们有：</p>
+<p>$$ f(\omega) &#x3D; l_1 \frac{\sin(\omega)}{\cos(\omega)} &#x3D; l_1 \tan(\omega) $$<br>如果我们把复频率换回普通的频率：</p>
+<p>$$\begin{aligned}<br>f(s) &#x3D; f(j\omega) &amp;&#x3D; jl_1 \tan(j\omega) \\<br>&amp;&#x3D; jl_1 \tan(\frac{s}{j}) &#x3D; l_1 \tanh (s)<br>\end{aligned}<br>$$<br>由于我们把$\omega \rightarrow l_1 \tan \omega$, 因此如果截止频率为1，那么新的截止频率满足$1 &#x3D; l_1 \tan(\omega_{\text{bw}}) $，也就是说如果指定一个新的截止频率，$ s \rightarrow \frac{\tanh s}{\tan \omega_{\text{bw}}}$. 如果我们不想要在$\pi$的通带中心点，我们则可以使用放缩。因此，最后的变换公式为：</p>
+<p>$$ s \rightarrow \frac{\tanh \frac{s\pi}{\omega_{0}}}{\tan \omega_{\text{bw}}} $$</p>
+<h3 id="电路实现"><a href="#电路实现" class="headerlink" title="电路实现"></a>电路实现</h3><p>为了简单起见，我们不改变截止频率，只改变中心频率，那么$ s \rightarrow l_1 \tanh \frac{s\pi}{\omega_{0}} $. 在此变换下，一个电感$sL$将会变换成一个$Ll_1\tanh(\frac{s\pi}{\omega_{0}})$.那么问题来了，我们真的有这样一个电子元件可以实现$\tanh$的频率响应特性吗？</p>
+
             </div>
             <hr>
             <div>
