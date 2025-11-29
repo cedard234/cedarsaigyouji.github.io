@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      17
        mins reading time
     </span>
   
@@ -263,6 +263,7 @@
 <p>要描述一段传输线，除了传输线的特性阻抗之外，我们还需要这段传输线的时间差（time delay），这段时间差告诉我们电磁波从传输线的一端发射到另一端所需的时间，通常记为$\tau$。<br>现在，假如我们在某个点满足传输线方程，我们把考虑的点左移动时间$\tau$，那么正向传播的时间将会被提前$\tau$，反向传播的时间将会被延后$\tau$，但是传输线方程依然需要成立：</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250826083929.png"></p>
 <p>$$ \begin{aligned}<br>V^+ &amp;\rightarrow V^+e^{s\tau_1} \\<br>V^- &amp;\rightarrow V^-e^{-s\tau_1}<br>\end{aligned} $$</p>
+<p>假如我们把传输线的一端短路，那么欧姆定律一定要成立：<br>$$ V^+ &#x3D; -V^-, V^- + V^+ &#x3D; 0 $$<br>那么在传输线的另外一端，<br>$$ \begin{aligned}<br>V_{in} &amp;&#x3D; V^+ (e^{s\tau} - e^{-s\tau}) \\<br>&amp;&#x3D; V^+ (2\sinh(s\tau))<br>\end{aligned} $$<br>$$ \begin{aligned}<br>I_{in} &amp;&#x3D; \frac{V^+e^{s\tau}}{Z_0} - -\frac{V^-e^{-s\tau}}{Z_0} \\<br>&amp;&#x3D; \frac{V^+}{Z_0} (e^{s\tau} + e^{-s\tau})<br>&amp;&#x3D;<br>$$</p>
 
             </div>
             <hr>
@@ -299,11 +300,17 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/travel/lifestyle/2025.11.27.08/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">城市驿站：芝加哥，香槟，伊利诺伊</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/profession/2025.08.21.20/">
+                      <a href="/profession/2025.08.21.22/">
                         <span class="hidden-mobile">tech-主动滤波器(8)：频率变换(3)</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>

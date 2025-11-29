@@ -1,0 +1,579 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="旅游日志，技术笔记，生活杂谈">
+  <meta name="author" content="雾杉cedar">
+  <meta name="keywords" content="test">
+  <title>tech-相位噪声与抖动的关系 - 四方喫茶舘</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>四方喫茶舘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/defaultbg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="tech-相位噪声与抖动的关系">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-07-07 22:42" pubdate>
+        July 7, 2025 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       mins reading time
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">tech-相位噪声与抖动的关系</h1>
+            
+            <div class="markdown-body">
+              <p>在现代数字通信系统和时钟生成电路中，相位噪声和抖动是两个关键的性能指标。本文将从理论基础出发，深入分析相位噪声与抖动之间的数学关系，并探讨其在工程实践中的应用意义。</p>
+<h2 id="1-理论基础"><a href="#1-理论基础" class="headerlink" title="1. 理论基础"></a>1. 理论基础</h2><h3 id="1-1-随机过程与平稳性"><a href="#1-1-随机过程与平稳性" class="headerlink" title="1.1 随机过程与平稳性"></a>1.1 随机过程与平稳性</h3><p>在分析相位噪声与抖动的关系之前，需要建立必要的随机过程理论基础。</p>
+<h4 id="1-1-1-平稳过程的定义"><a href="#1-1-1-平稳过程的定义" class="headerlink" title="1.1.1 平稳过程的定义"></a>1.1.1 平稳过程的定义</h4><p><strong>平稳过程（Stationary Process）</strong>是指其统计特性不随时间变化的随机过程。对于平稳过程，其均值和方差在时间上保持恒定。</p>
+<p><strong>宽平稳过程（Wide-Sense Stationary Process）</strong>是平稳过程的一个重要特例，其定义为：</p>
+<ul>
+<li>均值恒定：$E[X(t)] &#x3D; \mu_X$（常数）</li>
+<li>自相关函数仅依赖于时间差：$R_X(t_1, t_2) &#x3D; R_X(t_2 - t_1)$</li>
+</ul>
+<p>白噪声是宽平稳过程的典型例子。</p>
+<h4 id="1-1-2-自相关函数"><a href="#1-1-2-自相关函数" class="headerlink" title="1.1.2 自相关函数"></a>1.1.2 自相关函数</h4><p><strong>自相关函数（Autocorrelation Function）</strong>描述了随机过程在不同时间点之间的相关性：</p>
+<p>$$R_x(\tau) &#x3D; E[X(t)X(t+\tau)]$$</p>
+<p>对于白噪声，自相关函数具有以下特性：<br>$$R_{\text{white}}(\tau) &#x3D; \sigma^2 \delta(\tau)$$</p>
+<p>其中$\sigma^2$为噪声功率，$\delta(\tau)$为狄拉克函数。</p>
+<h3 id="1-2-频域分析理论"><a href="#1-2-频域分析理论" class="headerlink" title="1.2 频域分析理论"></a>1.2 频域分析理论</h3><h4 id="1-2-1-功率谱密度"><a href="#1-2-1-功率谱密度" class="headerlink" title="1.2.1 功率谱密度"></a>1.2.1 功率谱密度</h4><p><strong>功率谱密度（Power Spectral Density, PSD）</strong>描述了随机过程在频域中的功率分布：</p>
+<p>$$S_x(f) &#x3D; \lim_{T \to \infty} \frac{1}{T} E[|X_T(f)|^2]$$</p>
+<h4 id="1-2-2-维纳-辛钦定理"><a href="#1-2-2-维纳-辛钦定理" class="headerlink" title="1.2.2 维纳-辛钦定理"></a>1.2.2 维纳-辛钦定理</h4><p><strong>维纳-辛钦定理（Wiener-Khinchin Theorem）</strong>建立了时域自相关函数与频域功率谱密度之间的重要关系：</p>
+<p>$$S_x(f) &#x3D; \int_{-\infty}^{\infty} R_x(\tau) e^{-j2\pi f\tau} d\tau$$</p>
+<p>$$R_x(\tau) &#x3D; \int_{-\infty}^{\infty} S_x(f) e^{j2\pi f\tau} df$$</p>
+<p>这表明功率谱密度是自相关函数的傅里叶变换。</p>
+<h4 id="1-2-3-帕萨瓦尔定理"><a href="#1-2-3-帕萨瓦尔定理" class="headerlink" title="1.2.3 帕萨瓦尔定理"></a>1.2.3 帕萨瓦尔定理</h4><p><strong>帕萨瓦尔定理（Parseval’s Theorem）</strong>给出了时域和频域能量的等价关系：</p>
+<p>$$\int_{-\infty}^{\infty} |x(t)|^2 dt &#x3D; \int_{-\infty}^{\infty} S_x(f) df$$</p>
+<p>对于周期信号，有：<br>$$\int_{-\infty}^{\infty} S_x(f) df &#x3D; T \int_{-\frac{1}{2T}}^{\frac{1}{2T}} |x(t)|^2 dt$$</p>
+<p>其中$T$为信号周期。</p>
+<h3 id="1-3-时间与相位关系"><a href="#1-3-时间与相位关系" class="headerlink" title="1.3 时间与相位关系"></a>1.3 时间与相位关系</h3><p>相位与时间的基本关系由下式给出：<br>$$\Delta \phi &#x3D; \omega \Delta t$$</p>
+<p>其中：</p>
+<ul>
+<li>$\Delta \phi$：相位变化</li>
+<li>$\omega$：角频率</li>
+<li>$\Delta t$：时间间隔</li>
+</ul>
+<h2 id="2-抖动标准差与相位噪声的数学关系"><a href="#2-抖动标准差与相位噪声的数学关系" class="headerlink" title="2. 抖动标准差与相位噪声的数学关系"></a>2. 抖动标准差与相位噪声的数学关系</h2><h3 id="2-1-绝对抖动的定义"><a href="#2-1-绝对抖动的定义" class="headerlink" title="2.1 绝对抖动的定义"></a>2.1 绝对抖动的定义</h3><p>对于矩形波信号，<strong>绝对抖动（Absolute Jitter）</strong>定义为信号边沿相对于理想时刻的偏移。</p>
+<p>考虑第$k$个周期，如果相位噪声的时域表示为$\phi_n(t_k)$，则实际的相位满足：</p>
+<p>$$\omega_0 t_k + \phi_n(t_k) &#x3D; 2\pi k$$</p>
+<p>因此，绝对抖动可以表示为：</p>
+<p>$$<br>\begin{aligned}<br>a_k &amp;&#x3D; t_k - \frac{2\pi k}{\omega_0} \\<br>&amp;&#x3D; \frac{\phi_n(t_k)}{\omega_0}<br>\end{aligned}<br>$$</p>
+<h3 id="2-2-小信号近似分析"><a href="#2-2-小信号近似分析" class="headerlink" title="2.2 小信号近似分析"></a>2.2 小信号近似分析</h3><p>基于以下工程假设：</p>
+<ol>
+<li>绝对抖动是小量</li>
+<li>相位噪声在$kT_0$附近缓慢变化</li>
+</ol>
+<p>对相位噪声进行一阶泰勒展开：</p>
+<p>$$<br>\begin{aligned}<br>\phi_n(t_k) &amp;\approx \phi_n(kT_0 + a_k) \\<br>&amp;&#x3D; \phi_n(kT_0) + \frac{d\phi_n(t)}{dt}\bigg|_{t&#x3D;kT_0} a_k<br>\end{aligned}<br>$$</p>
+<p>将此式代入绝对抖动的表达式：</p>
+<p>$$<br>a_k &#x3D; \frac{\phi_n(kT_0)}{\omega_0 - \frac{d\phi_n(t)}{dt}\bigg|_{t&#x3D;kT_0}}<br>$$</p>
+<p>在小信号近似下，$\frac{d\phi_n(t)}{dt} \ll \omega_0$，因此：</p>
+<p>$$a_k \approx \frac{\phi_n(kT_0)}{\omega_0}$$</p>
+<h3 id="2-3-统计特性分析"><a href="#2-3-统计特性分析" class="headerlink" title="2.3 统计特性分析"></a>2.3 统计特性分析</h3><h4 id="2-3-1-自相关函数关系"><a href="#2-3-1-自相关函数关系" class="headerlink" title="2.3.1 自相关函数关系"></a>2.3.1 自相关函数关系</h4><p>将相位噪声视为宽平稳过程，其自相关函数为：<br>$$R_{\phi}(\tau) &#x3D; E[\phi_n(t)\phi_n(t+\tau)]$$</p>
+<p>相应地，抖动的自相关函数为：<br>$$R_{a}(m) &#x3D; E[a_k a_{k+m}]$$</p>
+<p>由于抖动是相位噪声的比例采样结果，可得：</p>
+<p>$$R_{a}(m) &#x3D; \frac{1}{\omega_0^2} R_{\phi}(mT_0)$$</p>
+<h4 id="2-3-2-功率谱密度关系"><a href="#2-3-2-功率谱密度关系" class="headerlink" title="2.3.2 功率谱密度关系"></a>2.3.2 功率谱密度关系</h4><p>应用维纳-辛钦定理，抖动的功率谱密度与相位噪声功率谱密度之间存在以下关系：</p>
+<p>$$S_a(f) &#x3D; \frac{1}{\omega_0^2} S_{\phi}(f)$$</p>
+<h3 id="2-4-抖动方差的计算"><a href="#2-4-抖动方差的计算" class="headerlink" title="2.4 抖动方差的计算"></a>2.4 抖动方差的计算</h3><p>假设抖动为零均值过程，其方差（即均方根抖动）可通过以下方式计算：</p>
+<p>$$<br>\begin{aligned}<br>\sigma_a^2 &amp;&#x3D; R_a(0) \\<br>&amp;&#x3D; \frac{1}{\omega_0^2} R_{\phi}(0) \\<br>&amp;&#x3D; \frac{1}{\omega_0^2} \int_{-\infty}^{\infty} S_{\phi}(f) df<br>\end{aligned}<br>$$</p>
+<p>这是相位噪声与抖动关系的核心结论：</p>
+<blockquote>
+<p><strong>随机抖动的方差等于相位噪声功率谱密度的积分除以角频率的平方。</strong></p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/profession/">profession</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/PLL/">PLL</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Phase-Noise/">Phase Noise</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Jitter/">Jitter</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Mathematics/">Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Signal-Processing/">Signal Processing</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/profession/2025.07.12.21/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">tech-主动滤波器(1)：巴特沃斯近似</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/lifestyle/2025.05.18.21/">
+                        <span class="hidden-mobile">城市驿站: Washington D.C.</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'http://blog.cedard.top/profession/2025.07.07.22/';
+        this.page.identifier = '/profession/2025.07.07.22/';
+      };
+      Fluid.utils.waitElementVisible('disqus_thread', function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
