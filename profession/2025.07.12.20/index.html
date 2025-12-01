@@ -1,0 +1,625 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="旅游日志，技术笔记，生活杂谈">
+  <meta name="author" content="雾杉cedar">
+  <meta name="keywords" content="test">
+  <title>tech-主动滤波器(2)：切比雪夫近似 - 四方喫茶舘</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>四方喫茶舘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/defaultbg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="tech-主动滤波器(2)：切比雪夫近似">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-07-12 20:02" pubdate>
+        July 12, 2025 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       mins reading time
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">tech-主动滤波器(2)：切比雪夫近似</h1>
+            
+            <div class="markdown-body">
+              <p>在上一篇中，我们讨论了巴特沃斯近似的设计方法及其特性。在深入探讨新的滤波器设计方法之前，我们需要首先分析一个关键问题：</p>
+<h2 id="1-巴特沃斯滤波器的局限性分析"><a href="#1-巴特沃斯滤波器的局限性分析" class="headerlink" title="1. 巴特沃斯滤波器的局限性分析"></a>1. 巴特沃斯滤波器的局限性分析</h2><p>巴特沃斯滤波器因其设计简单而在滤波器工程中被广泛采用。然而，在某些应用场景下，巴特沃斯滤波器并非最优选择。</p>
+<p>对于一个N阶滤波器，物理实现所需的最少无源元件（电感或电容）数量为N个。在实际工程设计中，通常给定通带最小增益和阻带最大增益的技术指标。巴特沃斯滤波器在通带内具有最大平坦特性，但这一特性在满足给定规格时可能过于严格。</p>
+<p>如本文将要证明的，切比雪夫滤波器通过在通带内引入可控的纹波，能够以更低的阶数实现相同的阻带衰减性能。这一特性在早期模拟滤波器设计中具有重要意义，因为较少的元件意味着更低的成本和更小的体积。即使在现代集成电路设计中，减少电容和电感的使用仍然意味着更小的芯片面积和更低的功耗。</p>
+<h2 id="2-第一类切比雪夫滤波器"><a href="#2-第一类切比雪夫滤波器" class="headerlink" title="2. 第一类切比雪夫滤波器"></a>2. 第一类切比雪夫滤波器</h2><h3 id="2-1-设计原理与幅度响应特性"><a href="#2-1-设计原理与幅度响应特性" class="headerlink" title="2.1 设计原理与幅度响应特性"></a>2.1 设计原理与幅度响应特性</h3><p>切比雪夫滤波器的典型幅度响应如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712230644.png"></p>
+<p>我们引入参数$\epsilon$来控制通带内的纹波幅度。定义滤波器的幅度平方响应为：</p>
+<p>$$|H(j\omega)|^2 &#x3D; \frac{1}{D(\omega^2)} &#x3D; \frac{1}{1 + \epsilon^2 F_1(\omega^2)}$$</p>
+<p>其中$F_1(\omega^2)$的理想特性函数应具有如下形式：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250712233123.png"></p>
+<h3 id="2-2-切比雪夫多项式的数学推导"><a href="#2-2-切比雪夫多项式的数学推导" class="headerlink" title="2.2 切比雪夫多项式的数学推导"></a>2.2 切比雪夫多项式的数学推导</h3><h4 id="2-2-1-插值法构造多项式"><a href="#2-2-1-插值法构造多项式" class="headerlink" title="2.2.1 插值法构造多项式"></a>2.2.1 插值法构造多项式</h4><p>基于$F_1$在$0$、$\omega_2$、$\omega_4$处的零点，可以构造如下多项式插值：</p>
+<p>$$F_1(\omega^2) &#x3D; k^2 \omega^2 (\omega^2 - \omega_2^2)^2(\omega^2 - \omega_4^2)^2$$</p>
+<p>对于$F_1(\omega^2) - 1$，考虑到其在$\omega_1$、$\omega_3$、$1$处的零点，可得：</p>
+<p>$$F_1(\omega^2) - 1 &#x3D; k^2 (\omega^2 - \omega_1^2)(\omega^2 - \omega_3^2)(\omega^2 - 1)$$</p>
+<p>设$C_5(\omega)^2 &#x3D; F_1(\omega^2)$，则：</p>
+<p>$$C_5(\omega) &#x3D; k \omega (\omega^2 - \omega_2^2)(\omega^2 - \omega_4^2)$$</p>
+<p>由于$C_5$在$\omega_1$、$\omega_3$处取得极值，对其求导可得：</p>
+<p>$$\frac{dC_5(\omega)}{d\omega} &#x3D; k_{unknown}(\omega^2 - \omega_1^2)(\omega^2 - \omega_3^2)$$</p>
+<h4 id="2-2-2-微分方程的建立与求解"><a href="#2-2-2-微分方程的建立与求解" class="headerlink" title="2.2.2 微分方程的建立与求解"></a>2.2.2 微分方程的建立与求解</h4><p>当$\omega \to \infty$时，$C_5(\omega) \approx k \omega^5$，因此其导数的主导项系数为$5k$，从而$k_{unknown} &#x3D; 5k$。</p>
+<p>比较$F_1 - 1$的两种表达式，可建立如下微分方程：</p>
+<p>$$(\frac{1}{5}\frac{dC_5}{d\omega})^2 &#x3D; \frac{C_5^2 - 1}{\omega^2 - 1}$$</p>
+<p>整理得：</p>
+<p>$$\frac{dC_5}{\sqrt{C_5^2 - 1}} &#x3D; \frac{5 d\omega}{\sqrt{\omega^2 - 1}}$$</p>
+<p>对两边积分：</p>
+<p>$$<br>\begin{aligned}<br>\int \frac{dC_5}{\sqrt{C_5^2 - 1}} &amp;&#x3D; \int \frac{5 d\omega}{\sqrt{\omega^2 - 1}} \\<br>\cosh^{-1}(C_5) &amp;&#x3D; 5 \cosh^{-1}(\omega) + C_{constant}<br>\end{aligned}<br>$$</p>
+<p>应用边界条件$C_5(1) &#x3D; 1$，得$C_{constant} &#x3D; -5 \cosh^{-1}(1) &#x3D; 0$。</p>
+<p>因此：</p>
+<p>$$C_5(\omega) &#x3D; \cosh(5\cosh^{-1}(\omega))$$</p>
+<h4 id="2-2-3-一般化结果"><a href="#2-2-3-一般化结果" class="headerlink" title="2.2.3 一般化结果"></a>2.2.3 一般化结果</h4><p>将上述结果推广至n阶情况：</p>
+<p>$$C_n(\omega) &#x3D; \cosh(n \cosh^{-1}(\omega))$$</p>
+<h3 id="2-3-切比雪夫多项式的完整定义"><a href="#2-3-切比雪夫多项式的完整定义" class="headerlink" title="2.3 切比雪夫多项式的完整定义"></a>2.3 切比雪夫多项式的完整定义</h3><h4 id="2-3-1-三角函数与双曲函数的关系"><a href="#2-3-1-三角函数与双曲函数的关系" class="headerlink" title="2.3.1 三角函数与双曲函数的关系"></a>2.3.1 三角函数与双曲函数的关系</h4><p>根据欧拉公式和双曲函数的定义，可得关键关系：</p>
+<p>$$\cosh(jx) &#x3D; \cos(x), \quad \cos(jx) &#x3D; \cosh(x)$$</p>
+<p>对于反函数的关系：</p>
+<ul>
+<li>当$x &gt; 1$时：$\cos^{-1}(x) &#x3D; j \cosh^{-1}(x)$</li>
+<li>当$0 &lt; x &lt; 1$时：$\cosh^{-1}(x) &#x3D; j \cos^{-1}(x)$</li>
+</ul>
+<h4 id="2-3-2-切比雪夫多项式的定义"><a href="#2-3-2-切比雪夫多项式的定义" class="headerlink" title="2.3.2 切比雪夫多项式的定义"></a>2.3.2 切比雪夫多项式的定义</h4><p>基于上述关系，切比雪夫多项式的完整定义为：</p>
+<p>$$T_n(\omega) &#x3D; \begin{cases}<br>\cosh(n \cosh^{-1}(\omega)), &amp; \text{当 }\omega \geq 1 \\<br>\cos(n \cos^{-1}(\omega)), &amp; \text{当 }0 \leq \omega \leq 1<br>\end{cases}$$</p>
+<h4 id="2-3-3-多项式性质的验证"><a href="#2-3-3-多项式性质的验证" class="headerlink" title="2.3.3 多项式性质的验证"></a>2.3.3 多项式性质的验证</h4><p>对于$|\omega| \leq 1$的情况，可以验证：</p>
+<p>$$<br>\begin{aligned}<br>T_1(\omega) &amp;&#x3D; \cos(\cos^{-1}(\omega)) &#x3D; \omega \\<br>T_2(\omega) &amp;&#x3D; \cos(2\cos^{-1}(\omega)) &#x3D; 2\omega^2 - 1<br>\end{aligned}<br>$$</p>
+<p>通过三角恒等式（倍角公式），可证明$T_n(\omega)$确实是$\omega$的n次多项式。</p>
+<h3 id="2-4-切比雪夫滤波器的工程术语"><a href="#2-4-切比雪夫滤波器的工程术语" class="headerlink" title="2.4 切比雪夫滤波器的工程术语"></a>2.4 切比雪夫滤波器的工程术语</h3><p>这种多项式以俄国数学家帕夫努季·切比雪夫（Pafnuty Chebyshev）命名，称为<strong>切比雪夫多项式</strong>。基于切比雪夫近似的滤波器称为<strong>切比雪夫滤波器</strong>，在文献中也常见以下术语：</p>
+<ul>
+<li><p><strong>等纹波滤波器（Equal Ripple Filter）</strong></p>
+<ul>
+<li>因其通带内的最大纹波幅度恒定</li>
+</ul>
+</li>
+<li><p><strong>最小最大值滤波器（Minimax Filter）</strong></p>
+<ul>
+<li>基于切比雪夫定理：在所有可能的n次多项式中，切比雪夫多项式使得其在给定区间内的最大偏差最小</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-切比雪夫多项式的重要性质"><a href="#3-切比雪夫多项式的重要性质" class="headerlink" title="3. 切比雪夫多项式的重要性质"></a>3. 切比雪夫多项式的重要性质</h2><h3 id="3-1-偶数阶与奇数阶的区别"><a href="#3-1-偶数阶与奇数阶的区别" class="headerlink" title="3.1 偶数阶与奇数阶的区别"></a>3.1 偶数阶与奇数阶的区别</h3><p>偶数阶切比雪夫多项式和奇数阶的最大最小值分布存在显著差异。</p>
+<p><strong>例题</strong>：四阶切比雪夫多项式在角频率为0时的值</p>
+<p>$$T_4(0) &#x3D; \cos(4\cos^{-1}(0)) &#x3D; \cos(4 \times \frac{\pi}{2}) &#x3D; \cos(2\pi) &#x3D; 1$$</p>
+<p><strong>重要结论</strong>：</p>
+<ul>
+<li>偶数阶切比雪夫多项式：在$\omega &#x3D; 0$处取最大值</li>
+<li>奇数阶切比雪夫多项式：在$\omega &#x3D; 0$处取最小值</li>
+</ul>
+<p>这导致偶数阶切比雪夫滤波器在直流处的幅度响应不为1，而是$\frac{1}{\sqrt{1 + \epsilon^2}}$，如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100146.png"></p>
+<h3 id="3-2-通带极值点的分布"><a href="#3-2-通带极值点的分布" class="headerlink" title="3.2 通带极值点的分布"></a>3.2 通带极值点的分布</h3><h4 id="3-2-1-通带最大值"><a href="#3-2-1-通带最大值" class="headerlink" title="3.2.1 通带最大值"></a>3.2.1 通带最大值</h4><p>通带最大值对应于切比雪夫多项式的最小值：</p>
+<p>$$\cos(n \cos^{-1}(\omega)) &#x3D; 0$$</p>
+<p>解得：</p>
+<p>$$\omega &#x3D; \cos\left(\frac{(2m + 1)\pi}{2n}\right), \quad m &#x3D; 0, 1, \ldots, n - 1$$</p>
+<h4 id="3-2-2-通带最小值"><a href="#3-2-2-通带最小值" class="headerlink" title="3.2.2 通带最小值"></a>3.2.2 通带最小值</h4><p>通带最小值对应于切比雪夫多项式的最大值：</p>
+<p>$$\cos(n \cos^{-1}(\omega)) &#x3D; 1$$</p>
+<p>解得：</p>
+<p>$$\omega &#x3D; \cos\left(\frac{2m\pi}{n}\right), \quad m &#x3D; 0, 1, \ldots, n - 1$$</p>
+<h3 id="3-3-纹波与阻带衰减的关系"><a href="#3-3-纹波与阻带衰减的关系" class="headerlink" title="3.3 纹波与阻带衰减的关系"></a>3.3 纹波与阻带衰减的关系</h3><p>通过允许一定的纹波，切比雪夫滤波器能够在通带内实现更陡峭的滚降特性。纹波越大，阻带衰减也越大：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713100845.png"></p>
+<p><strong>特殊情况</strong>：当$\epsilon &#x3D; 0$时，切比雪夫滤波器退化为巴特沃斯滤波器。</p>
+<h2 id="4-切比雪夫滤波器的极点分析"><a href="#4-切比雪夫滤波器的极点分析" class="headerlink" title="4. 切比雪夫滤波器的极点分析"></a>4. 切比雪夫滤波器的极点分析</h2><h3 id="4-1-极点方程的建立"><a href="#4-1-极点方程的建立" class="headerlink" title="4.1 极点方程的建立"></a>4.1 极点方程的建立</h3><p>切比雪夫滤波器的极点满足：</p>
+<p>$$1 + \epsilon^2 T_n^2(\omega) &#x3D; 0$$</p>
+<p>即：</p>
+<p>$$\cos(n \cos^{-1}(\frac{s}{j})) &#x3D; \pm \frac{j}{\epsilon}$$</p>
+<h3 id="4-2-极点的求解过程"><a href="#4-2-极点的求解过程" class="headerlink" title="4.2 极点的求解过程"></a>4.2 极点的求解过程</h3><p>设$n \cos^{-1}(\frac{s}{j}) &#x3D; u + jv$，其中$u, v \in \mathbb{R}$。</p>
+<p>使用三角恒等式：</p>
+<p>$$\cos(u + jv) &#x3D; \cos u \cosh v - j \sin u \sinh v &#x3D; \pm \frac{j}{\epsilon}$$</p>
+<p>分离实部和虚部：</p>
+<p>$$\begin{cases}<br>\cos u \cosh v &#x3D; 0 \\<br>-\sin u \sinh v &#x3D; \pm \frac{1}{\epsilon}<br>\end{cases}$$</p>
+<p>由于$u$和$v$是实数，要使实部为0，必须满足：</p>
+<p>$$u &#x3D; (2m + 1) \frac{\pi}{2}, \quad m &#x3D; 0, 1, 2, \ldots$$</p>
+<p>这使得$\sin u &#x3D; (-1)^m$。解第二个方程：</p>
+<p>$$v &#x3D; \pm \sinh^{-1}\frac{1}{\epsilon}$$</p>
+<h3 id="4-3-极点的最终表达式"><a href="#4-3-极点的最终表达式" class="headerlink" title="4.3 极点的最终表达式"></a>4.3 极点的最终表达式</h3><p>代入得到极点的形式：</p>
+<p>$$s &#x3D; \pm \sin\left(\frac{(2m + 1) \pi}{2n}\right) \sinh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right) + j \cos\left(\frac{(2m + 1) \pi}{2n}\right) \cosh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right)$$</p>
+<h3 id="4-4-极点的几何分布"><a href="#4-4-极点的几何分布" class="headerlink" title="4.4 极点的几何分布"></a>4.4 极点的几何分布</h3><p>极点的实部和虚部分别为：</p>
+<p>$$\begin{cases}<br>\sigma_0 &#x3D; \pm \sin\left(\frac{(2m + 1) \pi}{2n}\right) \sinh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right) \\<br>\omega_0 &#x3D; \cos\left(\frac{(2m + 1) \pi}{2n}\right) \cosh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right)<br>\end{cases}$$</p>
+<p>可以得到椭圆方程：</p>
+<p>$$\frac{\sigma_0^2}{\sinh^2\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right)} + \frac{\omega_0^2}{\cosh^2\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right)} &#x3D; 1$$</p>
+<p>这表明切比雪夫滤波器的极点分布在椭圆上，椭圆的半长轴和半短轴分别为：</p>
+<ul>
+<li>半长轴（虚轴）：$\cosh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right)$</li>
+<li>半短轴（实轴）：$\sinh\left(\frac{1}{n}\sinh^{-1}\frac{1}{\epsilon}\right)$</li>
+</ul>
+<p><strong>特殊情况</strong>：当$\epsilon \to 0$时，椭圆退化为单位圆，对应巴特沃斯滤波器。</p>
+<p>以下是5阶切比雪夫滤波器的极点分布示意图（$\epsilon &#x3D; 0.1$）：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250713110142.png"></p>
+<p>在下一篇中，我们将讨论切比雪夫滤波器的变种，即<strong>第二类切比雪夫滤波器</strong>，也被称为<strong>反切比雪夫滤波器</strong>。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/profession/">profession</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Mathematics/">Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Filter-Design/">Filter Design</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Active-Filter/">Active Filter</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Chebyshev-Filter/">Chebyshev Filter</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Signal-Processing/">Signal Processing</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/profession/2025.07.13.11/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">tech-主动滤波器(3)：第二类切比雪夫滤波器</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/profession/2025.07.12.19/">
+                        <span class="hidden-mobile">tech-主动滤波器(1)：巴特沃斯近似</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'http://blog.cedard.top/profession/2025.07.12.20/';
+        this.page.identifier = '/profession/2025.07.12.20/';
+      };
+      Fluid.utils.waitElementVisible('disqus_thread', function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

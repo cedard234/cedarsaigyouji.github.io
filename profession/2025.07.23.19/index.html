@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="旅游日志，技术笔记，生活杂谈">
+  <meta name="author" content="雾杉cedar">
+  <meta name="keywords" content="test">
+  <title>tech-主动滤波器(5)：双端LC滤波器(2) - 四方喫茶舘</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>四方喫茶舘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/defaultbg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="tech-主动滤波器(5)：双端LC滤波器(2)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2025-07-23 19:28" pubdate>
+        July 23, 2025 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       mins reading time
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">tech-主动滤波器(5)：双端LC滤波器(2)</h1>
+            
+            <div class="markdown-body">
+              <p>在上一节中，我们解释了如何使用双端LC滤波器的标准形式来设计一个全极点滤波器。总结起来，我们有以下的设计流程：</p>
+<ol>
+<li>设计传递函数$H(j\omega)$</li>
+<li>进行各种归一化假设</li>
+<li>通过$H(j\omega)$推导反射系数$\Gamma(s)$</li>
+<li>通过$\Gamma(s)$推导输入阻抗$Z_{in}(s)$</li>
+<li>通过$Z_{in}(s)$推导整个滤波器的电路结构</li>
+</ol>
+<p>我们知道，使用双端LC滤波器的标准形式，输入阻抗可以表示为：</p>
+<p>$$Z_{in}(s) &#x3D; sL_1 + \cfrac{1}{sC_1 + \cfrac{1}{sL_3 + \cfrac{1}{\ddots}}}$$</p>
+<p>这是一个有限的连分数形式。我们可以通过这个公式推导出$Z_{in}(s)$，从而得到滤波器的电路结构。</p>
+<p>本节将对LC标准形式进行总结，并讲解一些特殊情况的处理方法。</p>
+<h2 id="1-全极点LC滤波器的性质"><a href="#1-全极点LC滤波器的性质" class="headerlink" title="1. 全极点LC滤波器的性质"></a>1. 全极点LC滤波器的性质</h2><p>双端LC滤波器具有以下重要性质：</p>
+<ol>
+<li><strong>反射系数特性</strong>：在通带内，反射系数几乎为0；在阻带内，反射系数接近1</li>
+<li><strong>零点特性</strong>：在传递函数的零点处，反射系数为0</li>
+<li><strong>阶数限制</strong>：使用LC标准形式，我们只能实现传递函数的分子和分母阶数差不超过1的滤波器<ul>
+<li>这是因为在频率趋近于无穷时，输入阻抗只能表现为L、R、C中任意一种形式的特性</li>
+</ul>
+</li>
+<li><strong>可实现的滤波器类型</strong>：<ul>
+<li>奇数阶或偶数阶巴特沃斯滤波器</li>
+<li>奇数阶第一类切比雪夫滤波器</li>
+<li><strong>无法实现偶数阶第一类切比雪夫滤波器</strong>，因为其直流增益不等于1&#x2F;2</li>
+</ul>
+</li>
+</ol>
+<p>那么，我们能否实现第二类切比雪夫滤波器？答案是肯定的，但需要对双端LC标准形式做适当的改进。</p>
+<h2 id="2-第二类切比雪夫滤波器的电路实现"><a href="#2-第二类切比雪夫滤波器的电路实现" class="headerlink" title="2. 第二类切比雪夫滤波器的电路实现"></a>2. 第二类切比雪夫滤波器的电路实现</h2><h3 id="2-1-有限零点与谐振回路"><a href="#2-1-有限零点与谐振回路" class="headerlink" title="2.1 有限零点与谐振回路"></a>2.1 有限零点与谐振回路</h3><p>第二类切比雪夫滤波器具有有限零点，而标准的双端LC形式只能实现全极点滤波器。因此，仅使用标准形式无法插入有限零点，从而无法实现第二类切比雪夫滤波器。</p>
+<p>解决方案是引入<strong>谐振回路(Resonant Tank)</strong> 。</p>
+<h4 id="并联谐振回路"><a href="#并联谐振回路" class="headerlink" title="并联谐振回路"></a>并联谐振回路</h4><p>并联谐振回路的结构如下：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723205716.png"></p>
+<p>对于并联谐振回路，其输入阻抗为：</p>
+<p>$$Z_{in}(j\omega) &#x3D; \frac{1}{j\omega C} \parallel j\omega L &#x3D; \frac{j\omega L&#x2F;C}{1 - \omega^2 LC}$$</p>
+<h4 id="串联谐振回路"><a href="#串联谐振回路" class="headerlink" title="串联谐振回路"></a>串联谐振回路</h4><p>对于串联谐振回路，其输入阻抗为：</p>
+<p>$$Z_{in}(j\omega) &#x3D; j\omega L + \frac{1}{j\omega C} &#x3D; -j\frac{1 - \omega^2 LC}{\omega C}$$</p>
+<h4 id="谐振特性"><a href="#谐振特性" class="headerlink" title="谐振特性"></a>谐振特性</h4><p>在$\omega &#x3D; \frac{1}{\sqrt{LC}}$时：</p>
+<ul>
+<li>串联谐振回路的阻抗为0</li>
+<li>并联谐振回路的阻抗为无穷大</li>
+</ul>
+<p>这个特殊的角频率称为**谐振频率(Resonant Frequency)**。利用谐振回路的这一特性，我们就可以在滤波器中插入有限零点。</p>
+<h3 id="2-2-设计实例：三阶第二类切比雪夫滤波器"><a href="#2-2-设计实例：三阶第二类切比雪夫滤波器" class="headerlink" title="2.2 设计实例：三阶第二类切比雪夫滤波器"></a>2.2 设计实例：三阶第二类切比雪夫滤波器</h3><p>让我们尝试实现一个三阶第二类切比雪夫滤波器，使用如下电路结构：</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20250723210641.png"></p>
+<h4 id="2-2-1-输入阻抗函数"><a href="#2-2-1-输入阻抗函数" class="headerlink" title="2.2.1 输入阻抗函数"></a>2.2.1 输入阻抗函数</h4><p>三阶第二类切比雪夫滤波器对应的输入阻抗为：</p>
+<p>$$Z_{in}(s) &#x3D; \frac{2s^3 + 0.6746s^2 + 0.2271s + 0.0400}{0.6746s^2 + 0.2271s + 0.0400}$$</p>
+<blockquote>
+<p><strong>设计提示</strong> (Shanthi Pavan): 当设计具有无理系数的滤波器时，舍入规则的经验法则是保持有效数字位数等于滤波器的阶数。例如，三阶滤波器应保留3位有效数字。否则，舍入误差会在求解电路其余部分时产生负阻抗。</p>
+</blockquote>
+<h4 id="2-2-2-高频特性分析"><a href="#2-2-2-高频特性分析" class="headerlink" title="2.2.2 高频特性分析"></a>2.2.2 高频特性分析</h4><p>在无限频率时，由于电容短路，电感占据阻抗的主导地位，因此：</p>
+<p>$$L_1 + L_2 \parallel L_3 &#x3D; \frac{2}{0.6746}$$</p>
+<h4 id="2-2-3-零点条件"><a href="#2-2-3-零点条件" class="headerlink" title="2.2.3 零点条件"></a>2.2.3 零点条件</h4><p>由于$Z_{in}(s) &#x3D; sL_1 + Z_{in1}(s)$，我们需要确保在传递函数的零点处，串联谐振回路的阻抗为0。</p>
+<p>这样设计的原因有两个：</p>
+<ul>
+<li>在传递函数的零点处，反射系数为0</li>
+<li>当谐振回路将剩余阻抗全部短路时，所有输入能量都被反射，负载端电压为0</li>
+</ul>
+<p>因此，在零点频率$\omega_z$处：</p>
+<p>$$Z_{in}(j\omega_z) &#x3D; j\omega_z L_1$$</p>
+<p>通过计算可得：$L_1 &#x3D; 2.8384\text{H}$</p>
+<h4 id="2-2-4-剩余电路分析"><a href="#2-2-4-剩余电路分析" class="headerlink" title="2.2.4 剩余电路分析"></a>2.2.4 剩余电路分析</h4><p>去掉$L_1$后，剩余部分的输入导纳为：</p>
+<p>$$Y_{in}(s) &#x3D; \frac{0.6742s^2 + 0.2271s + 0.0400}{0.0852s^3 + 0.0299s^2 + 0.1135s + 0.0400}$$</p>
+<p>串联谐振回路的导纳为：</p>
+<p>$$Y_{\text{resonant}}(s) &#x3D; \frac{sC_2}{1 + s^2L_2C_2}$$</p>
+<p>在$\omega_z$处，导纳趋近于无穷大，且$\omega_z &#x3D; \frac{1}{\sqrt{L_2C_2}}$。</p>
+<p>关键观察：在接近$\omega_z$时，$Y_{\text{resonant}}(s)$和$Y_{in1}(s)$的行为非常相似：</p>
+<p>$$\lim_{s \to j\omega_z} Y_{in1}(s) &#x3D; \lim_{s \to j\omega_z} Y_{\text{resonant}}(s)$$</p>
+<p>由于只有一个未知数，可求得：$C_2 &#x3D; 5.6745\text{F}$</p>
+<p>剩余求解过程比较直接。使用与上一节相同的方法，可求得：$L_3 &#x3D; 2.838\text{H}$</p>
+<p>代入所有值后，剩余阻抗为1Ω，正符合我们的负载预期。</p>
+<h3 id="2-3-偶数阶第二类切比雪夫滤波器的局限性"><a href="#2-3-偶数阶第二类切比雪夫滤波器的局限性" class="headerlink" title="2.3 偶数阶第二类切比雪夫滤波器的局限性"></a>2.3 偶数阶第二类切比雪夫滤波器的局限性</h3><p>很遗憾，我们无法使用双端LC滤波器实现偶数阶第二类切比雪夫滤波器，因为在频率趋近无穷大时，要求的传递函数值非零，这与LC电路的物理特性相矛盾。</p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>本节完成了对双端LC滤波器标准形式的总结，并介绍了如何使用谐振回路来实现奇数阶第二类切比雪夫滤波器。</p>
+<p>到目前为止，我们的讨论都集中在低通滤波器的设计。读者可能会好奇：我们如何设计其他类型的滤波器——高通、带通、带阻滤波器？</p>
+<p>在接下来的章节中，我们将展示一种优雅的数学变换方法，通过频率变换技术，可以将一个低通原型滤波器等价地转换为其他类型的滤波器。这种方法不仅在理论上具有重要意义，在工程实践中也有广泛应用。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/profession/">profession</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Mathematics/">Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Filter-Design/">Filter Design</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Active-Filter/">Active Filter</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Signal-Processing/">Signal Processing</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Doubly-Terminated-LC-Filter/">Doubly-Terminated LC Filter</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/profession/2025.07.23.21/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">tech-主动滤波器(6)：频率变换(1)</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/essay/2025.07.22.22/">
+                        <span class="hidden-mobile">essay-Rock and Roll Ain't Noise Pollution</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'http://blog.cedard.top/profession/2025.07.23.19/';
+        this.page.identifier = '/profession/2025.07.23.19/';
+      };
+      Fluid.utils.waitElementVisible('disqus_thread', function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
