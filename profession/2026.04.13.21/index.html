@@ -1,0 +1,679 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.jpg">
+  <link rel="icon" type="image/png" href="/img/favicon.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="旅游日志，技术笔记，生活杂谈">
+  <meta name="author" content="雾杉cedar">
+  <meta name="keywords" content="test">
+  <title>Poisson Point Process(PPP) and Bit Error Rate(BER) - 四方喫茶舘</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.cedard.top","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":50,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":6},"lazyload":{"enable":false,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>四方喫茶舘</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/defaultbg.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Poisson Point Process(PPP) and Bit Error Rate(BER)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2026-04-13 21:42" pubdate>
+        April 13, 2026 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      41
+       mins reading time
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Poisson Point Process(PPP) and Bit Error Rate(BER)</h1>
+            
+            <div class="markdown-body">
+              <p>I realize when I’m sharing my knowledge about my colleagues, they are largely not Chinese users. Therefore I’ll try to mark things down in English starting from today, in my blog.</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>I was taking <a target="_blank" rel="noopener" href="https://undergraduate.catalog.berkeley.edu/courses/1220251">STAT150</a> last semester from UC Berkeley. Although the teaching wasn’t as engaging as I wished for, I was able to grasp most of the useful key concepts. One of the very useful mathematical models was the Poisson point process. </p>
+<p>I encountered this process once again when I was doing my link measurement, when we were supposed to benchmark the chip’s bit error rate.</p>
+<p>Here are two questions that arise from this:</p>
+<blockquote>
+<ol>
+<li>If a link has a bit error rate of $10^{-15}$, what does this mean?<ul>
+<li>Does this mean that if I send $10^{15}$ bits, I’m likely to see 1 error, or I’m likely to see some error?</li>
+</ul>
+</li>
+<li>If I were to benchmark a link’s performance, how many bits should I send in order to confidently say that the link has a BER less than $10^{-15}$?<ul>
+<li>Does sending $10^{15}$ bits and observing no error suffice?</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>Without giving direct answers to both questions, let’s review some fundamentals.</p>
+<h2 id="Poisson-Distribution"><a href="#Poisson-Distribution" class="headerlink" title="Poisson Distribution"></a>Poisson Distribution</h2><p>We give the formal definition of a 1D Poisson distribution here.</p>
+<blockquote>
+<p><strong>Definition (Poisson Distribution):</strong><br>A random variable $X$ follows a Poisson distribution with parameter $\lambda &gt; 0$, denoted $X \sim \text{Poisson}(\lambda)$, if its probability mass function (PMF) is given by:</p>
+<p>$$<br>\begin{align}<br>P(X &#x3D; k) &#x3D; \frac{\lambda^k e^{-\lambda}}{k!}, \quad k &#x3D; 0, 1, 2, \ldots<br>\end{align}<br>$$</p>
+<p>where $k!$ denotes the factorial of $k$.</p>
+</blockquote>
+<p><strong>Key Properties:</strong></p>
+<p>The mean and variance of a Poisson distribution are both equal to the parameter $\lambda$:</p>
+<p>$$<br>\begin{align}<br>E[X] &amp;&#x3D; \lambda \\<br>\text{Var}(X) &amp;&#x3D; \lambda<br>\end{align}<br>$$</p>
+<p><strong>Intuitive Interpretation:</strong></p>
+<p>The Poisson distribution models the number of events occurring in a fixed interval of time or space, given that events occur independently at a constant average rate. The parameter $\lambda$ represents the expected number of events in that interval.</p>
+<p><strong>Common Applications:</strong></p>
+<ul>
+<li>Number of arrivals in a queue during a time period</li>
+<li>Number of photons detected by a sensor in a fixed duration</li>
+<li>Number of errors in a data transmission over a fixed number of bits</li>
+<li>Number of radioactive decays in a given time window</li>
+</ul>
+<h2 id="Poisson-Point-Process"><a href="#Poisson-Point-Process" class="headerlink" title="Poisson Point Process"></a>Poisson Point Process</h2><blockquote>
+<p><strong>Definition (Poisson Point Process):</strong></p>
+<p>A Poisson point process (PPP) with rate (or intensity) $\lambda &gt; 0$ is a stochastic process ${N(t) : t \geq 0}$ that counts the number of events occurring in the time interval $[0, t]$. It satisfies the following properties:</p>
+<ol>
+<li><p><strong>Independent Increments:</strong> For any non-overlapping intervals $[t_1, t_2)$ and $[t_3, t_4)$ with $t_2 \leq t_3$, the number of events in these intervals are independent random variables.</p>
+</li>
+<li><p><strong>Stationary Increments:</strong> The distribution of the number of events in any interval depends only on the length of that interval, not on its starting time. Specifically, for any $t &gt; 0$ and $s \geq 0$:<br>$$<br>\begin{align}<br>N(s + t) - N(s) \sim \text{Poisson}(\lambda t)<br>\end{align}<br>$$</p>
+</li>
+<li><p><strong>No Multiple Events:</strong> The probability of more than one event occurring in an infinitesimal time interval $dt$ is negligible, i.e., $o(dt)$.</p>
+</li>
+<li><p><strong>Initial Condition:</strong> $N(0) &#x3D; 0$.</p>
+</li>
+</ol>
+</blockquote>
+<p><strong>Counting Process Characterization:</strong></p>
+<p>For a Poisson point process with rate $\lambda$, the number of events $N(t)$ in a time interval $[0, t]$ follows a Poisson distribution:</p>
+<p>$$<br>\begin{align}<br>P(N(t) &#x3D; k) &#x3D; \frac{(\lambda t)^k e^{-\lambda t}}{k!}, \quad k &#x3D; 0, 1, 2, \ldots<br>\end{align}<br>$$</p>
+<p>The expected number of events in time $t$ is:</p>
+<p>$$<br>\begin{align}<br>E[N(t)] &#x3D; \lambda t<br>\end{align}<br>$$</p>
+<p><strong>Inter-arrival Times:</strong></p>
+<p>An important consequence of the Poisson point process is that the time intervals between consecutive events (inter-arrival times) are independent and exponentially distributed with rate $\lambda$. If $T_i$ denotes the time until the $i$-th event, then:</p>
+<p>$$<br>\begin{align}<br>T_i \sim \text{Exponential}(\lambda), \quad f(t) &#x3D; \lambda e^{-\lambda t}, \quad t \geq 0<br>\end{align}<br>$$</p>
+<p><strong>Condition on Event Count:</strong></p>
+<p>If we know $N(t) &#x3D; k$, the positions of the $k$ events in the interval $[0, t]$ are distributed as independent and uniformly on $[0, t]$.</p>
+<h2 id="How-does-this-relate-to-bit-error-rate"><a href="#How-does-this-relate-to-bit-error-rate" class="headerlink" title="How does this relate to bit error rate?"></a>How does this relate to bit error rate?</h2><p>If we operate a link, whether it will yield an error depends on whether the random jitter exceeds the eye width, thus we sample the incorrect data. Random jitter, however, follows a Gaussian distribution. If we assume the clock is centered at the quadrature point, and the eye width happens to be $6\sigma$, then we immediately arrive at the conclusion that the probability of success is $99.6%$. Given the clock is usually from a PLL whose jitter profile is a stationary process (after observing longer than the loop constant), we can safely say between symbols, the error probability is independent. Of course this is a very crude assumption because factors such as inter-symbol interference from a low-pass channel are not taken into account, but for simplicity let’s move forward with this assumption.</p>
+<p>A quick note is that an open loop oscillator’s jitter sequence is not a stationary process; it’s a random walk. Meaning if we observe long enough, the oscillator’s phase deviation will grow unbounded. In the time domain, the jitter is just the instantaneous standard deviation, which grows over time.</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20260413221200.png" alt="Jitter Accumulation"></p>
+<p>Now, if we observe 10 such samples, each of them has independent success probability of $99.6%$, it shouldn’t be hard to see that the probability of all 10 samples being successful is $(0.996)^{10}$. The probability of having 1 error will be if one of them is having an error, and all others are successful. To extend this result, the error profile should follow a binomial distribution:</p>
+<p>$$<br>\begin{align}<br>\text{Error} \sim \text{Bin}(N, p)<br>\end{align}<br>$$</p>
+<p>where $N$ is the number of bits sent, and $p$ is the probability of error for each bit.</p>
+<p>This whole story now sounds like we are flipping an uneven coin every single time, and the total error count follows a binomial distribution. How does this relate to Poisson process?</p>
+<h2 id="Law-of-Rare-Events"><a href="#Law-of-Rare-Events" class="headerlink" title="Law of Rare Events"></a>Law of Rare Events</h2><blockquote>
+<p><strong>Theorem (Law of Rare Events, Poisson Limit Theorem):</strong></p>
+<p>Let $X_n \sim \text{Bin}(n, p_n)$ be a sequence of binomial random variables where $n \to \infty$ and $p_n \to 0$ such that $n \cdot p_n \to \lambda$ for some constant $\lambda &gt; 0$. Then:</p>
+<p>$$<br>\begin{align}<br>\lim_{n \to \infty} P(X_n &#x3D; k) &#x3D; \frac{\lambda^k e^{-\lambda}}{k!}, \quad k &#x3D; 0, 1, 2, \ldots<br>\end{align}<br>$$</p>
+<p>In other words, $X_n \xrightarrow{d} X$ where $X \sim \text{Poisson}(\lambda)$.</p>
+</blockquote>
+<p><strong>Intuitive Explanation:</strong></p>
+<p>The Law of Rare Events states that when we have a large number of independent trials, each with a very small probability of success, the number of successes approximately follows a Poisson distribution. The key condition is that the product $n \cdot p$ (the expected number of events) remains constant as $n$ increases and $p$ decreases.</p>
+<p><strong>Practical Implications for Bit Error Rate:</strong></p>
+<p>In our BER context:</p>
+<ul>
+<li>$N$ is very large (number of bits transmitted)</li>
+<li>$p$ is very small (bit error probability, e.g., $10^{-15}$)</li>
+<li>The product $\lambda &#x3D; N \cdot p$ is the expected number of bit errors</li>
+</ul>
+<p><strong>Why This Matters:</strong></p>
+<p>Computing probabilities with a binomial distribution requires calculating factorials and large powers, which is computationally expensive. The Poisson approximation provides:</p>
+<p>$$<br>\begin{align}<br>P(\text{Error count} &#x3D; k) \approx \frac{(Np)^k e^{-Np}}{k!}<br>\end{align}<br>$$</p>
+<p>This is much simpler to work with, especially for answering our original questions about BER testing.</p>
+<h2 id="To-Answer-the-Two-BER-Related-Questions"><a href="#To-Answer-the-Two-BER-Related-Questions" class="headerlink" title="To Answer the Two BER-Related Questions"></a>To Answer the Two BER-Related Questions</h2><p>Now, let’s answer the two questions we had from the beginning.</p>
+<p><strong>Question 1: If a link has BER &#x3D; $10^{-15}$, what does this mean?</strong></p>
+<p>This means that, on average, we expect 1 error for every $10^{15}$ bits transmitted. In other words, the probability of any single bit being in error is $10^{-15}$. However, it’s totally possible that we receive 0 errors, 2 errors, 3 errors, and if you get super unlucky, all your received bits are erroneous, but this is super, super, super, super unlikely, although the probability is not zero.</p>
+<p>We use the following table to illustrate the probabilities of different error counts when we send exactly $10^{15}$ bits with BER &#x3D; $10^{-15}$:</p>
+<table>
+<thead>
+<tr>
+<th>Error Count $k$</th>
+<th>$P(\text{Error} &#x3D; k)$</th>
+<th>Cumulative Probability</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>$e^{-1} \approx 0.3679$</td>
+<td>36.79%</td>
+<td>No errors observed</td>
+</tr>
+<tr>
+<td>1</td>
+<td>$e^{-1} \approx 0.3679$</td>
+<td>73.58%</td>
+<td>Exactly 1 error</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$\frac{1}{2}e^{-1} \approx 0.1839$</td>
+<td>89.97%</td>
+<td>Exactly 2 errors</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$\frac{1}{6}e^{-1} \approx 0.0613$</td>
+<td>96.10%</td>
+<td>Exactly 3 errors</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$\frac{1}{24}e^{-1} \approx 0.0153$</td>
+<td>98.63%</td>
+<td>Exactly 4 errors</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$\frac{1}{120}e^{-1} \approx 0.0031$</td>
+<td>99.94%</td>
+<td>Exactly 5 errors</td>
+</tr>
+<tr>
+<td>$\geq 6$</td>
+<td>$\approx 0.0006$</td>
+<td>$\geq 99.94%$</td>
+<td>6 or more errors</td>
+</tr>
+</tbody></table>
+<p><strong>Interpretation:</strong></p>
+<p>With $\lambda &#x3D; 10^{15} \times 10^{-15} &#x3D; 1$, the error count follows a Poisson distribution with parameter $\lambda &#x3D; 1$. The table reveals several surprising facts:</p>
+<ol>
+<li><strong>Zero errors are most likely:</strong> There’s a 36.79% chance of observing no errors at all!</li>
+<li><strong>One error is equally likely:</strong> One error is also expected with 36.79% probability.</li>
+<li><strong>Multiple errors are possible:</strong> There’s a 27.4% chance of observing 2 or more errors.</li>
+</ol>
+<p>This directly answers your first question: sending $10^{15}$ bits with BER $10^{-15}$ <strong>does NOT guarantee</strong> you’ll see exactly 1 error. You’re actually more likely to see either 0 or 1 error, with roughly equal probability.</p>
+<p><strong>Question 2: How many bits should I send to confidently establish BER &lt; $10^{-15}$?</strong></p>
+<p>This is more complex and requires statistical hypothesis testing. However, we can provide some intuition using the Poisson model.</p>
+<p>If we observe 0 errors after sending $N$ bits, what can we claim about the BER? Using the Poisson approximation with $\lambda &#x3D; N \cdot p$:</p>
+<p>$$<br>\begin{align}<br>P(\text{0 errors observed} \mid \text{true BER} &#x3D; p) &#x3D; e^{-Np}<br>\end{align}<br>$$</p>
+<p>Now, here comes a concept called “confidence level.” Confidence level means the probability of getting ourselve right. For example, if we want to confirm our bit error rate is &lt;1e-15, but we only send 10 bits and see 0 errors, the confidence that I can safely say my bit error rate is &lt;1e-15 is very low. However if I send 1e27 bits and I see 0 error so far, I can very confidently say that the link has BER &lt;1e-15.</p>
+<p>Then, how do we set our confidence level? What does this mean intuitively? Let’s take it the contrapositive way:</p>
+<ul>
+<li>If I know my bit error rate &#x3D; 1e-15, that means if I send 3e15 bits, it’s 95% probable that I’ll see at least 1 error.</li>
+<li>The contrapositive of the above statement is that, if I observe 0 errors after sending 3e15 bits, I can be 95% confident that the true BER is less than 1e-15.</li>
+</ul>
+<p>The math is shown below:</p>
+<p>$$<br>\begin{align}<br>e^{-Np} &amp;&#x3D; 0.05 \\<br>-Np &amp;&#x3D; \ln(0.05) \\<br>Np &amp;\approx 2.996 \approx 3<br>\end{align}<br>$$</p>
+<p>This means to claim BER &lt; $10^{-15}$ with 95% confidence after observing zero errors, we need:</p>
+<p>$$<br>\begin{align}<br>N \cdot 10^{-15} &amp;&#x3D; 3 \\<br>N &amp;&#x3D; 3 \times 10^{15}<br>\end{align}<br>$$</p>
+<p><strong>So the answer to Question 2 is: No, sending $10^{15}$ bits and observing no error does NOT suffice.</strong> You would need to send approximately $3 \times 10^{15}$ bits to claim with 95% confidence that the BER is less than $10^{-15}$.</p>
+<h2 id="Beyond-Raw-BER-testing"><a href="#Beyond-Raw-BER-testing" class="headerlink" title="Beyond Raw BER testing"></a>Beyond Raw BER testing</h2><p>SiTime has this useful <a target="_blank" rel="noopener" href="https://www.sitime.com/support/design-development-tools/ber-confidence-level-calculator">webpage</a> to calculate the experiment time based on the required confidence level and desired accuracy.</p>
+<p>In real practice, sending 1e27 bits is usually not physically possible. Take a 256Gbps parallel link for example, 1e27 bits testing will take 3.9e15 seconds, meaning 1e12 hours, meaning 123 million years to complete. I am not sure if human civilization will still exist by then. Therefore instead, people assume a jitter profile (DJ+RJ), for example dual dirac + Gaussian, and use only RJ component to estimate the true bit error rate. This is also known as the bathtub method.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/profession/">profession</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Mathematics/">Mathematics</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Stochastic-Process/">Stochastic Process</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Probability-Theory/">Probability Theory</a>
+                    
+                      <a class="hover-with-bg" href="/tags/SerDes/">SerDes</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/travel/lifestyle/2025.11.27.08/">
+                        <span class="hidden-mobile">城市驿站：伊利诺伊之冬</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'http://blog.cedard.top/profession/2026.04.13.21/';
+        this.page.identifier = '/profession/2026.04.13.21/';
+      };
+      Fluid.utils.waitElementVisible('disqus_thread', function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + 'fluid' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+    
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
