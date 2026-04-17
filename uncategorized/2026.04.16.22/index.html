@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      26
        mins reading time
     </span>
   
@@ -259,20 +259,37 @@
 <p>$$ V_{out} &#x3D; A(V_+ - V_-) $$</p>
 <p>where $V_+$ and $V_-$ are the voltages at the non-inverting and inverting inputs, respectively.</p>
 <p>Now we try to use that relationship to analyze the behavior of the unit buffer. We realize that here we have  $V_- &#x3D; V_{out}$, so solving the equation we have:</p>
-<p>$$<br> V_{out} &#x3D; A(V_+ - V_{out}) \\<br> V_{out} &#x3D; \frac{A}{1+A} V_+<br>$$</p>
+<p>$$<br> V_{out} &#x3D; A(V_{in} - V_{out}) \\<br> V_{out} &#x3D; \frac{A}{1+A} V_{in}<br>$$</p>
 <p>Now, if we find the transfer function from input to output, we identify</p>
-<p>$$ H(s) &#x3D; \frac{V_{out}(s)}{V_+(s)} &#x3D; \frac{A}{1+A} \neq 1 $$</p>
+<p>$$ H(s) &#x3D; \frac{V_{out}(s)}{V_{in}(s)} &#x3D; \frac{A}{1+A} \neq 1 $$</p>
 <p>which basically means that the output is going to be just slightly smaller compared to the input. </p>
 <p>The reason we would like to make our amplifier to be infinite gain is that, if $A \to \infty$, we easily have</p>
 <p>$$<br>H(s) &#x3D; \lim_{A \to \infty} \frac{A}{1+A} &#x3D; 1<br>$$</p>
 <p>which means that the output will approach the input as the gain approaches infinity; otherwise there will be an error term between the real output versus the desired output, which is given by</p>
-<p>$$ \begin{align}<br>\Delta V &amp;&#x3D; V_{out,desired} - V_{out,real} \\<br>&amp;&#x3D; V_+ - V_{out,real} \\<br>&amp;&#x3D; V_+ - \frac{A}{1+A} V_+ \\<br>&amp;&#x3D; \frac{1}{1+A} V_+<br>\end{align}<br>$$<br>We can conclude two things from this expression:</p>
+<p>$$ \begin{align}<br>\Delta V &amp;&#x3D; V_{out,desired} - V_{out,real} \\<br>&amp;&#x3D; V_{in} - V_{out,real} \\<br>&amp;&#x3D; V_{in} - \frac{A}{1+A} V_{in} \\<br>&amp;&#x3D; \frac{1}{1+A} V_{in}<br>\end{align}<br>$$<br>We can conclude two things from this expression:</p>
 <ol>
 <li>The error is inversely proporfional to $(1+A)$. The larger the gain is, the smaller the error is. However, if the gain is finite, no matter what non-zero input we see, the output can never achieve the desired value.</li>
 <li>The larger the input voltage is, the larger the error is.</li>
 </ol>
 <p>We call the error value between the desired and actual output the <strong>steady-state error</strong>. This phenomenon happens in closed-loop systems where we would like to control a control plant to approach a value that we want, in this example, the OpAmp is both a controller, a control plant and a detector. </p>
 <p>Now, the question becomes if we are able to reduce this error at all. </p>
+<h2 id="The-Temporary-Elixir-An-Capacitor"><a href="#The-Temporary-Elixir-An-Capacitor" class="headerlink" title="The Temporary Elixir: An Capacitor"></a>The Temporary Elixir: An Capacitor</h2><p>The fix is surprisingly simple. We replace the resistor with a pure capacitor:</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/mathgmC_integrator.png" alt="gmC_integrator"></p>
+<p>Let’s do a time-domain calculation here first. Let’s assume the output current of the $g_m$ cell is defined as $i$, then we have the relationship between $V_{out}$ and $i$:</p>
+<p>$$<br>\begin{align}<br>i &amp;&#x3D; g_m (V_{in} - V_{out}) \\<br>i &amp;&#x3D; C\frac{dV_{out}}{dt}<br>\end{align}<br>$$</p>
+<p>This ODE is not too hard to solve by hand. Assume a 0 initial condition on $V_{out}$, we have</p>
+<p>$$<br>V_{out} &#x3D; V_{in} (1 - e^{-\frac{g_m t}{C}})<br>$$<br><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20260416232959.png" alt="step response"></p>
+<p>The assumption that we had initial condition 0 is equivalent to say that, if we provide a step response at the input, the output looks like a exponential decay curve that gradually goes to the input voltage. If we let $t \to \infty$, then we can easily see that<br>$$<br>\lim_{t \to \infty} V_{out} &#x3D; V_{in}<br>$$<br>Nothing too fancy here; however, let’s move one step further; how about it if my input is not a step function, but a ramp function?</p>
+<h2 id="Ramp-Response"><a href="#Ramp-Response" class="headerlink" title="Ramp Response"></a>Ramp Response</h2><p>Same circuit, but now my $V_{in} &#x3D; t$. What happens to $V_{out}$?<br>The ODE now becomes:</p>
+<p>$$<br>\begin{align}<br>V_{in}(t) &amp;&#x3D; t \\<br>i &amp;&#x3D; g_m (V_{in}(t) - V_{out}) \\<br>i &amp;&#x3D; C\frac{dV_{out}}{dt}<br>\end{align}<br>$$</p>
+<p>Again, we can solve the ODE system by direct integration. This gives us:<br>$$<br>V_{out}(t) &#x3D; t - \tau + \tau e^{-\frac{t}{\tau}}<br>$$</p>
+<p>where $\tau &#x3D; \frac{C}{g_m}$.</p>
+<p>Interstingly, if we now consider the steady-state error as a function of time, we have</p>
+<p>$$<br>\begin{align}<br>e(t) &amp;&#x3D; V_{in}(t) - V_{out}(t) \\<br>&amp;&#x3D; t - (t - \tau + \tau e^{-\frac{t}{\tau}}) \\<br>&amp;&#x3D; \tau - \tau e^{-\frac{t}{\tau}} \\<br>&amp;&#x3D; \tau(1 - e^{-\frac{t}{\tau}})<br>\end{align}<br>$$</p>
+<p>As $t \to \infty$, unfortunately the error doesn’t die out, which would be what we have seen for a step response case. We show the plotting here as well:</p>
+<p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20260416234125.png" alt="ramp response"></p>
+<p>In fact, we will see in later parts of this series, step input is called a “type-0” input, and ramp input is called a “type-1” input. The original R-loaded OpAmp is called a “type-0” system, and the C-loaded improved OpAmp is called a “type-1” system.</p>
+<p>In the next section, we will introduce some very useful mathematics tool to help us analyze the system without solving the ODE every single time.</p>
 
             </div>
             <hr>
