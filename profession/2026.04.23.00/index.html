@@ -293,7 +293,7 @@
 </ul>
 </blockquote>
 <h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><h3 id="A-Type-2-Charge-Pump-PLL"><a href="#A-Type-2-Charge-Pump-PLL" class="headerlink" title="A Type 2 Charge Pump PLL"></a>A Type 2 Charge Pump PLL</h3><p>Let’s take the type-2 PLL system shown above for example.<br><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/mathSFG_type2PLL.png" alt="SFG_type2PLL"><br>In this example, there is 1 single loop, and only 1 forward path from input to output. Therefore, $N&#x3D;1$, and:</p>
-<p>$$\begin{align}<br>\Delta &#x3D; 1 - L_1 &#x3D; 1 + K_{PFD}I_{CP}(R + 1&#x2F;sC)K_{VCO}&#x2F;s &#x2F; N \\<br>\Delta_1 &#x3D; 1<br>\displaystyle \Sigma_{k&#x3D;1}^{N}P_k \Delta_k &#x3D; K_{PFD}I_{CP}(R + 1&#x2F;sC)K_{VCO}&#x2F;s<br>\end{align}$$</p>
+<p>$$\begin{align}<br>\Delta &amp;&#x3D; 1 - L_1 &#x3D; 1 + K_{PFD}I_{CP}(R + 1&#x2F;sC)K_{VCO}&#x2F;s &#x2F; N \\<br>\Delta_1 &amp;&#x3D; 1 \\<br>\displaystyle \Sigma_{k&#x3D;1}^{N}P_k \Delta_k &amp;&#x3D; K_{PFD}I_{CP}(R + 1&#x2F;sC)K_{VCO}&#x2F;s<br>\end{align}$$</p>
 <p>Bear in mind that $\Delta_1 &#x3D; 1$ because there is only one loop, and it does touches the forward path, therefore we are remove the only contributing loop gain from $\Delta$.</p>
 <p>Thus, combining the terms together, we have the expression for the closed loop gain:</p>
 <p>$$<br>H(s) &#x3D; \frac{K_{PFD}I_{CP}(R + 1&#x2F;sC)K_{VCO}&#x2F;s}{1 + K_{PFD}I_{CP}(R + 1&#x2F;sC)K_{VCO}&#x2F;s &#x2F; N}<br>$$</p>
@@ -301,7 +301,7 @@
 <h3 id="A-Triple-Integrator-System"><a href="#A-Triple-Integrator-System" class="headerlink" title="A Triple Integrator System"></a>A Triple Integrator System</h3><p>Now, let’s compute the transfer function of the SISO system below:</p>
 <p><img src="https://raw.githubusercontent.com/cedard234/imagerepo/master/math20260425005413.png"></p>
 <p>We notice that there are 3 loops and 3 forwarded paths. Luckily, they all touch each other, which makes our calculation very simple.</p>
-<p>$$<br>\begin{cases}<br>\Delta &#x3D; 1 + a_1&#x2F;s + a_2&#x2F;s^2 + a_3&#x2F;s^3<br>p_1 &#x3D; b1&#x2F;s  \\<br>\Delta_1 &#x3D; 1 \\<br>p_2 &#x3D; b2&#x2F;s^2 \\<br>\Delta_2 &#x3D; 1 \\<br>p_3 &#x3D; b3&#x2F;s^3 \\<br>\Delta_3 &#x3D; 1<br>\end{cases}<br>$$<br>Combining all the terms, we have</p>
+<p>$$<br>\begin{cases}<br>\Delta &#x3D; 1 + a_1&#x2F;s + a_2&#x2F;s^2 + a_3&#x2F;s^3 \\<br>p_1 &#x3D; b1&#x2F;s  \\<br>\Delta_1 &#x3D; 1 \\<br>p_2 &#x3D; b2&#x2F;s^2 \\<br>\Delta_2 &#x3D; 1 \\<br>p_3 &#x3D; b3&#x2F;s^3 \\<br>\Delta_3 &#x3D; 1<br>\end{cases}<br>$$<br>Combining all the terms, we have</p>
 <p>$$ \begin{align}<br>H(s) &amp;&#x3D; \frac{b_1&#x2F;s + b_2&#x2F;s^2 + b_3&#x2F;s^3}{1 + a_1&#x2F;s + a_2&#x2F;s^2 + a_3&#x2F;s^3} \\<br>&amp;&#x3D; \frac{b_1 s^2 + b_2 s + b_3}{s^3 + a_1 s^2 + a_2 s + a_3}<br>\end{align}<br>$$</p>
 <h2 id="Canonical-Forms"><a href="#Canonical-Forms" class="headerlink" title="Canonical Forms"></a>Canonical Forms</h2><p>Doesn’t the last example have a very regular transfer function? This is actually intended. </p>
 <p>In a control system modeled in time domain, we have our system defined using state-space model:<br>$$<br>\begin{align}<br>\dot{x}(t) &amp;&#x3D; Ax(t) + Bu(t) \\<br>y(t) &amp;&#x3D; Cx(t)<br>\end{align}<br>$$<br>and we know that, if we perform Laplace transform, while assuming a 0 initial condition, we have<br>$$ sX(s) &#x3D; AX(s) + BU(s) $$<br>Therefore, by algebraic manipulation, we have<br>$$ Y(s)&#x2F;U(s) &#x3D; C(sI - A)^{-1}B $$<br>Which is the transformation between state space model to transfer functions.</p>
@@ -347,6 +347,13 @@
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/profession/">profession</a>
+                    
+                  </div>
+                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
@@ -390,8 +397,8 @@
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_config = function() {
-        this.page.url = 'http://blog.cedard.top/uncategorized/2026.04.23.00/';
-        this.page.identifier = '/uncategorized/2026.04.23.00/';
+        this.page.url = 'http://blog.cedard.top/profession/2026.04.23.00/';
+        this.page.identifier = '/profession/2026.04.23.00/';
       };
       Fluid.utils.waitElementVisible('disqus_thread', function () {
         var d = document, s = d.createElement('script');
